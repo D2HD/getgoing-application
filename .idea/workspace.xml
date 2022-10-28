@@ -5,25 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f62b0d9-8627-41d5-85fa-0a5c2c6f0325" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/getGoingApp/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/createTable.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/GetGoingApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/HelloWorldController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/TweetController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Tweet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/TweetTrend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/TweetRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/sample/Sample.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/TweetService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +39,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -71,17 +65,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "/Users/seanmarinas/appetizer/getGoingApp",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/seanmarinas/appetizer/getGoingApp&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/getGoingApp" />

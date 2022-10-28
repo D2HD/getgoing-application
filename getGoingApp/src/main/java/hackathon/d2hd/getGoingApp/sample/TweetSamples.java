@@ -2,7 +2,7 @@ package hackathon.d2hd.getGoingApp.sample;
 
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 
-public class Sample {
+public class TweetSamples {
     private Tweet tweet1 = new Tweet(
             "https://t.co/zATocumgqw",
             "BTS",

@@ -11,5 +11,4 @@ public interface TweetService {
     public Long countByContent(String content);
     public void addTweet(Tweet tweet);
     public void clearDatabase();
-
 }
