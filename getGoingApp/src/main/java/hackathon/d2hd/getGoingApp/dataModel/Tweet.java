@@ -1,137 +1,207 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+// TODO: 30/10/22 First Change
+/*
+- this is the class for the raw, unparsed data of the tweet
+- the values are all strings because Hashscraper returns Strings
+- you will notice that the attribute names are labelled value 1 to 15
+- the reason for this is that the keys for hashscraper are also named value 1 -15
+- so if we had different naming then it would be impossible for the Jackson Library (the library that turns JSON in to a Java Object) to read in the information
+- you will notice also that I did not include the @Entity tag, reason being is because I had a file containing samples of Hashscraper's return results so for now I just used that instead of a database
+- look for the Second Change to see the TweetDTO
+ */
 
-@Entity
-@Table(name = "tweet")
 public class Tweet {
-    @Id
-    @Column(name = "url")
-    private String url;
 
-    @Column(name = "main_content")
-    private String main_content;
+    //url
+    private String value1;
 
-    @Column(name = "profile_name")
-    private String profile_name;
+    //topic
+    private String value2;
 
-    @Column(name = "tweet_endpoint")
-    private String tweet_endpoint;
+    //profile_name
+    private String value3;
 
-    @Column(name = "content")
-    private String content;
+    //tweet_endpoint
+    private String value4;
 
-    @Column(name = "likes")
-    private Long likes;
+    //username
+    private String value5;
 
-    @Column(name = "retweets")
-    private Long retweets;
+    //
+    private String value6;
+    private String value7;
+    private String value8;
+    private String value9;
+    private String value10;
+    private String value11;
+    private String value12;
+    private String value13;
 
-    @Column(name = "quote_tweets")
-    private Long quote_tweets;
+    //timestamp
+    private String value14;
 
-    @Column(name = "timestamp")
-    private String timestamp;
+    //tweet_json
+    private String value15;
 
-    @Column(name = "tweet_json")
-    private String tweet_json;
+    public Tweet() {}
 
-    public Tweet(String url, String main_content, String profile_name, String tweet_endpoint, String content, Long likes, Long retweets, Long quote_tweets, String timestamp, String tweet_json) {
-        this.url = url;
-        this.main_content = main_content;
-        this.profile_name = profile_name;
-        this.tweet_endpoint = tweet_endpoint;
-        this.content = content;
-        this.likes = likes;
-        this.retweets = retweets;
-        this.quote_tweets = quote_tweets;
-        this.timestamp = timestamp;
-        this.tweet_json = tweet_json;
+    public Tweet(String value1, String value2, String value3, String value4, String value5, String value6, String value7, String value8, String value9, String value10, String value11, String value12, String value13, String value14, String value15) {
+        this.value1 = value1;
+        this.value2 = value2;
+        this.value3 = value3;
+        this.value4 = value4;
+        this.value5 = value5;
+        this.value6 = value6;
+        this.value7 = value7;
+        this.value8 = value8;
+        this.value9 = value9;
+        this.value10 = value10;
+        this.value11 = value11;
+        this.value12 = value12;
+        this.value13 = value13;
+        this.value14 = value14;
+        this.value15 = value15;
     }
 
-    public Tweet() {
+    public String getValue1() {
+        return value1;
     }
 
-    public String getUrl() {
-        return url;
+    public void setValue1(String value1) {
+        this.value1 = value1;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public String getValue2() {
+        return value2;
     }
 
-    public String getMain_content() {
-        return main_content;
+    public void setValue2(String value2) {
+        this.value2 = value2;
     }
 
-    public void setMain_content(String main_content) {
-        this.main_content = main_content;
+    public String getValue3() {
+        return value3;
     }
 
-    public String getProfile_name() {
-        return profile_name;
+    public void setValue3(String value3) {
+        this.value3 = value3;
     }
 
-    public void setProfile_name(String profile_name) {
-        this.profile_name = profile_name;
+    public String getValue4() {
+        return value4;
     }
 
-    public String getTweet_endpoint() {
-        return tweet_endpoint;
+    public void setValue4(String value4) {
+        this.value4 = value4;
     }
 
-    public void setTweet_endpoint(String tweet_endpoint) {
-        this.tweet_endpoint = tweet_endpoint;
+    public String getValue5() {
+        return value5;
     }
 
-    public String getContent() {
-        return content;
+    public void setValue5(String value5) {
+        this.value5 = value5;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getValue6() {
+        return value6;
     }
 
-    public Long getLikes() {
-        return likes;
+    public void setValue6(String value6) {
+        this.value6 = value6;
     }
 
-    public void setLikes(Long likes) {
-        this.likes = likes;
+    public String getValue7() {
+        return value7;
     }
 
-    public Long getRetweets() {
-        return retweets;
+    public void setValue7(String value7) {
+        this.value7 = value7;
     }
 
-    public void setRetweets(Long retweets) {
-        this.retweets = retweets;
+    public String getValue8() {
+        return value8;
     }
 
-    public Long getQuote_tweets() {
-        return quote_tweets;
+    public void setValue8(String value8) {
+        this.value8 = value8;
     }
 
-    public void setQuote_tweets(Long quote_tweets) {
-        this.quote_tweets = quote_tweets;
+    public String getValue9() {
+        return value9;
     }
 
-    public String getTimestamp() {
-        return timestamp;
+    public void setValue9(String value9) {
+        this.value9 = value9;
     }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public String getValue10() {
+        return value10;
     }
 
-    public String getTweet_json() {
-        return tweet_json;
+    public void setValue10(String value10) {
+        this.value10 = value10;
     }
 
-    public void setTweet_json(String tweet_json) {
-        this.tweet_json = tweet_json;
+    public String getValue11() {
+        return value11;
+    }
+
+    public void setValue11(String value11) {
+        this.value11 = value11;
+    }
+
+    public String getValue12() {
+        return value12;
+    }
+
+    public void setValue12(String value12) {
+        this.value12 = value12;
+    }
+
+    public String getValue13() {
+        return value13;
+    }
+
+    public void setValue13(String value13) {
+        this.value13 = value13;
+    }
+
+    public String getValue14() {
+        return value14;
+    }
+
+    public void setValue14(String value14) {
+        this.value14 = value14;
+    }
+
+    public String getValue15() {
+        return value15;
+    }
+
+    public void setValue15(String value15) {
+        this.value15 = value15;
+    }
+
+    @Override
+    public String toString() {
+        return "Tweet{" +
+                "value1='" + value1 + '\'' +
+                ", value2='" + value2 + '\'' +
+                ", value3='" + value3 + '\'' +
+                ", value4='" + value4 + '\'' +
+                ", value5='" + value5 + '\'' +
+                ", value6='" + value6 + '\'' +
+                ", value7='" + value7 + '\'' +
+                ", value8='" + value8 + '\'' +
+                ", value9='" + value9 + '\'' +
+                ", value10='" + value10 + '\'' +
+                ", value11='" + value11 + '\'' +
+                ", value12='" + value12 + '\'' +
+                ", value13='" + value13 + '\'' +
+                ", value14='" + value14 + '\'' +
+                ", value15='" + value15 + '\'' +
+                '}';
     }
 }
