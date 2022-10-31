@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 - earlier the Tweet class contained all string, but here you'll see that the attribute types have changed
 - also I changed the attribute names to be something more identifiable rather than value1 - value15
 - the order of each attribute is exactly the same as the Tweet class, just that the type and name have changed
-- look for the Third Change to see how i converted Tweet to Tweet DTO
+- look for the Third Change to see how I converted Tweet to Tweet DTO
  */
 
 public class TweetDto {

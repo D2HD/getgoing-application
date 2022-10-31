@@ -11,9 +11,18 @@ package hackathon.d2hd.getGoingApp.dataModel;
 - look for the Second Change to see the TweetDto
  */
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tweet")
 public class Tweet {
 
     //url
+    @Id
+    @Column(name = "value1")
     private String value1;
 
     //topic
