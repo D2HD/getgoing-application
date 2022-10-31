@@ -17,5 +17,8 @@ public class TweetController {
     private TweetService tweetService;
 
     @GetMapping("")
+    private void mainFunction() {
+
+    }
 }
 
