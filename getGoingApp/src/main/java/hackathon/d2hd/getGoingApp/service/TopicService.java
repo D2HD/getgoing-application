@@ -9,7 +9,9 @@ import java.util.List;
 public interface TopicService {
     Topic tweetDtoToTopic(TweetDto tweetDto);
 
-    // TODO: 28/10/22 Add APIs for Topics
-    public HashMap<String, Topic> getTopics(List<TweetDto> tweetDtoList);
+    HashMap<String, Topic> getTopicHashmap(List<TweetDto> tweetDtoList);
+
     public String createTopicId(TweetDto tweetDTO);
+
+    abstract List<Topic> getTopicList(HashMap<String, Topic> topicHashMap);
 }

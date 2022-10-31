@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +15,12 @@ import java.util.List;
 @Service
 public class TopicServiceImpl implements TopicService {
 
-    @Autowired private TweetService tweetService;
+    @Override
+    public String createTopicId(TweetDto tweetDTO) {
+        String topicName = tweetDTO.getTopic();
+        String dateString = tweetDTO.getLocalDateTime().toString().substring(0, 10);
+        return topicName + dateString;
+    }
 
     @Override
     public Topic tweetDtoToTopic(TweetDto tweetDto) {
@@ -33,9 +36,8 @@ public class TopicServiceImpl implements TopicService {
         );
     }
 
-
     @Override
-    public HashMap<String, Topic> getTopics(List<TweetDto> tweetDtoList) {
+    public HashMap<String, Topic> getTopicHashmap(List<TweetDto> tweetDtoList) {
         HashMap<String, Topic> topicHashMap = new HashMap();
 
         tweetDtoList.forEach(tweetDTO -> {
@@ -55,9 +57,12 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public String createTopicId(TweetDto tweetDTO) {
-        String topicName = tweetDTO.getTopic();
-        String dateString = tweetDTO.getLocalDateTime().toString().substring(0, 10);
-        return topicName + dateString;
+    public List<Topic> getTopicList(HashMap <String, Topic> topicHashMap) {
+        List<Topic> topicList = new ArrayList<>();
+        topicHashMap.forEach((s, topic) -> {
+            topicList.add(topicHashMap.get(s));
+        });
+
+        return topicList;
     }
 }
