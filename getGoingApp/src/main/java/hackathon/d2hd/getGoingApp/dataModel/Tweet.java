@@ -8,7 +8,7 @@ package hackathon.d2hd.getGoingApp.dataModel;
 - the reason for this is that the keys for hashscraper are also named value 1 -15
 - so if we had different naming then it would be impossible for the Jackson Library (the library that turns JSON in to a Java Object) to read in the information
 - you will notice also that I did not include the @Entity tag, reason being is because I had a file containing samples of Hashscraper's return results so for now I just used that instead of a database
-- look for the Second Change to see the TweetDTO
+- look for the Second Change to see the TweetDto
  */
 
 public class Tweet {

@@ -1,7 +1,7 @@
 package hackathon.d2hd.getGoingApp.service;
 
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
-import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDTO;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,10 +14,13 @@ public interface TweetService {
 
     // TODO: 30/10/22 Third Change
     /*
-    - interface that converts a Tweet to a TweetDTO
-    - look for the Fourth Change to see the TweetDTO
+    - interface that converts a Tweet to a TweetDto
+    - look for the Fourth Change to see the TweetDto
     */
 
-    public TweetDTO tweetToTweetDTO(Tweet tweet);
+    public TweetDto tweetToTweetDto(Tweet tweet);
+
+    List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList);
+
     public LocalDateTime stringToLocalDateTime(String localDateTimeString);
 }

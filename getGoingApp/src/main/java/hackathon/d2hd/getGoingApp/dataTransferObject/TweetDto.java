@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 - look for the Third Change to see how i converted Tweet to Tweet DTO
  */
 
-public class TweetDTO {
+public class TweetDto {
     private String url;
     private String topic;
     private String profile_name;
@@ -28,9 +28,9 @@ public class TweetDTO {
     private LocalDateTime localDateTime;
     private String tweet_json;
 
-    public TweetDTO() {}
+    public TweetDto() {}
 
-    public TweetDTO(String url, String topic, String profile_name, long tweet_id, String username, String profile_picture_url, String tweet_content, long tweet_like_count, long tweet_retweet_count, long tweet_reply_count, long tweet_quote_tweet_count, String photo_urls, String photo_url_number, LocalDateTime localDateTime, String tweet_json) {
+    public TweetDto(String url, String topic, String profile_name, long tweet_id, String username, String profile_picture_url, String tweet_content, long tweet_like_count, long tweet_retweet_count, long tweet_reply_count, long tweet_quote_tweet_count, String photo_urls, String photo_url_number, LocalDateTime localDateTime, String tweet_json) {
         this.url = url;
         this.topic = topic;
         this.profile_name = profile_name;

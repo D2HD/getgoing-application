@@ -1,7 +1,7 @@
-package hackathon.d2hd.getGoingApp;
+package hackathon.d2hd.getGoingApp.tweetServiceTests;
 
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
-import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDTO;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 // TODO: 31/10/22 Seventh Change
@@ -35,7 +34,7 @@ class TweetServiceTests {
     - for tests in Spring, annotate it with @Test
     - for my test i just called the deserializer API which returns a list of Tweets
     - then i printed each element to ensure it isn't empty, alternatively i could've used assertEquals which you'll see in the Ninth Change
-    - look for Ninth Change to see my Unit test for the that turns a Tweet to a TweetDTO
+    - look for Ninth Change to see my Unit test for the that turns a Tweet to a TweetDto
      */
     @Test
     public void testJsonToTweetDeserializerAPI() throws IOException {
@@ -50,24 +49,18 @@ class TweetServiceTests {
     - i called the deserializer which returns a list of tweets
     - i counted the number of tweets and stored it in a tweetListCount variable
     - next i made an empty list of TweetDTOs, which i will append in the next line'
-    - for each tweet in the tweet list, i called the tweetToTweetDTO API which returns a TweetDTO and added it to the tweetDTOList
-    - i counted the number of elements in the TweetDTO list
+    - for each tweet in the tweet list, i called the tweetToTweetDTO API which returns a TweetDto and added it to the tweetDTOList
+    - i counted the number of elements in the TweetDto list
     - the i used Assertions.assertEquals which accepts 2 parameters, in this case tweetListCount and tweetDTOListCount which will either pass or fail the test depending if both variables are equal
      */
     @Test
-    public void testTweetToTweetDTO() throws IOException {
+    public void testTweetListToTweetDtoListAPI() throws IOException {
         List <Tweet> tweetList = tweetService.JsonToTweetDeserializer(hashScraperJsonFile);
         long tweetListCount = tweetList.stream().count();
 
-        List <TweetDTO> tweetDTOList = new ArrayList<>();
-        tweetList.forEach(tweet -> {
-            tweetDTOList.add(tweetService.tweetToTweetDTO(tweet));
-        });
-
-        long tweetDTOListCount = tweetDTOList.stream().count();
+        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
+        long tweetDTOListCount = tweetDtoList.stream().count();
 
         Assertions.assertEquals(tweetListCount, tweetDTOListCount);
-
-
     }
 }

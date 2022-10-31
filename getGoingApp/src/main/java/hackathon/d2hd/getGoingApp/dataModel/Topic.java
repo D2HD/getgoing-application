@@ -1,25 +1,29 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Topic {
-    String topic_id;
-    String topic_name;
-    Long num_of_occurrence;
-    Date timestamp;
-    static Long like_count = 0L;
-    static Long retweet_count = 0L;
-    static Long quote_tweet_count = 0L;
-    BigDecimal general_sentiment;
+    private String topic_id;
+    private String topic_name;
+    private Long num_of_occurrence;
+    private LocalDateTime timestamp;
+    private Long like_count;
+    private Long retweet_count;
+    private Long quote_tweet_count ;
+    private BigDecimal general_sentiment;
 
     public Topic() {}
 
-    public Topic(String topic_id, String topic_name, Long num_of_occurrence, Date timestamp, BigDecimal general_sentiment) {
+    public Topic(String topic_id, String topic_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Long retweet_count, Long quote_tweet_count, BigDecimal general_sentiment) {
         this.topic_id = topic_id;
         this.topic_name = topic_name;
         this.num_of_occurrence = num_of_occurrence;
         this.timestamp = timestamp;
+        this.like_count = like_count;
+        this.retweet_count = retweet_count;
+        this.quote_tweet_count = quote_tweet_count;
         this.general_sentiment = general_sentiment;
     }
 
@@ -47,36 +51,36 @@ public class Topic {
         this.num_of_occurrence = num_of_occurrence;
     }
 
-    public Date getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
-    public static Long getLike_count() {
+    public Long getLike_count() {
         return like_count;
     }
 
-    public static void setLike_count(Long like_count) {
-        Topic.like_count = like_count;
+    public void setLike_count(Long like_count) {
+        this.like_count = like_count;
     }
 
-    public static Long getRetweet_count() {
+    public Long getRetweet_count() {
         return retweet_count;
     }
 
-    public static void setRetweet_count(Long retweet_count) {
-        Topic.retweet_count = retweet_count;
+    public void setRetweet_count(Long retweet_count) {
+        this.retweet_count = retweet_count;
     }
 
-    public static Long getQuote_tweet_count() {
+    public Long getQuote_tweet_count() {
         return quote_tweet_count;
     }
 
-    public static void setQuote_tweet_count(Long quote_tweet_count) {
-        Topic.quote_tweet_count = quote_tweet_count;
+    public void setQuote_tweet_count(Long quote_tweet_count) {
+        this.quote_tweet_count = quote_tweet_count;
     }
 
     public BigDecimal getGeneral_sentiment() {

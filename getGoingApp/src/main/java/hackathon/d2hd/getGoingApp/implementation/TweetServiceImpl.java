@@ -4,15 +4,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
-import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDTO;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,14 +46,14 @@ public class TweetServiceImpl implements TweetService {
 
     // TODO: 30/10/22 Fourth Change
     /*
-    - pretty self explanatory, I just parsed the attribute data from Tweet to match that of TweetDTO
+    - pretty self explanatory, I just parsed the attribute data from Tweet to match that of TweetDto
     - look for the Fifth Change to see the implementation for converting a String to a LocalDateTime
      */
     @Override
-    public TweetDTO tweetToTweetDTO(Tweet tweet) {
-        return new TweetDTO(
+    public TweetDto tweetToTweetDto(Tweet tweet) {
+        return new TweetDto(
                 tweet.getValue1(),
-                tweet.getValue2(),
+                tweet.getValue2().replace(" ", ""),
                 tweet.getValue3(),
                 Long.parseLong(tweet.getValue4()),
                 tweet.getValue5(),
@@ -69,6 +69,18 @@ public class TweetServiceImpl implements TweetService {
                 tweet.getValue15()
         );
     }
+
+    @Override
+    public List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList) {
+        List<TweetDto> tweetDtoList = new ArrayList<>();
+
+        tweetList.forEach(tweet -> {
+            tweetDtoList.add(tweetToTweetDto(tweet));
+        });
+
+        return tweetDtoList;
+    }
+
 
     // TODO: 30/10/22  Fifth Change
     /*
@@ -87,6 +99,12 @@ public class TweetServiceImpl implements TweetService {
         String formattedString = localDateTimeString.substring(0, localDateTimeString.length()-6);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+        /*
+        - after parsing, there will be a 'T' in the gap between 'dd' and 'HH' indicating time
+        - for example if the original formattedString was "2022-10-31 16:05:39"
+        - it would be converted to "2022-10-31T16:05:39"
+        - doesn't affect the workflow much but just something to keep in mind
+         */
         return LocalDateTime.parse(formattedString, formatter);
     }
 }
