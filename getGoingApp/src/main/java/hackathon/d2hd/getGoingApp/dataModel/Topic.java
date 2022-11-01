@@ -1,17 +1,39 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
+@Entity
+@Table(name = "topic")
 public class Topic {
+    @Id
+    @Column(name = "topic_id")
     private String topic_id;
+
+    @Column(name = "topic_name")
     private String topic_name;
+
+    @Column(name = "num_of_occurrence")
     private Long num_of_occurrence;
+
+    @Column(name = "dateTime")
     private LocalDateTime timestamp;
+
+    @Column(name = "like_count")
     private Long like_count;
+
+    @Column(name = "retweet_count")
     private Long retweet_count;
+
+    @Column(name = "quote_tweet_count")
     private Long quote_tweet_count ;
+
+    @Column(name = "general_sentiment")
     private BigDecimal general_sentiment;
 
     public Topic() {}

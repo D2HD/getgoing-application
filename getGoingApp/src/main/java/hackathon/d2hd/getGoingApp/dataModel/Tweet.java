@@ -25,32 +25,46 @@ public class Tweet {
     @Column(name = "value1")
     private String value1;
 
-    //topic
+    @Column(name = "value2")
     private String value2;
 
-    //profile_name
+    @Column(name = "value3")
     private String value3;
 
-    //tweet_endpoint
+    @Column(name = "value4")
     private String value4;
 
-    //username
+    @Column(name = "value5")
     private String value5;
 
-    //
+    @Column(name = "value6")
     private String value6;
+
+    @Column(name = "value7")
     private String value7;
+
+    @Column(name = "value8")
     private String value8;
+
+    @Column(name = "value9")
     private String value9;
+
+    @Column(name = "value11")
     private String value10;
+
+    @Column(name = "value11")
     private String value11;
+
+    @Column(name = "value12")
     private String value12;
+
+    @Column(name = "value13")
     private String value13;
 
-    //timestamp
+    @Column(name = "value14")
     private String value14;
 
-    //tweet_json
+    @Column(name = "value15")
     private String value15;
 
     public Tweet() {}

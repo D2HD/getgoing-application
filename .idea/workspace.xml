@@ -5,12 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f62b0d9-8627-41d5-85fa-0a5c2c6f0325" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/TopicRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/resources/create_topic_table.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/resources/create_tweet_table.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/dependencies-accessors/dependencies-accessors.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/GetGoingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/GetGoingApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/HelloWorldController.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/HelloWorldController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/TweetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/TweetController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Topic.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Topic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Tweet.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Tweet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataTransferObject/TweetDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataTransferObject/TweetDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TopicServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TopicServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TopicService.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TopicService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TweetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TweetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/resources/main/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Topic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Tweet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +44,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/getGoingApp">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -43,6 +65,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -58,31 +81,42 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2GlHRRgCXK5v4608fj6tRTjFFg7" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/seanmarinas/appetizer/getGoingApp&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "/Users/seanmarinas/appetizer/getGoingApp/src/main/resources",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/getGoingApp/src/main/resources" />
       <recent name="$PROJECT_DIR$/getGoingApp" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.GetGoingApplication">
     <configuration name="GetGoingApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hackathon.d2hd.getGoingApp.GetGoingApplication" />
       <module name="getGoingApp.main" />
@@ -96,8 +130,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GetGoingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="getGoingApp.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hackathon.d2hd.getGoingApp.GetGoingApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="hackathon.d2hd.getGoingApp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.GetGoingApplication" />
         <item itemvalue="Application.GetGoingApplication" />
         <item itemvalue="Application.GetGoingApplication" />
       </list>
