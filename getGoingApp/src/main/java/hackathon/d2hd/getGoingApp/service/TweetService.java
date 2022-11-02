@@ -11,16 +11,11 @@ import java.util.List;
 
 public interface TweetService {
     public List<Tweet> JsonToTweetDeserializer(File jsonFile) throws IOException;
-
-    // TODO: 30/10/22 Third Change
-    /*
-    - interface that converts a Tweet to a TweetDto
-    - look for the Fourth Change to see the TweetDto
-    */
-
+    public void saveTweet(Tweet tweet);
+    public void saveTweetList(List<Tweet> tweetList);
+    public List<Tweet> getAllTweetsFromDatabase();
+    public void clearDatabase();
     public TweetDto tweetToTweetDto(Tweet tweet);
-
-    List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList);
-
     public LocalDateTime stringToLocalDateTime(String localDateTimeString);
+    List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList);
 }

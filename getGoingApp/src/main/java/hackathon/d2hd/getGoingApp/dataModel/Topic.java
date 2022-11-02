@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "topic")
@@ -21,7 +20,7 @@ public class Topic {
     @Column(name = "num_of_occurrence")
     private Long num_of_occurrence;
 
-    @Column(name = "dateTime")
+    @Column(name = "datetime")
     private LocalDateTime timestamp;
 
     @Column(name = "like_count")
@@ -73,11 +72,11 @@ public class Topic {
         this.num_of_occurrence = num_of_occurrence;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDateTime getLocalDateTime() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setLocalDateTime(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 

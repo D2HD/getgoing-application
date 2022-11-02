@@ -10,17 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
-// TODO: 31/10/22 Seventh Change
-/*
-- so i created a class that just tests for anything withing my TweetService
-- annotate the classes with @SpringBootTest
-- include your service, in this case would be TweetService and annotate it with @AutoWired
-- you will see that I have an instance variable of a file, this file contains some return data from Hashscraper
-- the file is located in getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperTestData.json
-- look for Eigth Change to see the test for the deserializer API
- */
 @SpringBootTest
 class TweetServiceTests {
 
@@ -28,14 +21,6 @@ class TweetServiceTests {
     @Autowired
     private TweetService tweetService;
 
-    // TODO: 31/10/22 Eighth Change
-    /*
-    - a test is a method, so its signature can be anything you want
-    - for tests in Spring, annotate it with @Test
-    - for my test i just called the deserializer API which returns a list of Tweets
-    - then i printed each element to ensure it isn't empty, alternatively i could've used assertEquals which you'll see in the Ninth Change
-    - look for Ninth Change to see my Unit test for the that turns a Tweet to a TweetDto
-     */
     @Test
     public void testJsonToTweetDeserializerAPI() throws IOException {
         List<Tweet> tweetList = tweetService.JsonToTweetDeserializer(hashScraperJsonFile);
@@ -44,15 +29,58 @@ class TweetServiceTests {
         });
     }
 
-    // TODO: 31/10/22 Ninth Change
-    /*
-    - i called the deserializer which returns a list of tweets
-    - i counted the number of tweets and stored it in a tweetListCount variable
-    - next i made an empty list of TweetDTOs, which i will append in the next line'
-    - for each tweet in the tweet list, i called the tweetToTweetDTO API which returns a TweetDto and added it to the tweetDTOList
-    - i counted the number of elements in the TweetDto list
-    - the i used Assertions.assertEquals which accepts 2 parameters, in this case tweetListCount and tweetDTOListCount which will either pass or fail the test depending if both variables are equal
-     */
+    @Test
+    public void testSaveTweetList() throws IOException {
+        tweetService.clearDatabase();
+
+        //this is the tweetList from the raw data from hashscraper
+        List<Tweet> hashscraperTweetList = tweetService.JsonToTweetDeserializer(hashScraperJsonFile);
+        tweetService.saveTweetList(hashscraperTweetList);
+        long hashscraperTweetListCount = hashscraperTweetList.stream().count();
+
+        //after saving the tweets to the repo, I performed a pull of tall the tweets from the database
+        List<Tweet> tweetRepositoryTweetList = tweetService.getAllTweetsFromDatabase();
+        long tweetRepositoryTweetListCount = tweetRepositoryTweetList.stream().count();
+
+        /*
+        - I realised that the number of tweets from both lists are different
+        - my immediate assumption was that there were probably duplicates of tweets in hashscraperTweetList
+        - the number differs from tweetRepositoryTweetList because when a save to the repo is performed, duplicates will not be added
+        - i checked this by displaying the a key value pair from a hashmap as seen below
+        - the hashmap maps the url of the tweet to the number of times it has appeared in the repo
+         */
+
+        Assertions.assertNotEquals(hashscraperTweetListCount, tweetRepositoryTweetListCount);
+
+        HashMap<String, Long> hs = new HashMap<>();
+        hashscraperTweetList.forEach(tweet -> {
+            String url = tweet.getValue1();
+            if(!hs.containsKey(url)) {
+                hs.put(url, 1L);
+            }else{
+                hs.put(url, hs.get(url) + 1);
+            }
+        });
+
+        //as seen from the code below, some urls have more than 1 occurence
+        hs.forEach((s, aLong) -> {
+            System.out.println(s + ": " + aLong);
+        });
+
+        //i created a duplicateCount that increments by one when a url has more than 1 ocurrence
+        AtomicLong duplicateCount = new AtomicLong();
+        hs.forEach((s, aLong) -> {
+            if(aLong > 1l) {
+                duplicateCount.getAndIncrement();
+            }
+        });
+
+        //i compared to the duplicateCount to the difference in counts between hashscraperTweetListCount and tweetRepositoryTweetListCount
+        Assertions.assertEquals((hashscraperTweetListCount - tweetRepositoryTweetListCount), Long.parseLong(String.valueOf(duplicateCount.get())));
+
+        tweetService.clearDatabase();
+    }
+
     @Test
     public void testTweetListToTweetDtoListAPI() throws IOException {
         List <Tweet> tweetList = tweetService.JsonToTweetDeserializer(hashScraperJsonFile);
