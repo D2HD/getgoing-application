@@ -1,11 +1,10 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "topic")
@@ -35,6 +34,9 @@ public class Topic {
     @Column(name = "general_sentiment")
     private BigDecimal general_sentiment;
 
+    @OneToMany
+    private ArrayList<SevenDaySearch> seven_day_search;
+
     public Topic() {}
 
     public Topic(String topic_id, String topic_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Long retweet_count, Long quote_tweet_count, BigDecimal general_sentiment) {
@@ -46,6 +48,7 @@ public class Topic {
         this.retweet_count = retweet_count;
         this.quote_tweet_count = quote_tweet_count;
         this.general_sentiment = general_sentiment;
+        this.seven_day_search = new ArrayList<>();
     }
 
     public String getTopic_id() {
@@ -72,11 +75,11 @@ public class Topic {
         this.num_of_occurrence = num_of_occurrence;
     }
 
-    public LocalDateTime getLocalDateTime() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
-    public void setLocalDateTime(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -110,5 +113,30 @@ public class Topic {
 
     public void setGeneral_sentiment(BigDecimal general_sentiment) {
         this.general_sentiment = general_sentiment;
+    }
+
+    public ArrayList<SevenDaySearch> getSeven_day_search() {
+        return seven_day_search;
+    }
+
+    public void setSeven_day_search(ArrayList<SevenDaySearch> seven_day_search) {
+        this.seven_day_search = seven_day_search;
+    }
+}
+
+@Entity
+class SevenDaySearch {
+    @Id
+    private Long num_of_search;
+
+    public SevenDaySearch() {
+    }
+
+    public Long getNum_of_search() {
+        return num_of_search;
+    }
+
+    public void setNum_of_search(Long num_of_search) {
+        this.num_of_search = num_of_search;
     }
 }
