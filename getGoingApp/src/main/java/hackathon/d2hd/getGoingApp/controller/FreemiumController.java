@@ -24,5 +24,7 @@ public class FreemiumController {
         File file = new File("/Users/seanmarinas/appetizer/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperTestData.json");
         return freemiumService.freemiumWorkflow(file);
     }
+
+
 }
 
