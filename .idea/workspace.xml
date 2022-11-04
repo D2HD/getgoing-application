@@ -5,7 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f62b0d9-8627-41d5-85fa-0a5c2c6f0325" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/TestControllers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/classes/hackathon.d2hd.getGoingApp.GetGoingApplicationTests.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/classes/hackathon.d2hd.getGoingApp.GetGoingApplicationTests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/packages/hackathon.d2hd.getGoingApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/packages/hackathon.d2hd.getGoingApp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/TEST-hackathon.d2hd.getGoingApp.GetGoingApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/TEST-hackathon.d2hd.getGoingApp.GetGoingApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreemiumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreemiumController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,32 +83,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "1.8",
-    "last_opened_file_path": "/Users/seanmarinas/appetizer/getGoingApp/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "spring.configuration.checksum": "b447a4b9146f7f032ef952dc2c3f3913"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/seanmarinas/appetizer/getGoingApp/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b447a4b9146f7f032ef952dc2c3f3913&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -115,6 +134,29 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;hackathon.d2hd.getGoingApp.GetGoingApplicationTests&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetGoingApplicationTests.testFreemiumWorkflow" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.GetGoingApplicationTests.testFreemiumWorkflow&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -170,29 +212,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TopicServiceTests.testsortTopicsByNumOfOccurrenceAPI" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;hackathon.d2hd.getGoingApp.topicServiceTests.TopicServiceTests.testsortTopicsByNumOfOccurrenceAPI&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="GetGoingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="getGoingApp.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="hackathon.d2hd.getGoingApp.GetGoingApplication" />
@@ -209,10 +228,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GetGoingApplication" />
+        <item itemvalue="Gradle.GetGoingApplicationTests.testFreemiumWorkflow" />
         <item itemvalue="Gradle.GetGoingApplicationTests" />
         <item itemvalue="Gradle.TopicServiceTests.testGetTop5Topics" />
         <item itemvalue="Gradle.TopicServiceTests.testSortTopicsByNumOfOccurrenceAPI" />
-        <item itemvalue="Gradle.TopicServiceTests.testsortTopicsByNumOfOccurrenceAPI" />
       </list>
     </recent_temporary>
   </component>
@@ -224,7 +243,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1666956241779</updated>
-      <workItem from="1667358186996" duration="17161000" />
+      <workItem from="1667358186996" duration="17315000" />
+      <workItem from="1667457524966" duration="1145000" />
+      <workItem from="1667560676603" duration="2906000" />
     </task>
     <servers />
   </component>
