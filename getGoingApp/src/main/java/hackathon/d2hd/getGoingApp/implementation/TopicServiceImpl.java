@@ -1,7 +1,7 @@
 package hackathon.d2hd.getGoingApp.implementation;
 
-import com.sun.xml.bind.v2.runtime.reflect.Lister;
 import hackathon.d2hd.getGoingApp.dataModel.Topic;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.TopicRepository;
 import hackathon.d2hd.getGoingApp.service.TopicService;
@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -125,13 +127,81 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> getTop5Topics(List<Topic> topicList) {
-        topicList = sortTopicsByNumOfOccurrence(topicList);
-        List<Topic> top5TopicList = new ArrayList<>();
+        //The last element of the list should be the latest, so we get its timestamp for comparison
+        topicList.sort(Comparator.comparing(Topic::getTimestamp));
+        LocalDate latestTimestamp = topicList.get(topicList.size() - 1).getTimestamp().toLocalDate();
+        topicList.removeIf(currentTopic -> (!currentTopic.getTimestamp().toLocalDate().equals(latestTimestamp)));
+        topicList.sort(Comparator.comparing(Topic::getNum_of_occurrence).reversed());
+        return topicList;
+//        topicList = sortTopicsByNumOfOccurrence(topicList);
+//        List<Topic> top5TopicList = new ArrayList<>();
+//
+//        for(int i = 0; i < 5; i++) {
+//            top5TopicList.add(topicList.get(i));
+//        }
+//
+//        return top5TopicList;
+    }
+    @Override
+    public List<Long> getSevenDay(Topic topic) {
+        LocalDateTime topicDate = topic.getTimestamp();
+        LocalDateTime startingDate = topicDate.minusDays(8);
 
-        for(int i = 0; i < 5; i++) {
-            top5TopicList.add(topicList.get(i));
-        }
+        //Returns all topics after this starting date
+        //Need to filter and get only the topics that match the topic_name of the parameter
+        List<Topic> topicList = topicRepository.findAllByTimestampBetweenOrderByTimestampAsc(startingDate, topicDate);
+        topicList.removeIf(
+                currentTopic -> (!currentTopic.getTopic_name().equals(topic.getTopic_name()))
+        );
 
-        return top5TopicList;
+        List<Long> topicCountHistory = new ArrayList<>();
+        topicList.forEach(currentTopic -> {
+            topicCountHistory.add(currentTopic.getNum_of_occurrence());
+        });
+
+        return topicCountHistory;
+
+
+        //Now that the list is sorted, we can add
+
+
+//        LocalDateTime current_time = LocalDateTime.now();
+//        LocalDateTime dateToStartSearch = current_time.minusDays(7);
+//
+//        List<Topic> aTopicList = topicRepository.findAllByTimestampAfter(dateToStartSearch);
+//        Long [] sevenDayArray = new Long [7];
+//
+//
+//        for(Topic topic1: aTopicList) {
+//            LocalDateTime timeStampOfTopic = topic1.getTimestamp();
+//            Duration difference_in_days = Duration.between(timeStampOfTopic, current_time);
+//
+//            if(topic1.getTopic_name().equals(topic.getTopic_name()) && difference_in_days.toDays() != 0) {
+//                sevenDayArray[(int) difference_in_days.toDays() - 1] = topic1.getNum_of_occurrence();
+//            }
+//        }
+//
+//        for(int i = 0; i< sevenDayArray.length; i++){
+//            if(sevenDayArray[i] == null) {
+//                sevenDayArray[i] = 0L;
+//                System.out.println("Nothing was here at " + i);
+//            }
+//        }
+//
+//        return sevenDayArray;
+    }
+
+    public TopicDto topicToTopicDto(Topic topic) {
+        return new TopicDto(
+                topic.getTopic_id(),
+                topic.getTopic_name(),
+                topic.getNum_of_occurrence(),
+                topic.getTimestamp(),
+                topic.getLike_count(),
+                topic.getRetweet_count(),
+                topic.getQuote_tweet_count(),
+                topic.getGeneral_sentiment(),
+                getSevenDay(topic)
+        );
     }
 }

@@ -1,8 +1,11 @@
 package hackathon.d2hd.getGoingApp;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import hackathon.d2hd.getGoingApp.dataModel.Topic;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
+import hackathon.d2hd.getGoingApp.service.FreemiumService;
 import hackathon.d2hd.getGoingApp.service.TopicService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.junit.jupiter.api.Assertions;
@@ -15,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
@@ -26,6 +30,9 @@ class GetGoingApplicationTests {
 
 	@Autowired
 	private TweetService tweetService;
+
+	@Autowired
+	private FreemiumService freemiumService;
 
 	GetGoingApplicationTests() throws IOException {
 	}
@@ -65,7 +72,10 @@ class GetGoingApplicationTests {
 	}
 
 	@Test
-	public void testRestTemplate() {
-
+	public void testNewFreemiumWorkflow() throws IOException {
+		List<TopicDto> topicDtoList = freemiumService.freemiumWorkflow(hashScraperJsonFile);
+		topicDtoList.forEach(topicDto -> {
+			System.out.println(topicDto.getTopic_id() + ": " + topicDto.getNum_of_occurrence() + " " + topicDto.getPast_topic_count());
+		});
 	}
 }

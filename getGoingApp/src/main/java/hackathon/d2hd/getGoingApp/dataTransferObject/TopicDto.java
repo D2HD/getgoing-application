@@ -1,43 +1,21 @@
-package hackathon.d2hd.getGoingApp.dataModel;
+package hackathon.d2hd.getGoingApp.dataTransferObject;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "topic")
-public class Topic {
-    @Id
-    @Column(name = "topic_id")
+public class TopicDto {
     private String topic_id;
-
-    @Column(name = "topic_name")
     private String topic_name;
-
-    @Column(name = "num_of_occurrence")
     private Long num_of_occurrence;
-
-    @Column(name = "datetime")
     private LocalDateTime timestamp;
-
-    @Column(name = "like_count")
     private Long like_count;
-
-    @Column(name = "retweet_count")
     private Long retweet_count;
-
-    @Column(name = "quote_tweet_count")
-    private Long quote_tweet_count ;
-
-    @Column(name = "general_sentiment")
+    private Long quote_tweet_count;
     private BigDecimal general_sentiment;
+    private List<Long> past_topic_count;
 
-
-    public Topic() {}
-
-    public Topic(String topic_id, String topic_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Long retweet_count, Long quote_tweet_count, BigDecimal general_sentiment) {
+    public TopicDto(String topic_id, String topic_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Long retweet_count, Long quote_tweet_count, BigDecimal general_sentiment, List<Long> past_topic_count) {
         this.topic_id = topic_id;
         this.topic_name = topic_name;
         this.num_of_occurrence = num_of_occurrence;
@@ -46,6 +24,7 @@ public class Topic {
         this.retweet_count = retweet_count;
         this.quote_tweet_count = quote_tweet_count;
         this.general_sentiment = general_sentiment;
+        this.past_topic_count = past_topic_count;
     }
 
     public String getTopic_id() {
@@ -110,5 +89,13 @@ public class Topic {
 
     public void setGeneral_sentiment(BigDecimal general_sentiment) {
         this.general_sentiment = general_sentiment;
+    }
+
+    public List<Long> getPast_topic_count() {
+        return past_topic_count;
+    }
+
+    public void setPast_topic_count(List<Long> past_topic_count) {
+        this.past_topic_count = past_topic_count;
     }
 }

@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Table(name="tweet")
 public class Tweet {
 
-    //url
     @Id
     @Column(name = "value1")
     private String value1;

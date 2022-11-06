@@ -1,6 +1,7 @@
 package hackathon.d2hd.getGoingApp.service;
 
 import hackathon.d2hd.getGoingApp.dataModel.Topic;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
 import java.util.HashMap;
@@ -16,11 +17,11 @@ public interface TopicService {
     public void clearTopicDatabase();
     public List<Topic> tweetDtoListToTopicList(List<TweetDto> tweetDtoList);
     public long sumOfAllTopicOccurrences(List<Topic> topicList);
-
-    // TODO: 2/11/22 API for getting only specific Topics
     public List<Topic> getAllTopicsFromDatabase();
     public List<Topic> sortTopicsByNumOfOccurrence(List<Topic> topicList);
     public void displayTopics(List<Topic> topicList);
     public List<Topic> getTop5Topics(List<Topic> topicList);
+    public List<Long> getSevenDay(Topic topic);
+    public TopicDto topicToTopicDto(Topic topic);
 
 }

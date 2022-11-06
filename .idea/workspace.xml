@@ -5,9 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f62b0d9-8627-41d5-85fa-0a5c2c6f0325" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataTransferObject/TopicDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Topic.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Topic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Tweet.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/dataModel/Tweet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TopicServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TopicServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/repository/TopicRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/repository/TopicRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TopicService.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TopicService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/topicServiceTests/TopicServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/topicServiceTests/TopicServiceTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/classes/hackathon.d2hd.getGoingApp.GetGoingApplicationTests.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/classes/hackathon.d2hd.getGoingApp.GetGoingApplicationTests.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/packages/hackathon.d2hd.getGoingApp.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/packages/hackathon.d2hd.getGoingApp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/TEST-hackathon.d2hd.getGoingApp.GetGoingApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/TEST-hackathon.d2hd.getGoingApp.GetGoingApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreemiumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreemiumController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Topic.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Topic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Tweet.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel/Tweet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/FreemiumServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/FreemiumServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TopicServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TopicServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/TopicRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/TopicRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/FreemiumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/FreemiumService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/TopicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/TopicService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/GetGoingApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperTestData.json" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperTestData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/topicServiceTests/TopicServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/topicServiceTests/TopicServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +82,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="frontend" />
+        <entry key="$PROJECT_DIR$" value="feature/tharvus" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,25 +102,125 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/seanmarinas/appetizer/getGoingApp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;b447a4b9146f7f032ef952dc2c3f3913&quot;
   }
 }</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/getGoingApp" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="GetGoingApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="hackathon.d2hd.getGoingApp.GetGoingApplication" />
+  <component name="RunManager" selected="Spring Boot.GetGoingApplication">
+    <configuration name="GetGoingApplicationTests.testFreemiumWorkflow" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.GetGoingApplicationTests.testFreemiumWorkflow&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetGoingApplicationTests.testNewFreemiumWorkflow" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.GetGoingApplicationTests.testNewFreemiumWorkflow&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TopicServiceTests.testGetTop5Topics" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.topicServiceTests.TopicServiceTests.testGetTop5Topics&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TopicServiceTests.testTopicFiltering" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.topicServiceTests.TopicServiceTests.testTopicFiltering&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="GetGoingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="getGoingApp.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="hackathon.d2hd.getGoingApp.GetGoingApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="hackathon.d2hd.getGoingApp.*" />
@@ -100,8 +233,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GetGoingApplication" />
-        <item itemvalue="Application.GetGoingApplication" />
+        <item itemvalue="Spring Boot.GetGoingApplication" />
+        <item itemvalue="Gradle.GetGoingApplicationTests.testNewFreemiumWorkflow" />
+        <item itemvalue="Gradle.TopicServiceTests.testGetTop5Topics" />
+        <item itemvalue="Gradle.GetGoingApplicationTests.testFreemiumWorkflow" />
+        <item itemvalue="Gradle.TopicServiceTests.testTopicFiltering" />
       </list>
     </recent_temporary>
   </component>
@@ -114,6 +250,9 @@
       <option name="presentableId" value="Default" />
       <updated>1666956241779</updated>
       <workItem from="1667566784569" duration="943000" />
+      <workItem from="1667622399392" duration="105000" />
+      <workItem from="1667622833958" duration="10179000" />
+      <workItem from="1667705590027" duration="6332000" />
     </task>
     <servers />
   </component>
