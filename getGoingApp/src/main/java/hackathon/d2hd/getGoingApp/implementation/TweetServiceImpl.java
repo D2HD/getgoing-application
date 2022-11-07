@@ -26,10 +26,12 @@ public class TweetServiceImpl implements TweetService {
     private TweetRepository tweetRepository;
 
     @Override
-    public List<Tweet> JsonToTweetDeserializer(File jsonFile) throws IOException {
+    public List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException {
         JsonNode rootNode = objectMapper.readTree(jsonFile);
         JsonNode dataNode = rootNode.get("data");
-        return  objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
+        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
+        tweetRepository.saveAll(tweetList);
+        return tweetListToTweetDtoList(tweetRepository.findAll());
     }
 
     @Override

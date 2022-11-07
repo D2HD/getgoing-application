@@ -12,10 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -91,7 +87,7 @@ public class TopicServiceTests {
         List<Topic> tweetDtoListToTopicListTopicList = topicService.tweetDtoListToTopicList(tweetDtoList);
         topicService.saveTopicList(tweetDtoListToTopicListTopicList);
         List<Topic> topicRepositoryList = topicService.getAllTopicsFromDatabase();
-        List<Topic> top5TopicList = topicService.getTop5Topics(topicRepositoryList);
+        List<Topic> top5TopicList = topicService.getTodaysTopTopics(topicRepositoryList);
         List<Topic> top5TopicComparisonList = top5TopicList;
 
         long topicRepositoryListCount = topicRepositoryList.stream().count();

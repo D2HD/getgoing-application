@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -94,7 +93,9 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public List<Topic> tweetDtoListToTopicList(List<TweetDto> tweetDtoList) {
         HashMap<String, Topic> topicHashMap = getTopicHashmap(tweetDtoList);
-        return getTopicList(topicHashMap);
+        List<Topic> topicList = getTopicList(topicHashMap);
+        topicRepository.saveAll(topicList);
+        return topicList;
     }
 
     @Override
@@ -126,24 +127,20 @@ public class TopicServiceImpl implements TopicService {
     }
 
     @Override
-    public List<Topic> getTop5Topics(List<Topic> topicList) {
-        //The last element of the list should be the latest, so we get its timestamp for comparison
+    public List<Topic> getTodaysTopTopics(List<Topic> topicList) {
+        //Sort the list in ascending order according to timestamp
         topicList.sort(Comparator.comparing(Topic::getTimestamp));
+
+        //The last element of the list should be the latest, so we get its timestamp for comparison
         LocalDate latestTimestamp = topicList.get(topicList.size() - 1).getTimestamp().toLocalDate();
+
+        //Remove topics from the topic list that do not have the same timestamp
         topicList.removeIf(currentTopic -> (!currentTopic.getTimestamp().toLocalDate().equals(latestTimestamp)));
         topicList.sort(Comparator.comparing(Topic::getNum_of_occurrence).reversed());
         return topicList;
-//        topicList = sortTopicsByNumOfOccurrence(topicList);
-//        List<Topic> top5TopicList = new ArrayList<>();
-//
-//        for(int i = 0; i < 5; i++) {
-//            top5TopicList.add(topicList.get(i));
-//        }
-//
-//        return top5TopicList;
     }
     @Override
-    public List<Long> getSevenDay(Topic topic) {
+    public List<Long> getTopicOccurrenceHistory(Topic topic) {
         LocalDateTime topicDate = topic.getTimestamp();
         LocalDateTime startingDate = topicDate.minusDays(8);
 
@@ -201,7 +198,18 @@ public class TopicServiceImpl implements TopicService {
                 topic.getRetweet_count(),
                 topic.getQuote_tweet_count(),
                 topic.getGeneral_sentiment(),
-                getSevenDay(topic)
+                getTopicOccurrenceHistory(topic)
         );
+    }
+
+    @Override
+    public List<TopicDto> topicListToTopicDtoList(List<Topic> topicList) {
+        List<TopicDto> topicDtoList = new ArrayList<>();
+
+        topicList.forEach(topic -> {
+            topicDtoList.add(topicToTopicDto(topic));
+        });
+
+        return topicDtoList;
     }
 }

@@ -25,22 +25,29 @@ public class FreemiumServiceImpl implements FreemiumService {
 
     @Override
     public List<TopicDto> freemiumWorkflow(File file) throws IOException {
-        tweetService.clearDatabase();
-        topicService.clearTopicDatabase();
-        List<Tweet> hashscaperTweetList = tweetService.JsonToTweetDeserializer(file);
-        tweetService.saveTweetList(hashscaperTweetList);
-        List<Tweet> tweetRepositoryTweetList = tweetService.getAllTweetsFromDatabase();
+        //Deserialize JSON into a list of Tweet objects
+        List<TweetDto> tweetDtoList = tweetService.JsonToTweetDeserializer(file);
+        List<Topic> topicList = topicService.tweetDtoListToTopicList(tweetDtoList);
 
-        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetRepositoryTweetList);
-        List<Topic> tweetDtoListToTopicList = topicService.tweetDtoListToTopicList(tweetDtoList);
-        topicService.saveTopicList(tweetDtoListToTopicList);
-        List<Topic> topicRepositoryList = topicService.getAllTopicsFromDatabase();
-        List<Topic> topTopicList = topicService.getTop5Topics(topicRepositoryList);
-        List<TopicDto> topicDtoList = new ArrayList<>();
-        topTopicList.forEach(topic -> {
-            topicDtoList.add(topicService.topicToTopicDto(topic));
-        });
 
-        return topicDtoList;
+        List<Tweet>
+
+
+
+//        List<Tweet> hashscaperTweetList = tweetService.JsonToTweetDeserializer(file);
+//        tweetService.saveTweetList(hashscaperTweetList);
+//        List<Tweet> tweetRepositoryTweetList = tweetService.getAllTweetsFromDatabase();
+//
+//        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetRepositoryTweetList);
+//        List<Topic> tweetDtoListToTopicList = topicService.tweetDtoListToTopicList(tweetDtoList);
+//        topicService.saveTopicList(tweetDtoListToTopicList);
+//        List<Topic> topicRepositoryList = topicService.getAllTopicsFromDatabase();
+//        List<Topic> topTopicList = topicService.getTodaysTopTopics(topicRepositoryList);
+//        List<TopicDto> topicDtoList = new ArrayList<>();
+//        topTopicList.forEach(topic -> {
+//            topicDtoList.add(topicService.topicToTopicDto(topic));
+//        });
+//
+//        return topicDtoList;
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public interface TweetService {
-    public List<Tweet> JsonToTweetDeserializer(File jsonFile) throws IOException;
+    public List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException;
     public void saveTweet(Tweet tweet);
     public void saveTweetList(List<Tweet> tweetList);
     public List<Tweet> getAllTweetsFromDatabase();

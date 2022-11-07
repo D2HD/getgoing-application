@@ -20,8 +20,9 @@ public interface TopicService {
     public List<Topic> getAllTopicsFromDatabase();
     public List<Topic> sortTopicsByNumOfOccurrence(List<Topic> topicList);
     public void displayTopics(List<Topic> topicList);
-    public List<Topic> getTop5Topics(List<Topic> topicList);
-    public List<Long> getSevenDay(Topic topic);
+    public List<Topic> getTodaysTopTopics(List<Topic> topicList);
+    public List<Long> getTopicOccurrenceHistory(Topic topic);
     public TopicDto topicToTopicDto(Topic topic);
+    public List<TopicDto> topicListToTopicDtoList(List<Topic> topicList);
 
 }
