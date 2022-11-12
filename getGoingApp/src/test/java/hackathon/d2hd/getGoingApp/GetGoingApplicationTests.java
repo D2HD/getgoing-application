@@ -1,6 +1,6 @@
 package hackathon.d2hd.getGoingApp;
 
-import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
+import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.service.FreemiumService;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
@@ -62,16 +62,4 @@ class GetGoingApplicationTests {
 //		Assertions.assertEquals(tweetRepositoryTweetListCount, sumOfAllTopicOccurrences);
 	}
 
-	@Test
-	public void testNewFreemiumWorkflow() throws IOException {
-		List<TopicDto> topicDtoList = freemiumService.freemiumWorkflow(hashScraperJsonFile);
-		topicDtoList.forEach(topicDto -> {
-			System.out.println(topicDto.getTopic_id() + ": " + topicDto.getNum_of_occurrence() + " " + topicDto.getPast_topic_count());
-		});
-	}
-
-	@Test
-	public void hashtagRetrievalTest(){
-
-	}
 }

@@ -1,38 +1,28 @@
-package hackathon.d2hd.getGoingApp.dataModel;
+package hackathon.d2hd.getGoingApp.dataTransferObject;
 
-import com.sun.xml.bind.v2.TODO;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
+import java.lang.Double;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity
-@Table(name = "hashtag")
-public class Hashtag {
-    @Id
-    @Column(name = "hashtag_id")
+public class HashtagDto {
     private String hashtag_id;
-    @Column(name = "hashtag_name")
     private String hashtag_name;
-    @Column(name = "date")
-    private LocalDateTime timestamp;
-    @Column(name = "num_of_occurrence")
     private Long num_of_occurrence;
-    @Column(name = "like_count")
+    private LocalDateTime timestamp;
     private Long like_count;
-    @Column(name = "general_sentiment")
     private Double general_sentiment;
+    private List<Long> past_hashtag_count;
 
+    public HashtagDto() {}
 
-    public Hashtag() {}
-
-    public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Double general_sentiment) {
+    public HashtagDto(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Double general_sentiment, List<Long> past_hashtag_count) {
         this.hashtag_id = hashtag_id;
         this.hashtag_name = hashtag_name;
         this.num_of_occurrence = num_of_occurrence;
         this.timestamp = timestamp;
         this.like_count = like_count;
         this.general_sentiment = general_sentiment;
+        this.past_hashtag_count = past_hashtag_count;
     }
 
     public String getHashtag_id() {
@@ -81,5 +71,13 @@ public class Hashtag {
 
     public void setGeneral_sentiment(Double general_sentiment) {
         this.general_sentiment = general_sentiment;
+    }
+
+    public List<Long> getPast_hashtag_count() {
+        return past_hashtag_count;
+    }
+
+    public void setPast_hashtag_count(List<Long> past_hashtag_count) {
+        this.past_hashtag_count = past_hashtag_count;
     }
 }

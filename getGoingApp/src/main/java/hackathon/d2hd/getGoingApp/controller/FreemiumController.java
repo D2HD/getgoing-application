@@ -1,6 +1,6 @@
 package hackathon.d2hd.getGoingApp.controller;
 
-import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
+import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.service.FreemiumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,7 +20,7 @@ public class FreemiumController {
     private FreemiumService freemiumService;
 
     @GetMapping
-    public List<TopicDto> top5TopicList() throws IOException {
+    public List<HashtagDto> top5TopicList() throws IOException {
         File file = new File("/Users/seanmarinas/appetizer/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperTestData.json");
         return freemiumService.freemiumWorkflow(file);
     }

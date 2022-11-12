@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
-import hackathon.d2hd.getGoingApp.dataTransferObject.TweetJson;
 import hackathon.d2hd.getGoingApp.repository.TweetRepository;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,15 +39,6 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public void saveTweet(Tweet tweet) {
         tweetRepository.save(tweet);
-    }
-
-    @Override
-    public void saveTweetList(List<Tweet> tweetList) {
-        tweetRepository.saveAll(tweetList);
-    }
-
-    public List<Tweet> getAllTweetsFromDatabase() {
-        return tweetRepository.findAll();
     }
 
     @Override
@@ -120,10 +110,10 @@ public class TweetServiceImpl implements TweetService {
     @Override
     public Double tweetJsonToGeneralSentiment(String tweet_json) throws JsonProcessingException {
         JsonNode rootNode = objectMapper.readTree(tweet_json);
-        List<TweetJson> tweetJsonList = objectMapper.readValue(tweet_json, new TypeReference<List<TweetJson>>() {});
+        List<TweetDto.TweetJson> tweetJsonList = objectMapper.readValue(tweet_json, new TypeReference<List<TweetDto.TweetJson>>() {});
         Double totalSentiment = Double.valueOf(0.0);
 
-        for(TweetJson tweetJson: tweetJsonList) {
+        for(TweetDto.TweetJson tweetJson: tweetJsonList) {
             totalSentiment += tweetJson.getScore();
         }
 

@@ -1,7 +1,7 @@
 package hackathon.d2hd.getGoingApp.implementation;
 
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
-import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
+import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.service.FreemiumService;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
@@ -22,7 +22,7 @@ public class FreemiumServiceImpl implements FreemiumService {
     private HashtagService hashtagService;
 
     @Override
-    public List<TopicDto> freemiumWorkflow(File file) throws IOException {
+    public List<HashtagDto> freemiumWorkflow(File file) throws IOException {
         //Deserialize JSON into a list of Tweet objects
 
         //Hashmap to contain the key value pairs of a hashtag
@@ -43,7 +43,7 @@ public class FreemiumServiceImpl implements FreemiumService {
 //        hashtagService.saveTopicList(tweetDtoListToTopicList);
 //        List<Hashtag> topicRepositoryList = hashtagService.getAllTopicsFromDatabase();
 //        List<Hashtag> topTopicList = hashtagService.getTodaysTopTopics(topicRepositoryList);
-//        List<TopicDto> topicDtoList = new ArrayList<>();
+//        List<HashtagDto> topicDtoList = new ArrayList<>();
 //        topTopicList.forEach(topic -> {
 //            topicDtoList.add(hashtagService.topicToTopicDto(topic));
 //        });
