@@ -9,49 +9,66 @@ import javax.persistence.Table;
 @Table(name="tweet")
 public class Tweet {
 
+    //url
     @Id
     @Column(name = "value1")
     private String value1;
 
+    //topic
     @Column(name = "value2")
     private String value2;
 
+    //profile_name
     @Column(name = "value3")
     private String value3;
 
+    //tweet_id
     @Column(name = "value4")
     private String value4;
 
+    //username
     @Column(name = "value5")
     private String value5;
 
+    //profile_picture_url
     @Column(name = "value6")
     private String value6;
 
+    //tweet_content
     @Column(name = "value7")
     private String value7;
 
+    //tweet_like_count
     @Column(name = "value8")
     private String value8;
 
+
+    //tweet_retweet_count
     @Column(name = "value9")
     private String value9;
 
+    //tweet_reply_count
     @Column(name = "value10")
     private String value10;
 
+
+    //tweet_quote_tweet_count
     @Column(name = "value11")
     private String value11;
 
+    //photo_urls
     @Column(name = "value12")
     private String value12;
 
+    //photo_url_number
     @Column(name = "value13")
     private String value13;
 
+    //localDateTime
     @Column(name = "value14")
     private String value14;
 
+    //tweet_json
     @Column(name = "value15")
     private String value15;
 

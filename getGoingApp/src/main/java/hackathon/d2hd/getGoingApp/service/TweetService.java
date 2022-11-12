@@ -1,5 +1,6 @@
 package hackathon.d2hd.getGoingApp.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
@@ -15,7 +16,9 @@ public interface TweetService {
     public void saveTweetList(List<Tweet> tweetList);
     public List<Tweet> getAllTweetsFromDatabase();
     public void clearDatabase();
-    public TweetDto tweetToTweetDto(Tweet tweet);
+    public TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException;
     public LocalDateTime stringToLocalDateTime(String localDateTimeString);
     List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList);
+    List<String> getHashtagList(String content);
+    Double tweetJsonToGeneralSentiment(String tweet_json) throws JsonProcessingException;
 }

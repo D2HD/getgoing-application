@@ -1,6 +1,5 @@
 package hackathon.d2hd.getGoingApp.service;
 
-import hackathon.d2hd.getGoingApp.dataModel.Topic;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
 
 import java.io.File;

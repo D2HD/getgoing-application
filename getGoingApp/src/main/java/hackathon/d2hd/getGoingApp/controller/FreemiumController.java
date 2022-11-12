@@ -1,6 +1,5 @@
 package hackathon.d2hd.getGoingApp.controller;
 
-import hackathon.d2hd.getGoingApp.dataModel.Topic;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TopicDto;
 import hackathon.d2hd.getGoingApp.service.FreemiumService;
 import org.springframework.beans.factory.annotation.Autowired;

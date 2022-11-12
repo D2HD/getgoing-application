@@ -12,7 +12,7 @@
     <panel_attributes>Tweet
 --
 tweetId     ID
-topic
+hashtag
 all the JSON values
 Date Scraped</panel_attributes>
     <additional_attributes/>
@@ -70,7 +70,7 @@ date </panel_attributes>
       <w>290</w>
       <h>160</h>
     </coordinates>
-    <panel_attributes>Each tweet has a topic (or is part of a topic). The "topics" are what is displayed in the top 5 each day. Every day it scrapes tweets, but at the end of the day it can clear the tweet table (only thing we really store are topics). We take number of tweets and increment it each time a tweet with the same topic is scraped. 
+    <panel_attributes>Each tweet has a hashtag (or is part of a hashtag). The "topics" are what is displayed in the top 5 each day. Every day it scrapes tweets, but at the end of the day it can clear the tweet table (only thing we really store are topics). We take number of tweets and increment it each time a tweet with the same hashtag is scraped.
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>

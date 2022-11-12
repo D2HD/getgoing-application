@@ -1,14 +1,14 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
+import com.sun.xml.bind.v2.TODO;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "topic")
-public class Topic {
+public class Hashtag {
     @Id
     @Column(name = "topic_id")
     private String topic_id;
@@ -35,9 +35,9 @@ public class Topic {
     private BigDecimal general_sentiment;
 
 
-    public Topic() {}
+    public Hashtag() {}
 
-    public Topic(String topic_id, String topic_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Long retweet_count, Long quote_tweet_count, BigDecimal general_sentiment) {
+    public Hashtag(String topic_id, String topic_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Long retweet_count, Long quote_tweet_count, BigDecimal general_sentiment) {
         this.topic_id = topic_id;
         this.topic_name = topic_name;
         this.num_of_occurrence = num_of_occurrence;

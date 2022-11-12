@@ -1,10 +1,12 @@
 package hackathon.d2hd.getGoingApp.implementation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TweetJson;
 import hackathon.d2hd.getGoingApp.repository.TweetRepository;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -54,23 +57,21 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public TweetDto tweetToTweetDto(Tweet tweet) {
+    public TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException {
         return new TweetDto(
                 tweet.getValue1(),
-                tweet.getValue2().replace(" ", ""),
+                tweet.getValue2(),
                 tweet.getValue3(),
                 Long.parseLong(tweet.getValue4()),
                 tweet.getValue5(),
-                tweet.getValue6(),
                 tweet.getValue7(),
+                getHashtagList(tweet.getValue7()),
                 Long.parseLong(tweet.getValue8()),
                 Long.parseLong(tweet.getValue9()),
                 Long.parseLong(tweet.getValue10()),
                 Long.parseLong(tweet.getValue11()),
-                tweet.getValue12(),
-                tweet.getValue13(),
                 stringToLocalDateTime(tweet.getValue14()),
-                tweet.getValue15()
+                tweetJsonToGeneralSentiment(tweet.getValue15())
         );
     }
 
@@ -93,9 +94,39 @@ public class TweetServiceImpl implements TweetService {
         List<TweetDto> tweetDtoList = new ArrayList<>();
 
         tweetList.forEach(tweet -> {
-            tweetDtoList.add(tweetToTweetDto(tweet));
+            try {
+                tweetDtoList.add(tweetToTweetDto(tweet));
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         return tweetDtoList;
+    }
+
+    @Override
+    public List<String> getHashtagList(String content) {
+        //Get the content of the tweet
+        List<String> hashtagList = Arrays.asList(content.split(" "));
+        List<String> filteredHashtagList = new ArrayList<>();
+
+        hashtagList.forEach(s -> {
+            if(s.contains("#")) filteredHashtagList.add(s);
+        });
+
+        return filteredHashtagList;
+    }
+
+    @Override
+    public Double tweetJsonToGeneralSentiment(String tweet_json) throws JsonProcessingException {
+        JsonNode rootNode = objectMapper.readTree(tweet_json);
+        List<TweetJson> tweetJsonList = objectMapper.readValue(tweet_json, new TypeReference<List<TweetJson>>() {});
+        Double totalSentiment = Double.valueOf(0.0);
+
+        for(TweetJson tweetJson: tweetJsonList) {
+            totalSentiment += tweetJson.getScore();
+        }
+
+        return totalSentiment / tweetJsonList.size();
     }
 }
