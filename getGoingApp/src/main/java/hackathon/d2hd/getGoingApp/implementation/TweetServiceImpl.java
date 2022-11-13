@@ -28,6 +28,16 @@ public class TweetServiceImpl implements TweetService {
     private TweetRepository tweetRepository;
 
     @Override
+    public List<TweetDto> JsonToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException {
+        JsonNode rootNode = objectMapper.readTree(hashscraperResponseBody);
+        JsonNode dataNode = rootNode.get("data");
+
+        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
+        tweetRepository.saveAll(tweetList);
+        return tweetListToTweetDtoList(tweetRepository.findAll());
+    }
+
+    @Override
     public List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException {
         JsonNode rootNode = objectMapper.readTree(jsonFile);
         JsonNode dataNode = rootNode.get("data");

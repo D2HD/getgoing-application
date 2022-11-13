@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TweetService {
+    List<TweetDto> JsonToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException;
     List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException;
     void saveTweet(Tweet tweet);
     void clearDatabase();
