@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,10 +35,13 @@ public class HashtagServiceTests {
 
     @Test
     public void testHashtagToHashtagDtoList() throws IOException {
-        List<TweetDto> tweetDtoList = tweetService.JsonToTweetDeserializer(hashScraperJsonFile);
-        HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
-        List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
-        List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(hashtagList);
+        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+        List<HashtagDto> hashtagDtoList = new ArrayList<>();
+        for(int i = 0; i < 5; i++) {
+            hashtagDtoList.add(hashtagService.hashtagToHashtagDto(hashtagList.get(i)));
+        }
+
         hashtagService.displayHashtagDtos(hashtagDtoList);
     }
 }

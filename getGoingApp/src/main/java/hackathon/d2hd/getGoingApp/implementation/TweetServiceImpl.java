@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TweetServiceImpl implements TweetService {
@@ -28,13 +29,14 @@ public class TweetServiceImpl implements TweetService {
     private TweetRepository tweetRepository;
 
     @Override
-    public List<TweetDto> JsonToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException {
+    public List<Tweet> hashscraperResponseBodyToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException {
         JsonNode rootNode = objectMapper.readTree(hashscraperResponseBody);
         JsonNode dataNode = rootNode.get("data");
-
-        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
-        tweetRepository.saveAll(tweetList);
-        return tweetListToTweetDtoList(tweetRepository.findAll());
+        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {})
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+        return tweetList;
     }
 
     @Override
@@ -47,12 +49,7 @@ public class TweetServiceImpl implements TweetService {
     }
 
     @Override
-    public void saveTweet(Tweet tweet) {
-        tweetRepository.save(tweet);
-    }
-
-    @Override
-    public void clearDatabase(){
+    public void clearTweetDatabase(){
         tweetRepository.deleteAll();
     }
 
@@ -128,5 +125,19 @@ public class TweetServiceImpl implements TweetService {
         }
 
         return totalSentiment / tweetJsonList.size();
+    }
+
+    @Override
+    public int tweetDatabaseSize() {
+        return tweetRepository.findAll().size();
+    }
+    @Override
+    public List<Tweet> getAllTweets() {
+        return tweetRepository.findAll();
+    }
+
+    @Override
+    public void saveTweetList(List<Tweet> tweetList) {
+        tweetRepository.saveAll(tweetList);
     }
 }

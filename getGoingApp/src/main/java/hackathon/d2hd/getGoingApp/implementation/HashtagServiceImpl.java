@@ -64,20 +64,6 @@ public class HashtagServiceImpl implements HashtagService {
 
         return hashtagList;
     }
-
-
-    @Override
-    public void saveHashtag(Hashtag hashtag) {
-        hashtagRepository.save(hashtag);
-    }
-
-    @Override
-    public void saveTopicList(List<Hashtag> hashtagList) {
-        hashtagList.forEach(hashtag -> {
-            saveHashtag(hashtag);
-        });
-    }
-
     @Override
     public void clearTopicDatabase() {
         hashtagRepository.deleteAll();
@@ -94,7 +80,7 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     @Override
-    public List<Hashtag> getAllTopicsFromDatabase() {
+    public List<Hashtag> getAllHashtagsFromDatabase() {
         return hashtagRepository.findAll();
     }
 
@@ -199,5 +185,8 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagDtoList;
     }
 
-
+    @Override
+    public void saveHashtagList(List<Hashtag> hashtagList) {
+        hashtagRepository.saveAll(hashtagList);
+    }
 }

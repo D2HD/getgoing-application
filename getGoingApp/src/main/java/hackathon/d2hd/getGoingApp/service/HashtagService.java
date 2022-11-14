@@ -10,16 +10,16 @@ import java.util.List;
 public interface HashtagService {
     String createHashtagId(TweetDto tweetDTO, String hashtag);
     List<Hashtag> tweetDtoListToHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap);
-    void saveHashtag(Hashtag hashtag);
-    void saveTopicList(List<Hashtag> hashtagList);
+    void saveHashtagList(List<Hashtag> hashtagList);
     void clearTopicDatabase();
     long sumOfAllTopicOccurrences(List<Hashtag> hashtagList);
-    List<Hashtag> getAllTopicsFromDatabase();
+    List<Hashtag> getAllHashtagsFromDatabase();
     void displayHashtags(List<Hashtag> hashtagList);
     void displayHashtagDtos(List<HashtagDto> hashtagDtoList);
     List<Hashtag> getTodaysTopHashtags(List<Hashtag> hashtagList);
     List<Long> getTopicOccurrenceHistory(Hashtag hashtag);
     HashtagDto hashtagToHashtagDto(Hashtag hashtag);
     List<HashtagDto> hashtagListToHashtagDtoList(List<Hashtag> hashtagList);
+
 
 }
