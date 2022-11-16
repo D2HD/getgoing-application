@@ -1,6 +1,7 @@
 package hackathon.d2hd.getGoingApp.dataTransferObject;
 
 import java.lang.Double;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -8,14 +9,14 @@ public class HashtagDto {
     private String hashtag_id;
     private String hashtag_name;
     private Long num_of_occurrence;
-    private LocalDateTime timestamp;
+    private LocalDate timestamp;
     private Long like_count;
     private Double general_sentiment;
     private List<Long> past_hashtag_count;
 
     public HashtagDto() {}
 
-    public HashtagDto(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Double general_sentiment, List<Long> past_hashtag_count) {
+    public HashtagDto(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Double general_sentiment, List<Long> past_hashtag_count) {
         this.hashtag_id = hashtag_id;
         this.hashtag_name = hashtag_name;
         this.num_of_occurrence = num_of_occurrence;
@@ -49,11 +50,11 @@ public class HashtagDto {
         this.num_of_occurrence = num_of_occurrence;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 

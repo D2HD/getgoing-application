@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.521s</div>
+<div class="counter">0.436s</div>
 <p>duration</p>
 </div>
 </td>
@@ -78,8 +78,8 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testSevenDayTop5HashtagListByLikeAPI()</td>
-<td class="success">0.521s</td>
+<td class="success">currentTop5HashtagListAPI()</td>
+<td class="success">0.436s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,21 +87,21 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>16:14:57.558 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-16:14:57.573 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-16:14:57.640 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
-16:14:57.667 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests], using SpringBootContextLoader
-16:14:57.671 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: class path resource [hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTests-context.xml] does not exist
-16:14:57.672 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: class path resource [hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTestsContext.groovy] does not exist
-16:14:57.672 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-16:14:57.674 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: HashtagServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-16:14:57.811 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]
-16:14:57.892 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/seanmarinas/appetizer/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/GetGoingApplication.class]
-16:14:57.893 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration hackathon.d2hd.getGoingApp.GetGoingApplication for test class hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests
-16:14:58.031 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: using defaults.
-16:14:58.033 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-16:14:58.057 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@bcef303, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@41709512, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@42039326, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@33308786, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4f9a2c08, org.springframework.test.context.support.DirtiesContextTestExecutionListener@a87f8ec, org.springframework.test.context.transaction.TransactionalTestExecutionListener@5443d039, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@63787180, org.springframework.test.context.event.EventPublishingTestExecutionListener@7d1cfb8b, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@48e92c5c, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2e1ef60, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@22356acd, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@386f0da3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@39655d3e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@34f22f9d]
-16:14:58.063 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@71812481 testClass = HashtagServiceTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@16ce702d testClass = HashtagServiceTests, locations = '{}', classes = '{class hackathon.d2hd.getGoingApp.GetGoingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@45d84a20, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@710636b0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@740fb309, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@6f204a1a, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2dfaea86, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@3feb2dda, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@56528192], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
+<pre>20:12:48.287 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+20:12:48.299 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+20:12:48.344 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+20:12:48.366 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests], using SpringBootContextLoader
+20:12:48.373 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: class path resource [hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTests-context.xml] does not exist
+20:12:48.373 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: class path resource [hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTestsContext.groovy] does not exist
+20:12:48.373 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+20:12:48.374 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: HashtagServiceTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+20:12:48.469 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]
+20:12:48.573 [Test worker] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/Users/seanmarinas/appetizer/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/GetGoingApplication.class]
+20:12:48.573 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration hackathon.d2hd.getGoingApp.GetGoingApplication for test class hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests
+20:12:48.724 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests]: using defaults.
+20:12:48.724 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+20:12:48.743 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4b6e2263, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@344f4dea, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@1b7c473a, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5e4bd84a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@648c94da, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2a62b5bc, org.springframework.test.context.transaction.TransactionalTestExecutionListener@53de625d, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@535779e4, org.springframework.test.context.event.EventPublishingTestExecutionListener@53fd0d10, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@6c0d9d86, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4ce1d6d0, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@24111ef1, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1f3f02ee, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@1fde5d22, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5dcb4f5f]
+20:12:48.748 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@460ebd80 testClass = HashtagServiceTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@6f3c660a testClass = HashtagServiceTests, locations = '{}', classes = '{class hackathon.d2hd.getGoingApp.GetGoingApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.actuate.metrics.MetricsExportContextCustomizerFactory$DisableMetricExportContextCustomizer@4d1bf319, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@15a34df2, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@55cb6996, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@26abb146, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@7b4c50bc, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@491b9b8, org.springframework.boot.test.context.SpringBootTestArgs@1, org.springframework.boot.test.context.SpringBootTestWebEnvironment@56528192], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; true]], class annotated with @DirtiesContext [false] with mode [null].
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -111,27 +111,221 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v2.7.5)
 
-2022-11-16 16:14:58.535  INFO 39815 --- [    Test worker] h.d.g.h.HashtagServiceTests              : Starting HashtagServiceTests using Java 1.8.0_352 on Seans-MacBook-Pro-2.local with PID 39815 (started by seanmarinas in /Users/seanmarinas/appetizer/getGoingApp)
-2022-11-16 16:14:58.540  INFO 39815 --- [    Test worker] h.d.g.h.HashtagServiceTests              : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2022-11-16 16:14:59.559  INFO 39815 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2022-11-16 16:14:59.927  INFO 39815 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 355 ms. Found 2 JPA repository interfaces.
-2022-11-16 16:15:00.872  INFO 39815 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2022-11-16 16:15:00.953  INFO 39815 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
-2022-11-16 16:15:01.201  INFO 39815 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2022-11-16 16:15:01.332  INFO 39815 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2022-11-16 16:15:01.453  INFO 39815 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2022-11-16 16:15:01.480  INFO 39815 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2022-11-16 16:15:02.191  INFO 39815 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2022-11-16 16:15:02.202  INFO 39815 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2022-11-16 16:15:03.154  WARN 39815 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2022-11-16 16:15:04.086  INFO 39815 --- [    Test worker] h.d.g.h.HashtagServiceTests              : Started HashtagServiceTests in 5.95 seconds (JVM running for 7.552)
-#순진수2022-11-10: 1 0.333333338300387
-https://t.co/VfNDDcsmSb
+2022-11-16 20:12:49.246  INFO 41880 --- [    Test worker] h.d.g.h.HashtagServiceTests              : Starting HashtagServiceTests using Java 1.8.0_352 on Seans-MacBook-Pro-2.local with PID 41880 (started by seanmarinas in /Users/seanmarinas/appetizer/getGoingApp)
+2022-11-16 20:12:49.248  INFO 41880 --- [    Test worker] h.d.g.h.HashtagServiceTests              : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2022-11-16 20:12:50.067  INFO 41880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-11-16 20:12:50.397  INFO 41880 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 311 ms. Found 2 JPA repository interfaces.
+2022-11-16 20:12:51.252  INFO 41880 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-11-16 20:12:51.313  INFO 41880 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.12.Final
+2022-11-16 20:12:51.588  INFO 41880 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-11-16 20:12:51.732  INFO 41880 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-11-16 20:12:51.862  INFO 41880 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-11-16 20:12:51.899  INFO 41880 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2022-11-16 20:12:52.706  INFO 41880 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-11-16 20:12:52.715  INFO 41880 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-11-16 20:12:53.730  WARN 41880 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-11-16 20:12:54.744  INFO 41880 --- [    Test worker] h.d.g.h.HashtagServiceTests              : Started HashtagServiceTests in 5.953 seconds (JVM running for 7.669)
+#forsale2022-11-12: 15 0.140777778095669
+#eBay2022-11-12: 8 0.0612500009126961
+#ForSale2022-11-12: 7 0.198571429756426
+#realestate2022-11-12: 7 0.201666666123839
+#realtor2022-11-12: 3 0.141666667535901
+#home2022-11-12: 2 0.0
+#1062022-11-12: 2 0.125000001862645
+#justlisted2022-11-12: 2 0.0625000009313226
+#kellerwilliams2022-11-12: 1 0.0
+#fish2022-11-12: 1 0.150000002235174
+#dickens2022-11-12: 1 0.100000003352761
+293-8910
 
-#BL2022-11-10: 1 0.333333338300387
-#오메가버스2022-11-10: 1 0.333333338300387
-#능글공2022-11-10: 1 0.333333338300387
-#계략공2022-11-10: 1 0.333333338300387
+#g5realtygroup2022-11-12: 1 0.0
+#california2022-11-12: 1 0.0
+#Photography2022-11-12: 1 0.200000002980232
+#tropical2022-11-12: 1 0.150000002235174
+#stingray2022-11-12: 1 0.150000002235174
+#vinyl2022-11-12: 1 0.0
+more!
+
+#RealEstate2022-11-12: 1 0.599999996523062
+#digitalartwork2022-11-12: 1 0.100000001490116
+#homebuyers2022-11-12: 1 0.0
+#dfwreadvisors2022-11-12: 1 0.166666666666667
+https://t.co/DEb4LIrUmI
+
+#TradingCards2022-11-12: 1 0.125000001862645
+#luxurylifestyle2022-11-12: 1 0.300000000745058
+#realtorlife2022-11-12: 1 0.125000001862645
+#puertovallarta2022-11-12: 1 0.300000000745058
+#Arizona2022-11-12: 1 0.599999996523062
+#karma2022-11-12: 1 -0.100000001490116
+https://t.co/y84Ue3SNmn
+
+#TradingCards2022-11-12: 1 0.125000001862645
+#sacramento2022-11-12: 1 0.125000001862645
+#sellers2022-11-12: 1 0.0
+#ganja2022-11-12: 1 -0.100000001490116
+#G52022-11-12: 1 0.0
+#forsale
+•
+For2022-11-12: 1 0.349999997764826
+916.248.5039
+
+#openhouse2022-11-12: 1 0.125000001862645
+#saltwateraquarium2022-11-12: 1 0.150000002235174
+#buyers2022-11-12: 1 0.0
+#WestsideGunn2022-11-12: 1 0.0
+#ganjapharma2022-11-12: 1 -0.100000001490116
+#HouseHunting2022-11-12: 1 0.599999996523062
+#2722022-11-12: 1 0.140000002086163
+#VaughanRealestate2022-11-12: 1 0.0
+#pharma2022-11-12: 1 -0.100000001490116
+#HomeSale2022-11-12: 1 0.599999996523062
+#dcrealestate2022-11-12: 1 0.0
+#blockchain2022-11-12: 1 0.100000001490116
+#kw2022-11-12: 1 0.0
+#BMPNetwork2022-11-12: 1 0.599999996523062
+#morenovalley2022-11-12: 1 0.0
+#metaverse2022-11-12: 1 0.100000001490116
+#luxury2022-11-12: 1 0.300000000745058
+#tang2022-11-12: 1 0.150000002235174
+#richpeople2022-11-12: 1 0.100000001490116
+#medicalmarijuana2022-11-12: 1 -0.100000001490116
+#csr22022-11-12: 1 0.519999992847443
+#nofilter2022-11-12: 1 0.150000002235174
+#animemerch2022-11-12: 1 0.25000000372529
+#cropyear2022-11-12: 1 0.519999992847443
+#Realtor2022-11-12: 1 0.599999996523062
+#HomesForSale2022-11-12: 1 0.599999996523062
+#262022-11-12: 1 0.0750000011175871
+#thc2022-11-12: 1 -0.100000001490116
+#aquarium2022-11-12: 1 0.150000002235174
+Marketplace
+#walken2022-11-12: 1 0.5
+#nftcollection2022-11-12: 1 0.100000001490116
+#mortgage2022-11-12: 1 0.166666666666667
+#pootytangs2022-11-12: 1 0.150000002235174
+#BMPBen2022-11-12: 1 0.599999996523062
+bio!
+#Dollamon2022-11-12: 1 0.100000001490116
+#christmascard2022-11-12: 1 0.100000003352761
+#kwsocal2022-11-12: 1 0.0
+#drop2022-11-12: 1 0.100000001490116
+Happenings!
+#broker2022-11-12: 1 0.166666666666667
+Results
+https://t.co/VMqUUe4bmB
+#newhome2022-11-12: 1 0.0
+#eXp2022-11-12: 1 0.599999996523062
+#marylandrealestate2022-11-12: 1 0.0
+#nftcommunity2022-11-12: 1 0.100000001490116
+#TrendingNow2022-11-12: 1 0.0
+#Vaughan2022-11-12: 1 0.0
+#Home2022-11-12: 1 0.599999996523062
+#cathlete2022-11-12: 1 0.5
+#selling2022-11-12: 1 0.0
+#inlandempire2022-11-12: 1 0.0
+#househunting2022-11-12: 1 0.125000001862645
+#marijuana2022-11-12: 1 -0.100000001490116
+#cannabisbrand2022-11-12: 1 -0.100000001490116
+#scottmcgillivray2022-11-12: 1 0.0
+#tangs2022-11-12: 1 0.150000002235174
+#Gillette2022-11-12: 1 0.0
+#investors2022-11-12: 1 0.0
+#hemp2022-11-12: 1 -0.100000001490116
+#Realestate2022-11-12: 1 0.0
+#Housing2022-11-12: 1 0.599999996523062
+#ebayca2022-11-12: 1 0.0
+
+
+#nom2472022-11-12: 1 0.300000000745058
+#LinoArciTeam2022-11-12: 1 0.0
+#pets2022-11-12: 1 0.150000002235174
+#792022-11-12: 1 0.125000001862645
+#hiphop2022-11-12: 1 0.0
+#afishcalledselma2022-11-12: 1 0.150000002235174
+#card2022-11-12: 1 0.100000003352761
+#dreamhome2022-11-12: 1 0.125000001862645
+#eXpRealty2022-11-12: 1 0.599999996523062
+#billionaire2022-11-12: 1 0.100000001490116
+#property2022-11-12: 1 0.0
+#vinylrecords2022-11-12: 1 0.0
+#Art2022-11-12: 1 0.200000002980232
+#cannabis2022-11-12: 1 -0.100000001490116
+#HALART2022-11-12: 1 0.100000001490116
+#Gifts2022-11-12: 1 0.200000002980232
+絶賛写真撮影中❣️
+
+いろいろロケーション変えて撮るの楽しい…❤️
+
+これもすぐ誰かの元に行ってしまうのかしら…&#x1f97a;
+
+#Apollon
+#mimi
+#bmcmini
+#morris
+#mk1
+#forsale
+#綺麗なクルマが好き2022-11-12: 1 0.420000001788139
+#NumberOneTeamInVaughan2022-11-12: 1 0.0
+#Listing2022-11-12: 1 0.599999996523062
+#OpenSea2022-11-12: 1 0.100000001490116
+#ampi2022-11-12: 1 0.300000000745058
+#NFT2022-11-12: 1 0.100000001490116
+#reeftank2022-11-12: 1 0.150000002235174
+#music2022-11-12: 1 0.0
+#realestateagent2022-11-12: 1 0.125000001862645
+#sold2022-11-12: 1 0.0
+https://t.co/jokCpTnlKc
+
+#TradingCards2022-11-12: 1 0.125000001862645
+#luxuryproperties2022-11-12: 1 0.300000000745058
+#liveinparadise2022-11-12: 1 0.300000000745058
+#socal2022-11-12: 1 0.0
+#Property2022-11-12: 1 0.599999996523062
+#farmersnational2022-11-12: 1 0.519999992847443
+#digitalart2022-11-12: 1 0.100000001490116
+#nftoftheday2022-11-12: 1 0.100000001490116
+#exotic2022-11-12: 1 0.150000002235174
+home!
+&#x1f517;https://t.co/JoGHWe1v0C
+#auction2022-11-12: 1 0.519999992847443
+#houseforsale2022-11-12: 1 0.0
+#m2e
+@parabell_life2022-11-12: 1 0.5
+#anime2022-11-12: 1 0.25000000372529
+#coral2022-11-12: 1 0.150000002235174
+#business2022-11-12: 1 0.100000001490116
+#homesellers2022-11-12: 1 0.0
+#vintage2022-11-12: 1 0.100000003352761
+#realtors2022-11-12: 1 0.300000000745058
+#acres2022-11-12: 1 0.519999992847443
+#economy2022-11-12: 1 0.100000001490116
+https://t.co/jKpvIde4Oo
+
+#TradingCards2022-11-12: 1 0.140000002086163
+#staycation2022-11-12: 1 0.300000000745058
+#puertovallartamexico2022-11-12: 1 0.300000000745058
+#420life2022-11-12: 1 -0.100000001490116
+time
+
+#reef2022-11-12: 1 0.150000002235174
+https://t.co/U9xghZOOwX
+
+#TradingCards2022-11-12: 1 0.0750000011175871
+#fruadeinmobiliario2022-11-12: 1 0.300000000745058
+#NewHome2022-11-12: 1 0.599999996523062
+#canada2022-11-12: 1 0.0
+Card
+
+https://t.co/aLsjcu2W4S
+
+#christmas2022-11-12: 1 0.100000003352761
+#nftdrop2022-11-12: 1 0.100000001490116
+#shopping2022-11-12: 1 0.100000003352761
+#reeffish2022-11-12: 1 0.150000002235174
+#BMP2022-11-12: 1 0.599999996523062
+#vallarta2022-11-12: 1 0.300000000745058
+#retweet2022-11-12: 1 0.0
 </pre>
 </span>
 </div>
@@ -143,7 +337,7 @@ https://t.co/VfNDDcsmSb
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.5.1</a> at 16-Nov-2022 16:15:04</p>
+<a href="http://www.gradle.org">Gradle 7.5.1</a> at 16-Nov-2022 20:12:55</p>
 </div>
 </div>
 </body>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,12 +33,12 @@ public class FreeController {
     @Autowired
     private HashtagService hashtagService;
 
-    @DeleteMapping("/clearDatabase")
+    @DeleteMapping("/clearTweetDatabase")
     public void clearDatabase() {
         tweetService.clearTweetDatabase();
     }
 
-    @GetMapping("/databaseSize")
+    @GetMapping("/tweetDatabaseSize")
     public int databaseSize() {
         return tweetService.tweetDatabaseSize();
     }
@@ -51,22 +52,22 @@ public class FreeController {
 
     @GetMapping("/currentTop5HashtagDtoList")
     public List<HashtagDto> currentTop5HashtagDtoList() {
-        LocalDateTime localDateTimeToday = LocalDateTime.now();
-        LocalDateTime localDateTimeYesterday = localDateTimeToday.minusDays(3L).;
+        LocalDate localDateTimeToday = LocalDate.now();
+        LocalDate localDateTimeYesterday = localDateTimeToday.minusDays(3L);
         List<Hashtag> currentTop5HashtagList = hashtagService.currentTop5HashtagList(localDateTimeYesterday);
 
         return hashtagService.hashtagListToHashtagDtoList(currentTop5HashtagList);
     }
     @GetMapping("/sevenDayTop5HashtagListByCount")
     public List<HashtagDto> sevenDayTop5HashtagDtoListByCount() {
-        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDate currentDateTime = LocalDate.now();
         List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
         return hashtagService.hashtagListToHashtagDtoList(hashtagList);
     }
 
     @GetMapping("/sevenDayTop5HashtagListByLike")
     public List<HashtagDto> sevenDayTop5HashtagDtoListByLike() {
-        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDate currentDateTime = LocalDate.now();
         List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByLike(currentDateTime);
         return hashtagService.hashtagListToHashtagDtoList(hashtagList);
     }
@@ -129,6 +130,11 @@ public class FreeController {
         }
 
         return hashtagDtoList;
+    }
+
+    @DeleteMapping("/clearHashtagDatabase")
+    public void clearHashtagDatabase() {
+        hashtagService.clearHashtagDatabase();
     }
 }
 

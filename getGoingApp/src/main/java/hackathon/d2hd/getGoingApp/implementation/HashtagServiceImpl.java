@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -40,7 +39,7 @@ public class HashtagServiceImpl implements HashtagService {
                             hashtagId,
                             stringHashtag,
                             1L,
-                            tweetDto.getLocalDateTime(),
+                            tweetDto.getLocalDateTime().toLocalDate(),
                             tweetDto.getTweet_like_count(),
                             tweetDto.getGeneral_sentiment()
                     ));
@@ -65,7 +64,7 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagList;
     }
     @Override
-    public void clearTopicDatabase() {
+    public void clearHashtagDatabase() {
         hashtagRepository.deleteAll();
     }
 
@@ -105,17 +104,17 @@ public class HashtagServiceImpl implements HashtagService {
         hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp));
 
         //The last element of the list should be the latest, so we get its timestamp for comparison
-        LocalDate latestTimestamp = hashtagList.get(hashtagList.size() - 1).getTimestamp().toLocalDate();
+        LocalDate latestTimestamp = hashtagList.get(hashtagList.size() - 1).getTimestamp();
 
         //Remove hashtags from the hashtag list that do not have the same timestamp
-        hashtagList.removeIf(currentTopic -> (!currentTopic.getTimestamp().toLocalDate().equals(latestTimestamp)));
+        hashtagList.removeIf(currentTopic -> (!currentTopic.getTimestamp().equals(latestTimestamp)));
         hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
         return hashtagList;
     }
     @Override
     public List<Long> getTopicOccurrenceHistory(Hashtag hashtag) {
-        LocalDateTime hashtagDate = hashtag.getTimestamp();
-        LocalDateTime startingDate = hashtagDate.minusDays(8);
+        LocalDate hashtagDate = hashtag.getTimestamp();
+        LocalDate startingDate = hashtagDate.minusDays(8);
 
         //Returns all hashtags after this starting date
         //Need to filter and get only the hashtags that match the hashtag_name of the parameter
@@ -189,11 +188,11 @@ public class HashtagServiceImpl implements HashtagService {
         hashtagRepository.saveAll(hashtagList);
     }
 
-    private List<Hashtag> getHashtags(LocalDateTime currentDateTime, Comparator<Hashtag> comparing) {
+    private List<Hashtag> getHashtags(LocalDate currentDateTime, Comparator<Hashtag> comparing) {
         //endDate initialised to the day before currentDate
         //reason being is that the Hashtags for currentDate may still be populating
-        LocalDateTime endDate = currentDateTime.minusDays(1L);
-        LocalDateTime startDate = endDate.minusDays(7L);
+        LocalDate endDate = currentDateTime.minusDays(1L);
+        LocalDate startDate = endDate.minusDays(7L);
 
 
         List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampBetween(startDate, endDate);
@@ -207,18 +206,18 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     @Override
-    public List<Hashtag> sevenDayTop5HashtagListByCount(LocalDateTime currentDateTime) {
+    public List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime) {
         return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getNum_of_occurrence));
     }
 
     @Override
-    public List<Hashtag> sevenDayTop5HashtagListByLike(LocalDateTime currentDateTime) {
+    public List<Hashtag> sevenDayTop5HashtagListByLike(LocalDate currentDateTime) {
         return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getLike_count));
     }
 
     @Override
-    public List<Hashtag> currentTop5HashtagList(LocalDateTime currentDateTime) {
-        List<Hashtag> currentTop5HashtagList = hashtagRepository.findAllByTimestampContaining(currentDateTime);
+    public List<Hashtag> currentTop5HashtagList(LocalDate currentDateTime) {
+        List<Hashtag> currentTop5HashtagList = hashtagRepository.findAllByTimestampIs(currentDateTime);
         currentTop5HashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
 
         return currentTop5HashtagList;

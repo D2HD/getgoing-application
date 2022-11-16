@@ -4,6 +4,7 @@ import com.sun.xml.bind.v2.TODO;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,10 +15,10 @@ public class Hashtag {
     private String hashtag_id;
     @Column(name = "hashtag_name")
     private String hashtag_name;
-    @Column(name = "date")
-    private LocalDateTime timestamp;
     @Column(name = "num_of_occurrence")
     private Long num_of_occurrence;
+    @Column(name = "date")
+    private LocalDate timestamp;
     @Column(name = "like_count")
     private Long like_count;
     @Column(name = "general_sentiment")
@@ -25,7 +26,8 @@ public class Hashtag {
 
 
     public Hashtag() {}
-    public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Double general_sentiment) {
+
+    public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Double general_sentiment) {
         this.hashtag_id = hashtag_id;
         this.hashtag_name = hashtag_name;
         this.num_of_occurrence = num_of_occurrence;
@@ -58,11 +60,11 @@ public class Hashtag {
         this.num_of_occurrence = num_of_occurrence;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 

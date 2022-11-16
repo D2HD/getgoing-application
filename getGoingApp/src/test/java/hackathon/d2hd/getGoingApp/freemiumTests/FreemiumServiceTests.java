@@ -27,8 +27,8 @@ public class FreemiumServiceTests {
     @Test
     public void testFreemiumWorkflow() throws IOException {
         tweetService.clearTweetDatabase();
-        hashtagService.clearTopicDatabase();
-        hashtagService.clearTopicDatabase();
+        hashtagService.clearHashtagDatabase();
+        hashtagService.clearHashtagDatabase();
         //Turn the JSON file into a TweetDto List
         List<TweetDto> tweetDtoList = tweetService.JsonToTweetDeserializer(file);
 
