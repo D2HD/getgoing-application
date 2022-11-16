@@ -123,6 +123,10 @@ public class HashtagServiceImpl implements HashtagService {
                 currentHashtag -> (!currentHashtag.getHashtag_name().equals(hashtag.getHashtag_name()))
         );
 
+        while(hashtagList.size() > 7) {
+            hashtagList.remove(hashtagList.get(hashtagList.size() - 1));
+        }
+
         List<Long> hashtagCountHistory = new ArrayList<>();
         hashtagList.forEach(currentTopic -> {
             hashtagCountHistory.add(currentTopic.getNum_of_occurrence());

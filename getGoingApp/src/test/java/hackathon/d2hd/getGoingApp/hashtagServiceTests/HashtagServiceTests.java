@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -65,4 +66,14 @@ public class HashtagServiceTests {
 
         hashtagService.displayHashtags(hashtagList1);
     }
+
+    @Test
+    public void testGetTopicOccurrenceHistory() {
+        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
+
+        List<Long> topicOccurrence = hashtagService.getTopicOccurrenceHistory(hashtagList.get(0));
+        System.out.println(topicOccurrence);
+    }
+
 }
