@@ -127,10 +127,12 @@ public class HashtagServiceImpl implements HashtagService {
             hashtagList.remove(hashtagList.get(hashtagList.size() - 1));
         }
 
+        // TODO: 17/11/22 Array?????
         List<Long> hashtagCountHistory = new ArrayList<>();
         hashtagList.forEach(currentTopic -> {
             hashtagCountHistory.add(currentTopic.getNum_of_occurrence());
         });
+
 
         return hashtagCountHistory;
     }

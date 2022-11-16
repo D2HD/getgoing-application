@@ -103,9 +103,11 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public List<String> getHashtagList(String content) {
+        // TODO: 17/11/22 String builder
         //Get the content of the tweet
         List<String> hashtagList = Arrays.asList(content.split(" "));
         List<String> filteredHashtagList = new ArrayList<>();
+        hashtagList.removeIf(hashtag -> (hashtag.contains("#")));
 
         hashtagList.forEach(s -> {
             if(s.contains("#")) filteredHashtagList.add(s.toLowerCase());

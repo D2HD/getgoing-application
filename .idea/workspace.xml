@@ -12,11 +12,16 @@
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/FreeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/FreeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/resources/main/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/resources/main/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/FreemiumServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/FreemiumServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/HashtagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/HashtagRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +69,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.13.4/dd8da2766363ea64383d1344349acce91d5a5469/jackson-core-2.13.4-sources.jar!/com/fasterxml/jackson/core/type/TypeReference.java" root0="SKIP_INSPECTION" />
     <setting file="jar://$PROJECT_DIR$/../.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/5.3.23/d77b6c649df29dbc7cb5ced14eed149c82026168/spring-webmvc-5.3.23-sources.jar!/org/springframework/web/servlet/config/annotation/WebMvcConfigurationSupport.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -157,6 +163,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="HashtagServiceTests.testGetTopicOccurrenceHistory" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.testGetTopicOccurrenceHistory&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="HashtagServiceTests.testSevenDayTop5HashtagListByLikeAPI" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -171,29 +200,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.testSevenDayTop5HashtagListByLikeAPI&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="HashtagServiceTests.testTop5HashtagsInThePastWeek" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.testTop5HashtagsInThePastWeek&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -219,10 +225,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.GetGoingApplication" />
+        <item itemvalue="Gradle.HashtagServiceTests.testGetTopicOccurrenceHistory" />
         <item itemvalue="Gradle.HashtagServiceTests.currentTop5HashtagListAPI" />
         <item itemvalue="Gradle.HashtagServiceTests.hashtagRepoMethodsTest" />
         <item itemvalue="Gradle.HashtagServiceTests.testSevenDayTop5HashtagListByLikeAPI" />
-        <item itemvalue="Gradle.HashtagServiceTests.testTop5HashtagsInThePastWeek" />
       </list>
     </recent_temporary>
   </component>
@@ -246,7 +252,8 @@
       <workItem from="1668433472966" duration="3263000" />
       <workItem from="1668436933591" duration="1070000" />
       <workItem from="1668586148908" duration="2098000" />
-      <workItem from="1668588330286" duration="10323000" />
+      <workItem from="1668588330286" duration="12965000" />
+      <workItem from="1668617670463" duration="6932000" />
     </task>
     <servers />
   </component>

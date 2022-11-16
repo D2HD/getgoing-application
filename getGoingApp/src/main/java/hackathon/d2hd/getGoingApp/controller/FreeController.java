@@ -48,6 +48,7 @@ public class FreeController {
      * 1. currentTop5HashtagDtoList
      * 2. sevenDayTop5HashtagDtoListByCount returns a Hashtag DTO list containing 5 HashtagDTO objects, sorted by num_of_occurrence in descending order
      * 3. sevenDayTop5HashtagDtoListByLike returns a Hashtag DTO list containing 5 HashtagDTO objects, sorted by like in descending order
+     * @return Returns a hashtagDto list that has been processed
      */
 
     @GetMapping("/currentTop5HashtagDtoList")
@@ -72,13 +73,12 @@ public class FreeController {
         return hashtagService.hashtagListToHashtagDtoList(hashtagList);
     }
 
-
     //APIs for BE
     @GetMapping()
     public String hashscraperCall() {
         WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
         String response = client.post()
-                .uri("?apikey=" + api_key + "&keyword=%23forsale&max_count=20&")
+                .uri("?apikey=" + api_key + "&keyword=%" + keyword + "&max_count=20&")
                 .header("Content-Type", "application/json version=2")
                 .retrieve()
                 .bodyToMono(String.class)
@@ -106,7 +106,7 @@ public class FreeController {
     }
 
     @GetMapping("/tweetDtosToHashtags")
-    public List<Hashtag> tweetDtosToHashtags() {
+    public List<Hashtag> tweetDtosToHashtags(String string) {
         List<TweetDto> tweetDtoList = getAllTweetDtos();
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
         List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);

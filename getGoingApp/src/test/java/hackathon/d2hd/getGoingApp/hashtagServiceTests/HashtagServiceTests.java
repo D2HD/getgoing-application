@@ -5,6 +5,7 @@ import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.HashtagRepository;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -74,6 +75,14 @@ public class HashtagServiceTests {
 
         List<Long> topicOccurrence = hashtagService.getTopicOccurrenceHistory(hashtagList.get(0));
         System.out.println(topicOccurrence);
+    }
+
+    @Test
+    public void testStringTheSame() {
+        String s = "hello";
+        String v = "bye";
+
+        Assertions.assertEquals(s,v);
     }
 
 }

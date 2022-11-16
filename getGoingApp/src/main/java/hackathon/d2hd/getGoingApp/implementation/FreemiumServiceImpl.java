@@ -1,6 +1,7 @@
 package hackathon.d2hd.getGoingApp.implementation;
 
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
+import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.service.FreemiumService;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
@@ -29,26 +30,6 @@ public class FreemiumServiceImpl implements FreemiumService {
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
 
 
-
-
-
-
-
-//        List<Tweet> hashscaperTweetList = tweetService.JsonToTweetDeserializer(file);
-//        tweetService.saveTweetList(hashscaperTweetList);
-//        List<Tweet> tweetRepositoryTweetList = tweetService.getAllTweetsFromDatabase();
-//
-//        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetRepositoryTweetList);
-//        List<Hashtag> tweetDtoListToTopicList = hashtagService.tweetDtoListToTopicList(tweetDtoList);
-//        hashtagService.saveTopicList(tweetDtoListToTopicList);
-//        List<Hashtag> topicRepositoryList = hashtagService.getAllTopicsFromDatabase();
-//        List<Hashtag> topTopicList = hashtagService.getTodaysTopTopics(topicRepositoryList);
-//        List<HashtagDto> topicDtoList = new ArrayList<>();
-//        topTopicList.forEach(topic -> {
-//            topicDtoList.add(hashtagService.topicToTopicDto(topic));
-//        });
-//
-//        return topicDtoList;
 
         return null;
     }
