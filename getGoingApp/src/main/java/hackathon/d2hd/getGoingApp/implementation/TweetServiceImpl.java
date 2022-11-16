@@ -57,7 +57,7 @@ public class TweetServiceImpl implements TweetService {
     public TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException {
         return new TweetDto(
                 tweet.getValue1(),
-                tweet.getValue2(),
+                tweet.getValue2().toLowerCase(),
                 tweet.getValue3(),
                 Long.parseLong(tweet.getValue4()),
                 tweet.getValue5(),
@@ -108,7 +108,7 @@ public class TweetServiceImpl implements TweetService {
         List<String> filteredHashtagList = new ArrayList<>();
 
         hashtagList.forEach(s -> {
-            if(s.contains("#")) filteredHashtagList.add(s);
+            if(s.contains("#")) filteredHashtagList.add(s.toLowerCase());
         });
 
         return filteredHashtagList;

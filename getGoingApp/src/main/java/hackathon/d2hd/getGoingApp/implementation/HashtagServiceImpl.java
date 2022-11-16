@@ -133,35 +133,6 @@ public class HashtagServiceImpl implements HashtagService {
         });
 
         return hashtagCountHistory;
-
-
-        //Now that the list is sorted, we can add
-
-
-//        LocalDateTime current_time = LocalDateTime.now();
-//        LocalDateTime dateToStartSearch = current_time.minusDays(7);
-//
-//        List<Hashtag> aTopicList = hashtagRepository.findAllByTimestampAfter(dateToStartSearch);
-//        Long [] sevenDayArray = new Long [7];
-//
-//
-//        for(Hashtag hashtag1: aTopicList) {
-//            LocalDateTime timeStampOfTopic = hashtag1.getTimestamp();
-//            Duration difference_in_days = Duration.between(timeStampOfTopic, current_time);
-//
-//            if(hashtag1.getTopic_name().equals(hashtag.getTopic_name()) && difference_in_days.toDays() != 0) {
-//                sevenDayArray[(int) difference_in_days.toDays() - 1] = hashtag1.getNum_of_occurrence();
-//            }
-//        }
-//
-//        for(int i = 0; i< sevenDayArray.length; i++){
-//            if(sevenDayArray[i] == null) {
-//                sevenDayArray[i] = 0L;
-//                System.out.println("Nothing was here at " + i);
-//            }
-//        }
-//
-//        return sevenDayArray;
     }
 
     @Override
