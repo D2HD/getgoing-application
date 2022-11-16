@@ -184,9 +184,43 @@ public class HashtagServiceImpl implements HashtagService {
 
         return hashtagDtoList;
     }
-
     @Override
     public void saveHashtagList(List<Hashtag> hashtagList) {
         hashtagRepository.saveAll(hashtagList);
+    }
+
+    private List<Hashtag> getHashtags(LocalDateTime currentDateTime, Comparator<Hashtag> comparing) {
+        //endDate initialised to the day before currentDate
+        //reason being is that the Hashtags for currentDate may still be populating
+        LocalDateTime endDate = currentDateTime.minusDays(1L);
+        LocalDateTime startDate = endDate.minusDays(7L);
+
+
+        List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampBetween(startDate, endDate);
+        hashtagList.sort(comparing.reversed());
+        List<Hashtag> top5HashtagList = new ArrayList<>();
+        for(int i = 0; i < 5; i++) {
+            top5HashtagList.add(hashtagList.get(i));
+        }
+
+        return top5HashtagList;
+    }
+
+    @Override
+    public List<Hashtag> sevenDayTop5HashtagListByCount(LocalDateTime currentDateTime) {
+        return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getNum_of_occurrence));
+    }
+
+    @Override
+    public List<Hashtag> sevenDayTop5HashtagListByLike(LocalDateTime currentDateTime) {
+        return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getLike_count));
+    }
+
+    @Override
+    public List<Hashtag> currentTop5HashtagList(LocalDateTime currentDateTime) {
+        List<Hashtag> currentTop5HashtagList = hashtagRepository.findAllByTimestampContaining(currentDateTime);
+        currentTop5HashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+
+        return currentTop5HashtagList;
     }
 }

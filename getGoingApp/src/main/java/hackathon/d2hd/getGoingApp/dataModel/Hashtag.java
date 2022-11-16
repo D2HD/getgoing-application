@@ -25,7 +25,6 @@ public class Hashtag {
 
 
     public Hashtag() {}
-
     public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDateTime timestamp, Long like_count, Double general_sentiment) {
         this.hashtag_id = hashtag_id;
         this.hashtag_name = hashtag_name;

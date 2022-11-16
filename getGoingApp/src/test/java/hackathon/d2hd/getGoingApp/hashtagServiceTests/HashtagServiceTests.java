@@ -1,7 +1,6 @@
 package hackathon.d2hd.getGoingApp.hashtagServiceTests;
 
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
-import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
@@ -11,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,14 +32,20 @@ public class HashtagServiceTests {
     }
 
     @Test
-    public void testHashtagToHashtagDtoList() throws IOException {
-        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
-        hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
-        List<HashtagDto> hashtagDtoList = new ArrayList<>();
-        for(int i = 0; i < 5; i++) {
-            hashtagDtoList.add(hashtagService.hashtagToHashtagDto(hashtagList.get(i)));
-        }
+    public void testSevenDayTop5HashtagListByCountAPI() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        List<Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
+        hashtagService.displayHashtags(hashtagList);
+    }
 
-        hashtagService.displayHashtagDtos(hashtagDtoList);
+    @Test
+    public void testSevenDayTop5HashtagListByLikeAPI() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        List<Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByLike(currentDateTime);
+        hashtagService.displayHashtags(hashtagList);
+    }
+
+    @Test
+    public void currentTop5HashtagListAPI() {
     }
 }

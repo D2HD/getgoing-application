@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -41,6 +42,37 @@ public class FreeController {
         return tweetService.tweetDatabaseSize();
     }
 
+    /**
+     * The following 3 APIs will be the ones passed to Frontend
+     * 1. currentTop5HashtagDtoList
+     * 2. sevenDayTop5HashtagDtoListByCount returns a Hashtag DTO list containing 5 HashtagDTO objects, sorted by num_of_occurrence in descending order
+     * 3. sevenDayTop5HashtagDtoListByLike returns a Hashtag DTO list containing 5 HashtagDTO objects, sorted by like in descending order
+     */
+
+    @GetMapping("/currentTop5HashtagDtoList")
+    public List<HashtagDto> currentTop5HashtagDtoList() {
+        LocalDateTime localDateTimeToday = LocalDateTime.now();
+        LocalDateTime localDateTimeYesterday = localDateTimeToday.minusDays(3L).;
+        List<Hashtag> currentTop5HashtagList = hashtagService.currentTop5HashtagList(localDateTimeYesterday);
+
+        return hashtagService.hashtagListToHashtagDtoList(currentTop5HashtagList);
+    }
+    @GetMapping("/sevenDayTop5HashtagListByCount")
+    public List<HashtagDto> sevenDayTop5HashtagDtoListByCount() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
+        return hashtagService.hashtagListToHashtagDtoList(hashtagList);
+    }
+
+    @GetMapping("/sevenDayTop5HashtagListByLike")
+    public List<HashtagDto> sevenDayTop5HashtagDtoListByLike() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByLike(currentDateTime);
+        return hashtagService.hashtagListToHashtagDtoList(hashtagList);
+    }
+
+
+    //APIs for BE
     @GetMapping()
     public String hashscraperCall() {
         WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
@@ -98,15 +130,5 @@ public class FreeController {
 
         return hashtagDtoList;
     }
-
-    // TODO: 14/11/22 Figure out the Workflow 
-    /*
-    Workflow
-    1. Call hashscraper API to get a list of tweets
-    2. Save list of tweets
-    3. Convert Tweets to Hashtags
-    4.  
-     */
-
 }
 

@@ -4,6 +4,7 @@ import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +21,9 @@ public interface HashtagService {
     List<Long> getTopicOccurrenceHistory(Hashtag hashtag);
     HashtagDto hashtagToHashtagDto(Hashtag hashtag);
     List<HashtagDto> hashtagListToHashtagDtoList(List<Hashtag> hashtagList);
+    List<Hashtag> sevenDayTop5HashtagListByCount(LocalDateTime currentDateTime);
+    List<Hashtag> sevenDayTop5HashtagListByLike(LocalDateTime currentDateTime);
+    List<Hashtag> currentTop5HashtagList(LocalDateTime currentDateTime);
 
 
 }

@@ -12,14 +12,12 @@
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/7.5.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/FreemiumController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/FreeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/controller/FreeController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/repository/HashtagRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/repository/HashtagRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/HashtagService.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/HashtagService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TweetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/main/hackathon/d2hd/getGoingApp/service/TweetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/classes/java/test/hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTests.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/classes/hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/classes/hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/packages/hackathon.d2hd.getGoingApp.hashtagServiceTests.html" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/reports/tests/test/packages/hackathon.d2hd.getGoingApp.hashtagServiceTests.html" afterDir="false" />
@@ -29,13 +27,10 @@
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/test-results/test/binary/results.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreemiumController.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/controller/FreeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/HashtagServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation/TweetServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/TweetRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/TweetRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/HashtagRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository/HashtagRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/HashtagService.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/HashtagService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/TweetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/service/TweetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/freemiumTests/FreemiumServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/freemiumTests/FreemiumServiceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/hashtagServiceTests/HashtagServiceTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,6 +101,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/seanmarinas/appetizer/getGoingApp&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -129,7 +125,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.HashtagServiceTests.testHashtagToHashtagDtoList">
+  <component name="RunManager" selected="Spring Boot.GetGoingApplication">
     <configuration name="HashtagServiceTests.testHashtagToHashtagDtoList" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -144,6 +140,52 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.testHashtagToHashtagDtoList&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="HashtagServiceTests.testSevenDayTop5HashtagListByLikeAPI" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.testSevenDayTop5HashtagListByLikeAPI&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="HashtagServiceTests.testTop5HashtagsInThePastWeek" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;hackathon.d2hd.getGoingApp.hashtagServiceTests.HashtagServiceTests.testTop5HashtagsInThePastWeek&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -176,52 +218,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TweetServiceTests.newTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;hackathon.d2hd.getGoingApp.tweetServiceTests.TweetServiceTests.newTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="TweetServiceTests.testTweetJsonToGeneralSentimentAPI" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/getGoingApp" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;hackathon.d2hd.getGoingApp.tweetServiceTests.TweetServiceTests.testTweetJsonToGeneralSentimentAPI&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="GetGoingApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="getGoingApp.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="hackathon.d2hd.getGoingApp.GetGoingApplication" />
@@ -237,11 +233,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.HashtagServiceTests.testHashtagToHashtagDtoList" />
         <item itemvalue="Spring Boot.GetGoingApplication" />
+        <item itemvalue="Gradle.HashtagServiceTests.testSevenDayTop5HashtagListByLikeAPI" />
+        <item itemvalue="Gradle.HashtagServiceTests.testTop5HashtagsInThePastWeek" />
+        <item itemvalue="Gradle.HashtagServiceTests.testHashtagToHashtagDtoList" />
         <item itemvalue="Gradle.HashtagServiceTests.testTweetDtoListToHashtagListAPI" />
-        <item itemvalue="Gradle.TweetServiceTests.testTweetJsonToGeneralSentimentAPI" />
-        <item itemvalue="Gradle.TweetServiceTests.newTest" />
       </list>
     </recent_temporary>
   </component>
@@ -264,6 +260,8 @@
       <workItem from="1668237521639" duration="11303000" />
       <workItem from="1668433472966" duration="3263000" />
       <workItem from="1668436933591" duration="1070000" />
+      <workItem from="1668586148908" duration="2098000" />
+      <workItem from="1668588330286" duration="2352000" />
     </task>
     <servers />
   </component>
