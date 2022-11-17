@@ -79,7 +79,7 @@ public class FreeController {
     public String keywordSearch(@PathVariable String userInput) {
         WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
         String response = client.post()
-                .uri("?apikey=" + api_key + "&keyword=%" + userInput + "&max_count=20&")
+                .uri("?apikey=" + api_key + "&keyword=" + userInput + "&max_count=20&")
                 .header("Content-Type", "application/json version=2")
                 .retrieve()
                 .bodyToMono(String.class)
