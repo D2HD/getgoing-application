@@ -53,9 +53,10 @@ public class FreeController {
 
     @GetMapping("/currentTop5HashtagDtoList")
     public List<HashtagDto> currentTop5HashtagDtoList() {
-        LocalDate localDateTimeToday = LocalDate.now();
-        LocalDate localDateTimeYesterday = localDateTimeToday.minusDays(3L);
-        List<Hashtag> currentTop5HashtagList = hashtagService.currentTop5HashtagList(localDateTimeYesterday);
+        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
+        LocalDate localDate = hashtagList.get(0).getTimestamp();
+        List<Hashtag> currentTop5HashtagList = hashtagService.currentTop5HashtagList(localDate);
 
         return hashtagService.hashtagListToHashtagDtoList(currentTop5HashtagList);
     }
@@ -73,6 +74,11 @@ public class FreeController {
         return hashtagService.hashtagListToHashtagDtoList(hashtagList);
     }
 
+    @GetMapping("/keywordSearch")
+    public String keywordSearch(String keywordSearch) {
+        return keywordSearch;
+    }
+
     //APIs for BE
     @GetMapping()
     public String hashscraperCall() {
@@ -86,6 +92,21 @@ public class FreeController {
 
         return response;
     }
+
+    @GetMapping("/hashscraperDateSearch/{start_date}/{end_date}")
+    public String hashscraperDateSearch(@PathVariable String start_date, @PathVariable String end_date) {
+        WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
+        String response = client.post()
+                .uri("?apikey=" + api_key + "&keyword=%" + keyword + "&max_count=10" + "&start_date=" + start_date + "&end_date=" + end_date)
+                .header("Content-Type", "application/json version=2")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        return response;
+    }
+
+
     @GetMapping("/hashscraperToTweetDtoList")
     public List<TweetDto> tweetDtoListToday() throws JsonProcessingException {
         String hashscraperResponseBody = hashscraperCall();
