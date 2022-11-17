@@ -14,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -74,9 +75,9 @@ public class FreeController {
         return hashtagService.hashtagListToHashtagDtoList(hashtagList);
     }
 
-    @GetMapping("/keywordSearch")
-    public String keywordSearch(String keywordSearch) {
-        return keywordSearch;
+    @GetMapping("/keywordSearch/{userInput}")
+    public String keywordSearch(@PathVariable String userInput) {
+        return userInput;
     }
 
     //APIs for BE
@@ -93,17 +94,30 @@ public class FreeController {
         return response;
     }
 
-    @GetMapping("/hashscraperDateSearch/{start_date}/{end_date}")
-    public String hashscraperDateSearch(@PathVariable String start_date, @PathVariable String end_date) {
+    @GetMapping("/hashscraperDateSearch/{start}/{end}")
+    public String hashscraperDateSearch(@PathVariable String start, @PathVariable String end) throws JsonProcessingException {
+
+        LocalDate start_date = LocalDate.of(
+                Integer.parseInt(start.substring(0, 4)),
+                Month.of(Integer.parseInt(start.substring(5, 7))),
+                Integer.parseInt(start.substring(8))
+        );
+        LocalDate end_date = LocalDate.of(
+                Integer.parseInt(end.substring(0, 4)),
+                Month.of(Integer.parseInt(end.substring(5, 7))),
+                Integer.parseInt(end.substring(8))
+        );
         WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
         String response = client.post()
-                .uri("?apikey=" + api_key + "&keyword=%" + keyword + "&max_count=10" + "&start_date=" + start_date + "&end_date=" + end_date)
+                .uri("?apikey=" + api_key + "&keyword=" + keyword + "&max_count=20" + "&start_date=" + start_date + "&end_date=" + end_date)
                 .header("Content-Type", "application/json version=2")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
 
-        return response;
+        List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
+        tweetService.saveTweetList(tweetList);
+        return "Saved a list of size: " + tweetList.size();
     }
 
 
