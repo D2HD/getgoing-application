@@ -21,18 +21,21 @@ public class Hashtag {
     private LocalDate timestamp;
     @Column(name = "like_count")
     private Long like_count;
+    @Column(name = "retweet_count")
+    private Long retweet_count;
     @Column(name = "general_sentiment")
     private Double general_sentiment;
 
 
     public Hashtag() {}
 
-    public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Double general_sentiment) {
+    public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Long retweet_count, Double general_sentiment) {
         this.hashtag_id = hashtag_id;
         this.hashtag_name = hashtag_name;
         this.num_of_occurrence = num_of_occurrence;
         this.timestamp = timestamp;
         this.like_count = like_count;
+        this.retweet_count = retweet_count;
         this.general_sentiment = general_sentiment;
     }
 
@@ -74,6 +77,14 @@ public class Hashtag {
 
     public void setLike_count(Long like_count) {
         this.like_count = like_count;
+    }
+
+    public Long getRetweet_count() {
+        return retweet_count;
+    }
+
+    public void setRetweet_count(Long retweet_count) {
+        this.retweet_count = retweet_count;
     }
 
     public Double getGeneral_sentiment() {

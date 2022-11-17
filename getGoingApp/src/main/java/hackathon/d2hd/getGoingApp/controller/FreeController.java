@@ -34,15 +34,6 @@ public class FreeController {
     @Autowired
     private HashtagService hashtagService;
 
-    @DeleteMapping("/clearTweetDatabase")
-    public void clearDatabase() {
-        tweetService.clearTweetDatabase();
-    }
-
-    @GetMapping("/tweetDatabaseSize")
-    public int databaseSize() {
-        return tweetService.tweetDatabaseSize();
-    }
 
     /**
      * The following 3 APIs will be the ones passed to Frontend
@@ -125,32 +116,14 @@ public class FreeController {
 
         List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
         tweetService.saveTweetList(tweetList);
-        return "Saved a list of size: " + tweetList.size();
+        return "Saved for Start date: " + start + "End date: " + end_date + "\nCurrent database size:" + tweetService.getAllTweets().size();
     }
 
 
-    @GetMapping("/hashscraperToTweetDtoList")
-    public List<TweetDto> tweetDtoListToday() throws JsonProcessingException {
-        String hashscraperResponseBody = hashscraperCall();
-        List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(hashscraperResponseBody);
-        tweetService.saveTweetList(tweetList);
-
-        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
-        return tweetDtoList;
-    }
-
-    @GetMapping("/getAllTweetDtos")
-    public List<TweetDto> getAllTweetDtos() {
-        List <Tweet> tweetList = tweetService.getAllTweets();
-        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
-        tweetDtoList.sort(Comparator.comparing(TweetDto::getLocalDateTime).reversed());
-
-        return tweetDtoList;
-    }
 
     @GetMapping("/tweetDtosToHashtags")
     public List<Hashtag> tweetDtosToHashtags(String string) {
-        List<TweetDto> tweetDtoList = getAllTweetDtos();
+        List<TweetDto> tweetDtoList = null;
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
         List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
         hashtagService.saveHashtagList(hashtagList);

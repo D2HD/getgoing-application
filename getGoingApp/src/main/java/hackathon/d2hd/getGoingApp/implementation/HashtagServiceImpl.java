@@ -8,11 +8,9 @@ import hackathon.d2hd.getGoingApp.service.HashtagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class HashtagServiceImpl implements HashtagService {
@@ -41,12 +39,14 @@ public class HashtagServiceImpl implements HashtagService {
                             1L,
                             tweetDto.getLocalDateTime().toLocalDate(),
                             tweetDto.getTweet_like_count(),
+                            tweetDto.getTweet_retweet_count(),
                             tweetDto.getGeneral_sentiment()
                     ));
                 }else {
                     Hashtag currentHashtag = hashtagHashMap.get(hashtagId);
                     currentHashtag.setNum_of_occurrence(currentHashtag.getNum_of_occurrence() + 1);
                     currentHashtag.setLike_count(currentHashtag.getLike_count() + tweetDto.getTweet_like_count());
+                    currentHashtag.setRetweet_count(currentHashtag.getRetweet_count() + tweetDto.getTweet_retweet_count());
                     currentHashtag.setGeneral_sentiment(
                             currentHashtag.getGeneral_sentiment() + tweetDto.getGeneral_sentiment());
                 }
@@ -69,16 +69,6 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     @Override
-    public long sumOfAllTopicOccurrences(List<Hashtag> hashtagList) {
-        long sumOfAllTopicOccurrences = 0l;
-        for(Hashtag hashtag : hashtagList) {
-            sumOfAllTopicOccurrences += hashtag.getNum_of_occurrence();
-        }
-
-        return sumOfAllTopicOccurrences;
-    }
-
-    @Override
     public List<Hashtag> getAllHashtagsFromDatabase() {
         return hashtagRepository.findAll();
     }
@@ -94,7 +84,7 @@ public class HashtagServiceImpl implements HashtagService {
     @Override
     public void displayHashtagDtos(List<HashtagDto> hashtagDtoList) {
         hashtagDtoList.forEach(hashtagDto -> {
-            System.out.println(hashtagDto.getHashtag_id() + ": " + hashtagDto.getNum_of_occurrence() + " " + hashtagDto.getNum_of_occurrence() + hashtagDto.getPast_hashtag_count());
+            System.out.println(hashtagDto.getHashtag_id() + ": " + hashtagDto.getNum_of_occurrence() + " " + hashtagDto.getNum_of_occurrence() + hashtagDto.getDaily_hashtag_count());
         });
     }
 
@@ -112,7 +102,7 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagList;
     }
     @Override
-    public List<Long> getHashtagOccurrenceHistory(Hashtag hashtag) {
+    public List<Long> getDailyHashtagCount(Hashtag hashtag) {
         LocalDate hashtagDate = hashtag.getTimestamp();
         LocalDate startingDate = hashtagDate.minusDays(8);
 
@@ -123,11 +113,15 @@ public class HashtagServiceImpl implements HashtagService {
                 currentHashtag -> (!currentHashtag.getHashtag_name().equals(hashtag.getHashtag_name()))
         );
 
-        while(hashtagList.size() > 7) {
-            hashtagList.remove(hashtagList.get(hashtagList.size() - 1));
-        }
+        Long [] dailyHashtagCount = new Long[7];
+        Arrays.fill(dailyHashtagCount, 0);
 
-        // TODO: 17/11/22 Array?????
+        hashtagList.forEach(currentHashtag -> {
+            LocalDate currentHashtagDate = currentHashtag.getTimestamp();
+            int differenceInDays = (int) Duration.between(startingDate, currentHashtagDate).toDays();
+            dailyHashtagCount[differenceInDays] = currentHashtag.getNum_of_occurrence();
+        });
+
         List<Long> hashtagCountHistory = new ArrayList<>();
         hashtagList.forEach(currentTopic -> {
             hashtagCountHistory.add(currentTopic.getNum_of_occurrence());
@@ -145,8 +139,9 @@ public class HashtagServiceImpl implements HashtagService {
                 hashtag.getNum_of_occurrence(),
                 hashtag.getTimestamp(),
                 hashtag.getLike_count(),
+                hashtag.getRetweet_count(),
                 hashtag.getGeneral_sentiment(),
-                getHashtagOccurrenceHistory(hashtag),
+                getDailyHashtagCount(hashtag),
                 weeklyHashtagCount(hashtag)
         );
     }

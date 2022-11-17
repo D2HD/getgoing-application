@@ -11,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +76,7 @@ public class HashtagServiceTests {
         List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
         hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
 
-        List<Long> topicOccurrence = hashtagService.getHashtagOccurrenceHistory(hashtagList.get(0));
+        List<Long> topicOccurrence = hashtagService.getDailyHashtagCount(hashtagList.get(0));
         System.out.println(topicOccurrence);
     }
 
@@ -118,14 +120,35 @@ public class HashtagServiceTests {
 
         return new Long[] {week1OccurrenceCount, week2OccurrenceCount, week3OccurrenceCount, week4OccurrenceCount};
     }
+
     @Test
-    public void testRepoMethod() {
-        List<Hashtag> hashtagList = hashtagRepository.findAll();
-        hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
-        Hashtag hashtag = hashtagList.get(0);
-        System.out.println(hashtag.getHashtag_name() + ": " + hashtag.getNum_of_occurrence());
-        Long [] weeklyCount = weeklyCount(hashtag);
-        logger.info(weeklyCount[3].toString());
+    public void testGetHashtagOccurrenceHistory() {
+        List<Hashtag> hashtagList1 = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList1.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
+        Hashtag hashtag = hashtagList1.get(0);
+
+        LocalDate hashtagDate = hashtag.getTimestamp();
+        LocalDate startingDate = hashtagDate.minusDays(7L);
+
+        //Returns all hashtags after this starting date
+        //Need to filter and get only the hashtags that match the hashtag_name of the parameter
+        List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampBetweenOrderByTimestampAsc(startingDate, hashtagDate);
+        hashtagList.removeIf(
+                currentHashtag -> (!currentHashtag.getHashtag_name().equals(hashtag.getHashtag_name()))
+        );
+
+        Long [] dailyHashtagCount = new Long[7];
+        Arrays.fill(dailyHashtagCount, 0);
+
+        hashtagList.forEach(currentHashtag -> {
+            LocalDate currentHashtagDate = currentHashtag.getTimestamp();
+            int differenceInDays = (int) Duration.between(startingDate, currentHashtagDate).toDays();
+            dailyHashtagCount[differenceInDays] = currentHashtag.getNum_of_occurrence();
+        });
+
+        for(Long l: dailyHashtagCount) {
+            System.out.println(l);
+        }
     }
 
 }

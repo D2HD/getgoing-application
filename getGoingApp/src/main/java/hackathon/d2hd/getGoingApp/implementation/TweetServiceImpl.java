@@ -107,17 +107,18 @@ public class TweetServiceImpl implements TweetService {
         //Get the content of the tweet
         List<String> hashtagList = Arrays.asList(content.split(" "));
         List<String> filteredHashtagList = new ArrayList<>();
-        hashtagList.removeIf(hashtag -> (hashtag.contains("#")));
 
         hashtagList.forEach(s -> {
             if(s.contains("#")) filteredHashtagList.add(s.toLowerCase());
         });
 
-        return filteredHashtagList;
+//        return filteredHashtagList;
+        return hashtagList;
     }
 
     @Override
     public Double tweetJsonToGeneralSentiment(String tweet_json) throws JsonProcessingException {
+        if(tweet_json.length() < 10) return Double.valueOf(0.0);
         JsonNode rootNode = objectMapper.readTree(tweet_json);
         List<TweetDto.TweetJson> tweetJsonList = objectMapper.readValue(tweet_json, new TypeReference<List<TweetDto.TweetJson>>() {});
         Double totalSentiment = Double.valueOf(0.0);

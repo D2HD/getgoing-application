@@ -13,12 +13,12 @@ public interface HashtagService {
     List<Hashtag> tweetDtoListToHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap);
     void saveHashtagList(List<Hashtag> hashtagList);
     void clearHashtagDatabase();
-    long sumOfAllTopicOccurrences(List<Hashtag> hashtagList);
+
     List<Hashtag> getAllHashtagsFromDatabase();
     void displayHashtags(List<Hashtag> hashtagList);
     void displayHashtagDtos(List<HashtagDto> hashtagDtoList);
     List<Hashtag> getTodaysTopHashtags(List<Hashtag> hashtagList);
-    List<Long> getHashtagOccurrenceHistory(Hashtag hashtag);
+    List<Long> getDailyHashtagCount(Hashtag hashtag);
     HashtagDto hashtagToHashtagDto(Hashtag hashtag);
     List<HashtagDto> hashtagListToHashtagDtoList(List<Hashtag> hashtagList);
     List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime);
