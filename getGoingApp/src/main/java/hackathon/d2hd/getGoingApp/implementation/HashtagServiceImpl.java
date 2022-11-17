@@ -112,7 +112,7 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagList;
     }
     @Override
-    public List<Long> getTopicOccurrenceHistory(Hashtag hashtag) {
+    public List<Long> getHashtagOccurrenceHistory(Hashtag hashtag) {
         LocalDate hashtagDate = hashtag.getTimestamp();
         LocalDate startingDate = hashtagDate.minusDays(8);
 
@@ -146,7 +146,8 @@ public class HashtagServiceImpl implements HashtagService {
                 hashtag.getTimestamp(),
                 hashtag.getLike_count(),
                 hashtag.getGeneral_sentiment(),
-                getTopicOccurrenceHistory(hashtag)
+                getHashtagOccurrenceHistory(hashtag),
+                weeklyHashtagCount(hashtag)
         );
     }
 
@@ -198,5 +199,44 @@ public class HashtagServiceImpl implements HashtagService {
         currentTop5HashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
 
         return currentTop5HashtagList;
+    }
+
+    private Long countOfWeek(List<Hashtag> weeklyHashtagList) {
+        if(weeklyHashtagList.isEmpty()) return 0L;
+
+        Long occurrenceCount = 0L;
+        for(Hashtag hashtag: weeklyHashtagList) {
+            occurrenceCount += hashtag.getNum_of_occurrence();
+        }
+
+        return occurrenceCount;
+    }
+
+    private Long[] weeklyHashtagCount(Hashtag hashtag) {
+        LocalDate week4EndDate = hashtag.getTimestamp();
+        LocalDate week4StartDate = week4EndDate.minusDays(7L);
+        List<Hashtag> week4HashtagList = hashtagRepository.findAllByTimestampBetween(week4StartDate, week4EndDate);
+        week4HashtagList.removeIf(week4Hashtag -> (!week4Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week4OccurrenceCount = countOfWeek(week4HashtagList);
+
+        LocalDate week3EndDate = week4StartDate.minusDays(1L);
+        LocalDate week3StartDate = week3EndDate.minusDays(7L);
+        List<Hashtag> week3HashtagList = hashtagRepository.findAllByTimestampBetween(week3StartDate, week3EndDate);
+        week3HashtagList.removeIf(week3Hashtag -> (!week3Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week3OccurrenceCount = countOfWeek(week3HashtagList);
+
+        LocalDate week2EndDate = week3StartDate.minusDays(1L);
+        LocalDate week2StartDate = week2EndDate.minusDays(7L);
+        List<Hashtag> week2HashtagList = hashtagRepository.findAllByTimestampBetween(week2StartDate, week2EndDate);
+        week2HashtagList.removeIf(week2Hashtag -> (!week2Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week2OccurrenceCount = countOfWeek(week2HashtagList);
+
+        LocalDate week1EndDate = week2StartDate.minusDays(1L);
+        LocalDate week1StartDate = week1EndDate.minusDays(7L);
+        List<Hashtag> week1HashtagList = hashtagRepository.findAllByTimestampBetween(week1StartDate, week1EndDate);
+        week1HashtagList.removeIf(week1Hashtag -> (!week1Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week1OccurrenceCount = countOfWeek(week1HashtagList);
+
+        return new Long[] {week1OccurrenceCount, week2OccurrenceCount, week3OccurrenceCount, week4OccurrenceCount};
     }
 }

@@ -18,12 +18,11 @@ public interface HashtagService {
     void displayHashtags(List<Hashtag> hashtagList);
     void displayHashtagDtos(List<HashtagDto> hashtagDtoList);
     List<Hashtag> getTodaysTopHashtags(List<Hashtag> hashtagList);
-    List<Long> getTopicOccurrenceHistory(Hashtag hashtag);
+    List<Long> getHashtagOccurrenceHistory(Hashtag hashtag);
     HashtagDto hashtagToHashtagDto(Hashtag hashtag);
     List<HashtagDto> hashtagListToHashtagDtoList(List<Hashtag> hashtagList);
     List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime);
     List<Hashtag> sevenDayTop5HashtagListByLike(LocalDate currentDateTime);
     List<Hashtag> currentTop5HashtagList(LocalDate currentDateTime);
-
 
 }

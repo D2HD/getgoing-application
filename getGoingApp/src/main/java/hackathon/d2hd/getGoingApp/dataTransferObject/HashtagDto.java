@@ -13,10 +13,11 @@ public class HashtagDto {
     private Long like_count;
     private Double general_sentiment;
     private List<Long> past_hashtag_count;
+    private Long[] weekly_hashtag_count;
 
     public HashtagDto() {}
 
-    public HashtagDto(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Double general_sentiment, List<Long> past_hashtag_count) {
+    public HashtagDto(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Double general_sentiment, List<Long> past_hashtag_count, Long[] weekly_hashtag_count) {
         this.hashtag_id = hashtag_id;
         this.hashtag_name = hashtag_name;
         this.num_of_occurrence = num_of_occurrence;
@@ -24,6 +25,7 @@ public class HashtagDto {
         this.like_count = like_count;
         this.general_sentiment = general_sentiment;
         this.past_hashtag_count = past_hashtag_count;
+        this.weekly_hashtag_count = weekly_hashtag_count;
     }
 
     public String getHashtag_id() {
@@ -80,5 +82,13 @@ public class HashtagDto {
 
     public void setPast_hashtag_count(List<Long> past_hashtag_count) {
         this.past_hashtag_count = past_hashtag_count;
+    }
+
+    public Long[] getWeekly_hashtag_count() {
+        return weekly_hashtag_count;
+    }
+
+    public void setWeekly_hashtag_count(Long[] weekly_hashtag_count) {
+        this.weekly_hashtag_count = weekly_hashtag_count;
     }
 }

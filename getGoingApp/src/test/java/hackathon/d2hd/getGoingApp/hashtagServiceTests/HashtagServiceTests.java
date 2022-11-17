@@ -5,7 +5,6 @@ import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.HashtagRepository;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,10 +16,12 @@ import java.time.Month;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 @SpringBootTest
 public class HashtagServiceTests {
 
+    private Logger logger = Logger.getLogger(HashtagServiceTests.class.getName());
     private File hashScraperJsonFile = new File("/Users/seanmarinas/appetizer/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperForSale.json");
     @Autowired
     private TweetService tweetService;
@@ -73,16 +74,58 @@ public class HashtagServiceTests {
         List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
         hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
 
-        List<Long> topicOccurrence = hashtagService.getTopicOccurrenceHistory(hashtagList.get(0));
+        List<Long> topicOccurrence = hashtagService.getHashtagOccurrenceHistory(hashtagList.get(0));
         System.out.println(topicOccurrence);
     }
 
-    @Test
-    public void testStringTheSame() {
-        String s = "hello";
-        String v = "bye";
+    private Long countOfWeek(List<Hashtag> hashtagList) {
+        if(hashtagList.isEmpty()) return 0L;
 
-        Assertions.assertEquals(s,v);
+        Long occurrenceCount = 0L;
+        for(Hashtag hashtag: hashtagList) {
+            occurrenceCount += hashtag.getNum_of_occurrence();
+        }
+
+        return occurrenceCount;
+    }
+    private Long[] weeklyCount(Hashtag hashtag) {
+        //For week 4
+        LocalDate week4EndDate = hashtag.getTimestamp();
+        LocalDate week4StartDate = week4EndDate.minusDays(7L);
+        List<Hashtag> week4HashtagList = hashtagRepository.findAllByTimestampBetween(week4StartDate, week4EndDate);
+        logger.info(String.valueOf(week4HashtagList.size()));
+        week4HashtagList.removeIf(week4Hashtag -> (!week4Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        logger.info(String.valueOf(week4HashtagList.size()));
+        Long week4OccurrenceCount = countOfWeek(week4HashtagList);
+
+        LocalDate week3EndDate = week4StartDate.minusDays(1L);
+        LocalDate week3StartDate = week3EndDate.minusDays(7L);
+        List<Hashtag> week3HashtagList = hashtagRepository.findAllByTimestampBetween(week3StartDate, week3EndDate);
+        week3HashtagList.removeIf(week3Hashtag -> (!week3Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week3OccurrenceCount = countOfWeek(week3HashtagList);
+
+        LocalDate week2EndDate = week3StartDate.minusDays(1L);
+        LocalDate week2StartDate = week2EndDate.minusDays(7L);
+        List<Hashtag> week2HashtagList = hashtagRepository.findAllByTimestampBetween(week2StartDate, week2EndDate);
+        week2HashtagList.removeIf(week2Hashtag -> (!week2Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week2OccurrenceCount = countOfWeek(week2HashtagList);
+
+        LocalDate week1EndDate = week2StartDate.minusDays(1L);
+        LocalDate week1StartDate = week1EndDate.minusDays(7L);
+        List<Hashtag> week1HashtagList = hashtagRepository.findAllByTimestampBetween(week1StartDate, week1EndDate);
+        week1HashtagList.removeIf(week1Hashtag -> (!week1Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week1OccurrenceCount = countOfWeek(week1HashtagList);
+
+        return new Long[] {week1OccurrenceCount, week2OccurrenceCount, week3OccurrenceCount, week4OccurrenceCount};
+    }
+    @Test
+    public void testRepoMethod() {
+        List<Hashtag> hashtagList = hashtagRepository.findAll();
+        hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+        Hashtag hashtag = hashtagList.get(0);
+        System.out.println(hashtag.getHashtag_name() + ": " + hashtag.getNum_of_occurrence());
+        Long [] weeklyCount = weeklyCount(hashtag);
+        logger.info(weeklyCount[3].toString());
     }
 
 }
