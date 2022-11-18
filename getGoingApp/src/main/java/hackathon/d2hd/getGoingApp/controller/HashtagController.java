@@ -38,8 +38,6 @@ public class HashtagController {
 
     @GetMapping("/getAllHashtags")
     public List<Hashtag> getAllHashtags() {
-        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
-        hashtagList.sort(Comparator.comparing(Hashtag::getHashtag_id));
-        return hashtagList;
+        return hashtagService.getAllHashtagsFromDatabase();
     }
 }

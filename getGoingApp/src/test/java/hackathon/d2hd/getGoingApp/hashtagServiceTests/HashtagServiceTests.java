@@ -2,6 +2,7 @@ package hackathon.d2hd.getGoingApp.hashtagServiceTests;
 
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
+import hackathon.d2hd.getGoingApp.dataTransferObject.GeneralSentiment;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.HashtagRepository;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
@@ -145,4 +146,123 @@ public class HashtagServiceTests {
             System.out.println(l);
         }
     }
+
+    @Test
+    public void testGetDailyRetweetCount() {
+        List<Hashtag> hashtagList1 = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList1.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+        Hashtag hashtag = hashtagList1.get(0);
+
+        Long[] dailyRetweetCount = hashtagService.getDailyHashtagCount(hashtag);
+        for(Long l: dailyRetweetCount) {
+            System.out.println(l);
+        }
+    }
+
+    private GeneralSentiment getGeneralSentimentOfTheDay(Hashtag hashtag) {
+        LocalDate currentDate = hashtag.getTimestamp();
+        List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampIs(currentDate);
+        hashtagList.removeIf(
+                currentHashtag -> (!currentHashtag.getHashtag_name().equals(hashtag.getHashtag_name()))
+        );
+
+        Long positiveCount = 0L;
+        Double positiveSentiment = Double.valueOf(0.0);
+        Long negativeCount = 0L;
+        Double negativeSentiment = Double.valueOf(0.0);
+
+        Double positiveAverage = Double.valueOf(0.0);
+        Double negativeAverage = Double.valueOf(0.0);
+
+        for (Hashtag currentHashtag: hashtagList) {
+            if(currentHashtag.getGeneral_sentiment() < 0) {
+                negativeCount += 1;
+                negativeSentiment += currentHashtag.getGeneral_sentiment();
+                negativeAverage = negativeSentiment / negativeCount;
+
+            }else{
+                positiveCount += 1;
+                positiveSentiment += currentHashtag.getGeneral_sentiment();
+                positiveAverage = positiveSentiment / positiveCount;
+            }
+        }
+        return new GeneralSentiment(
+                positiveAverage,
+                negativeAverage
+        );
+    }
+
+    @Test
+    public void getGeneralSentimentOfTheDay() {
+        List<Hashtag> hashtagList1 = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList1.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+        Hashtag hashtag = hashtagList1.get(0);
+
+        GeneralSentiment generalSentiment = getGeneralSentimentOfTheDay(hashtag);
+        System.out.println("Positive Sentiment: " + generalSentiment.getPositive_sentiment());
+        System.out.println("Negative Sentiment: " + generalSentiment.getNegative_sentiment());
+
+    }
+
+    private GeneralSentiment generalSentimentOfTheWeek(List<Hashtag> hashtagList) {
+        if(hashtagList.isEmpty()) return new GeneralSentiment(Double.valueOf(0.0), Double.valueOf(0.0));
+
+        Double positiveSentiment = Double.valueOf(0.0);
+        Double negativeSentiment = Double.valueOf(0.0);
+
+        for(Hashtag hashtag: hashtagList) {
+            GeneralSentiment currentSentiment = getGeneralSentimentOfTheDay(hashtag);
+            positiveSentiment += currentSentiment.getPositive_sentiment();
+            negativeSentiment += currentSentiment.getNegative_sentiment();
+        }
+
+        int denominator = hashtagList.size();
+
+        return new GeneralSentiment(
+                positiveSentiment / denominator,
+                negativeSentiment / denominator
+        );
+    }
+    private GeneralSentiment[] weeklyGeneralSentiment(Hashtag hashtag) {
+        LocalDate week4EndDate = hashtag.getTimestamp();
+        LocalDate week4StartDate = week4EndDate.minusDays(7L);
+        List<Hashtag> week4HashtagList = hashtagRepository.findAllByTimestampBetween(week4StartDate, week4EndDate);
+        week4HashtagList.removeIf(week4Hashtag -> (!week4Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        GeneralSentiment week4GeneralSentiment = generalSentimentOfTheWeek(week4HashtagList);
+
+        LocalDate week3EndDate = week4StartDate.minusDays(1L);
+        LocalDate week3StartDate = week3EndDate.minusDays(7L);
+        List<Hashtag> week3HashtagList = hashtagRepository.findAllByTimestampBetween(week3StartDate, week3EndDate);
+        week3HashtagList.removeIf(week3Hashtag -> (!week3Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        GeneralSentiment week3GeneralSentiment = generalSentimentOfTheWeek(week3HashtagList);
+
+        LocalDate week2EndDate = week3StartDate.minusDays(1L);
+        LocalDate week2StartDate = week2EndDate.minusDays(7L);
+        List<Hashtag> week2HashtagList = hashtagRepository.findAllByTimestampBetween(week2StartDate, week2EndDate);
+        week2HashtagList.removeIf(week2Hashtag -> (!week2Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        GeneralSentiment week2GeneralSentiment = generalSentimentOfTheWeek(week2HashtagList);
+
+        LocalDate week1EndDate = week2StartDate.minusDays(1L);
+        LocalDate week1StartDate = week1EndDate.minusDays(7L);
+        List<Hashtag> week1HashtagList = hashtagRepository.findAllByTimestampBetween(week1StartDate, week1EndDate);
+        week1HashtagList.removeIf(week1Hashtag -> (!week1Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        GeneralSentiment week1GeneralSentiment = generalSentimentOfTheWeek(week1HashtagList);
+
+        return new GeneralSentiment[]{week1GeneralSentiment, week2GeneralSentiment, week3GeneralSentiment, week4GeneralSentiment};
+    }
+
+    @Test
+    public void testWeeklyGeneralSentiment() {
+        List<Hashtag> hashtagList1 = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList1.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+        Hashtag hashtag = hashtagList1.get(0);
+
+        GeneralSentiment [] generalSentiments = weeklyGeneralSentiment(hashtag);
+
+        for(GeneralSentiment g: generalSentiments) {
+            System.out.println("Positive: " + g.getPositive_sentiment());
+            System.out.println("Positive: " + g.getNegative_sentiment());
+        }
+    }
+
 }

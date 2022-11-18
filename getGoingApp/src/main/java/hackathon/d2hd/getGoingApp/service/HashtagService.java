@@ -31,5 +31,4 @@ public interface HashtagService {
     List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime);
     List<Hashtag> sevenDayTop5HashtagListByLike(LocalDate currentDateTime);
 
-
 }
