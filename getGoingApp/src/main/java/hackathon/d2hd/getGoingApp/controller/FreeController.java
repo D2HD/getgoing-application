@@ -51,25 +51,25 @@ public class FreeController {
             HashtagDto currentDto = hashtagDtoList.get(i);
             currentDto.setGeneral_sentiment_of_the_day(
                     new GeneralSentiment(
-                            Double.valueOf(rand.nextDouble(0, 50)),
-                            Double.valueOf(rand.nextDouble(0, 50))
+                            Math.random() * 50,
+                            Math.random() * 50
                     ));
 
             currentDto.setGeneral_sentiment_of_the_week(
                     new GeneralSentiment(
-                            Double.valueOf(rand.nextDouble(0, 50)),
-                            Double.valueOf(rand.nextDouble(0, 50))
+                            Math.random() * 50,
+                            Math.random() * 50
                     ));
 
             currentDto.setDaily_retweet_count(
                     new Long[]{
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100)
+                            Math.round(Math.random() * 101),
+                            Math.round(Math.random() * 101),
+                            Math.round(Math.random() * 101),
+                            Math.round(Math.random() * 101),
+                            Math.round(Math.random() * 101),
+                            Math.round(Math.random() * 101),
+                            Math.round(Math.random() * 101)
                     });
         }
 
@@ -96,6 +96,12 @@ public class FreeController {
 
         List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
         List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
+        tweetDtoList.sort(Comparator.comparing(TweetDto::getTweet_like_count).reversed());
+
+        int size = tweetDtoList.size();
+        while (size > 10) {
+            tweetDtoList.remove(tweetDtoList.get(tweetDtoList.size() - 1));
+        }
 
         return tweetDtoList;
     }
