@@ -6,7 +6,6 @@ import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.HashtagRepository;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
-import jdk.vm.ci.meta.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -116,17 +115,17 @@ public class HashtagServiceImpl implements HashtagService {
         return new HashtagDto(
                 hashtag.getHashtag_id(),
                 hashtag.getHashtag_name(),
-                hashtag.getNum_of_occurrence(),
-                hashtag.getTimestamp(),
                 hashtag.getLike_count(),
+                getDailyHashtagCount(hashtag),
+                weeklyHashtagCount(hashtag),
+                weeklyGeneralSentiment(hashtag),
+                getGeneralSentimentOfTheDay(hashtag),
+                getGeneralSentimentOfTheWeek(hashtag),
+                getDailyRetweetCount(hashtag),
                 hashtag.getRetweet_count(),
                 hashtag.getGeneral_sentiment(),
-                getDailyHashtagCount(hashtag),
-                getDailyRetweetCount(hashtag),
-                getDailyGeneralSentiment(hashtag),
-                getGeneralSentimentOfTheDay(hashtag),
-                weeklyHashtagCount(hashtag),
-                weeklyGeneralSentiment(hashtag)
+                hashtag.getNum_of_occurrence(),
+                hashtag.getTimestamp()
         );
     }
 
@@ -345,7 +344,7 @@ public class HashtagServiceImpl implements HashtagService {
         return dailyRetweetCount;
     }
 
-    private GeneralSentiment[] getDailyGeneralSentiment(Hashtag hashtag) {
+    private GeneralSentiment getGeneralSentimentOfTheWeek(Hashtag hashtag) {
         GeneralSentiment[] dailyGeneralSentiment = new GeneralSentiment[7];
         Arrays.fill(dailyGeneralSentiment,
                 new GeneralSentiment(
@@ -366,7 +365,19 @@ public class HashtagServiceImpl implements HashtagService {
             dailyGeneralSentiment[differenceInDays] = getGeneralSentimentOfTheDay(currentHashtag);
         });
 
-        return dailyGeneralSentiment;
+        Double positiveSentiment = Double.valueOf(0.0);
+        Double negativeSentiment = Double.valueOf(0.0);
+
+        for(GeneralSentiment generalSentiment : dailyGeneralSentiment) {
+            positiveSentiment += generalSentiment.getPositive_sentiment();
+            negativeSentiment += generalSentiment.getNegative_sentiment();
+        }
+
+
+        return new GeneralSentiment(
+                positiveSentiment / 7,
+                negativeSentiment / 7
+        );
     }
 
 }
