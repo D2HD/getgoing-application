@@ -2,6 +2,7 @@ package hackathon.d2hd.getGoingApp.dataTransferObject;
 
 import java.lang.Double;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 public class HashtagDto {
@@ -139,5 +140,24 @@ public class HashtagDto {
 
     public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "HashtagDto{" +
+                "hashtag_id='" + hashtag_id + '\'' +
+                ", hashtag_name='" + hashtag_name + '\'' +
+                ", like_count=" + like_count +
+                ", daily_hashtag_count=" + Arrays.toString(daily_hashtag_count) +
+                ", weekly_hashtag_count=" + Arrays.toString(weekly_hashtag_count) +
+                ", weekly_general_sentiment=" + Arrays.toString(weekly_general_sentiment) +
+                ", general_sentiment_of_the_day=" + general_sentiment_of_the_day +
+                ", general_sentiment_of_the_week=" + general_sentiment_of_the_week +
+                ", daily_retweet_count=" + Arrays.toString(daily_retweet_count) +
+                ", retweet_count=" + retweet_count +
+                ", general_sentiment=" + general_sentiment +
+                ", num_of_occurrence=" + num_of_occurrence +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }
