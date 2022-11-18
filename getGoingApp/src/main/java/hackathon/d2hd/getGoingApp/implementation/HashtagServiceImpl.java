@@ -100,7 +100,7 @@ public class HashtagServiceImpl implements HashtagService {
         hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
         List<Hashtag> todaysTop5HashtagList = new ArrayList<>();
         for(int i = 0; i < 5; i++) {
-            todaysTop5HashtagList.add(hashtagList.get(0));
+            todaysTop5HashtagList.add(hashtagList.get(i));
         }
 
         return todaysTop5HashtagList;

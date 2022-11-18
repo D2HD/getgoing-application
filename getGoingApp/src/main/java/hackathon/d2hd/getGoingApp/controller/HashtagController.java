@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,5 +34,12 @@ public class HashtagController {
     @GetMapping("/getHashtagDatabaseSize")
     public int getHashtagDatabaseSize() {
         return hashtagService.getAllHashtagsFromDatabase().size();
+    }
+
+    @GetMapping("/getAllHashtags")
+    public List<Hashtag> getAllHashtags() {
+        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
+        hashtagList.sort(Comparator.comparing(Hashtag::getHashtag_id));
+        return hashtagList;
     }
 }
