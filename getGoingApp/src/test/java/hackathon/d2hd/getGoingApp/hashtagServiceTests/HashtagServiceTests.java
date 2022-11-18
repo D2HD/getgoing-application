@@ -274,14 +274,14 @@ public class HashtagServiceTests {
             HashtagDto currentDto = hashtagDtoList.get(i);
             currentDto.setGeneral_sentiment_of_the_day(
                     new GeneralSentiment(
-                            Double.valueOf(rand.nextDouble(0, 50)),
-                            Double.valueOf(rand.nextDouble(0, 50))
+                            rand.nextDouble(0, 50),
+                            rand.nextDouble(0, 50)
                     ));
 
             currentDto.setGeneral_sentiment_of_the_week(
                     new GeneralSentiment(
-                            Double.valueOf(rand.nextDouble(0, 50)),
-                            Double.valueOf(rand.nextDouble(0, 50))
+                            rand.nextDouble(0, 50),
+                            rand.nextDouble(0, 50)
                     ));
 
             currentDto.setDaily_retweet_count(

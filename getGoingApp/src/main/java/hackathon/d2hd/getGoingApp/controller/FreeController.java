@@ -75,22 +75,7 @@ public class FreeController {
 
         return hashtagDtoList;
     }
-    @GetMapping("/sevenDayTop5HashtagListByCount")
-    public List<HashtagDto> sevenDayTop5HashtagDtoListByCount() {
-        LocalDate currentDateTime = LocalDate.now();
-        List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
-        List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(hashtagList);
-        Random rand = new Random();
 
-        HashtagDto hashtagDto1 = hashtagDtoList.get(0);
-        hashtagDto1.setGeneral_sentiment_of_the_day(
-                new GeneralSentiment(
-                        Double.valueOf(rand.nextDouble(0, 1)),
-                        Double.valueOf(rand.nextDouble(0, 1))
-                ));
-
-        return hashtagService.hashtagListToHashtagDtoList(hashtagList);
-    }
 
     @GetMapping("/sevenDayTop5HashtagListByLike")
     public List<HashtagDto> sevenDayTop5HashtagDtoListByLike() {
@@ -100,16 +85,19 @@ public class FreeController {
     }
 
     @GetMapping("/keywordSearch/{userInput}")
-    public String keywordSearch(@PathVariable String userInput) {
+    public List<TweetDto> keywordSearch(@PathVariable String userInput) throws JsonProcessingException {
         WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
         String response = client.post()
-                .uri("?apikey=" + api_key + "&keyword=" + userInput + "&max_count=20&")
+                .uri("?apikey=" + api_key + "&keyword=" + userInput + "&max_count=10&")
                 .header("Content-Type", "application/json version=2")
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
 
-        return response;
+        List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
+        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
+
+        return tweetDtoList;
     }
 
     //APIs for BE
