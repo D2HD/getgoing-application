@@ -1,6 +1,7 @@
 package hackathon.d2hd.getGoingApp.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
@@ -21,4 +22,5 @@ public interface TweetService {
     int tweetDatabaseSize();
     List<Tweet> getAllTweets();
     void saveTweetList(List<Tweet> tweetList);
+
 }

@@ -25,8 +25,6 @@ public class Hashtag {
     private Long retweet_count;
     @Column(name = "general_sentiment")
     private Double general_sentiment;
-
-
     public Hashtag() {}
 
     public Hashtag(String hashtag_id, String hashtag_name, Long num_of_occurrence, LocalDate timestamp, Long like_count, Long retweet_count, Double general_sentiment) {

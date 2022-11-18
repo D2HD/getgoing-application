@@ -27,4 +27,9 @@ public class HashtagController {
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
         return hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
     }
+
+    @GetMapping("/getHashtagDatabaseSize")
+    public int getHashtagDatabaseSize() {
+        return hashtagService.getAllHashtagsFromDatabase().size();
+    }
 }

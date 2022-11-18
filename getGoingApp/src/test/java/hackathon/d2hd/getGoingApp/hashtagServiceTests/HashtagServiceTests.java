@@ -1,6 +1,7 @@
 package hackathon.d2hd.getGoingApp.hashtagServiceTests;
 
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
+import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.HashtagRepository;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
@@ -35,9 +36,10 @@ public class HashtagServiceTests {
 
     @Test
     public void testTweetDtoListToHashtagListAPI() throws IOException {
-        List<TweetDto> tweetDtoList = tweetService.JsonToTweetDeserializer(hashScraperJsonFile);
+        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetService.getAllTweets());
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
         List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
+//        hashtagService.saveHashtagList(hashtagList);
         hashtagService.displayHashtags(hashtagList);
     }
 
@@ -149,6 +151,15 @@ public class HashtagServiceTests {
         for(Long l: dailyHashtagCount) {
             System.out.println(l);
         }
+    }
+
+    @Test
+    public void testSaveHashtag() {
+        List<Tweet> tweetList = tweetService.getAllTweets();
+        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
+        TweetDto tweetDto = tweetDtoList.get(0);
+        Hashtag hashtag = hashtagService.tweetDtoToHashtag(tweetDto);
+        hashtagRepository.save(hashtag);
     }
 
 }

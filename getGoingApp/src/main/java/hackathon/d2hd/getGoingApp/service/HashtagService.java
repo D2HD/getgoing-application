@@ -24,5 +24,6 @@ public interface HashtagService {
     List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime);
     List<Hashtag> sevenDayTop5HashtagListByLike(LocalDate currentDateTime);
     List<Hashtag> currentTop5HashtagList(LocalDate currentDateTime);
+    Hashtag tweetDtoToHashtag(TweetDto tweetDto);
 
 }

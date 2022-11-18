@@ -25,6 +25,18 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     @Override
+    public Hashtag tweetDtoToHashtag(TweetDto tweetDto) {
+        return new Hashtag(
+                createHashtagId(tweetDto, tweetDto.getTopic()),
+                tweetDto.getTopic(),
+                1L,
+                tweetDto.getLocalDateTime().toLocalDate(),
+                tweetDto.getTweet_like_count(),
+                tweetDto.getTweet_retweet_count(),
+                tweetDto.getGeneral_sentiment()
+        );
+    }
+    @Override
     public List<Hashtag> tweetDtoListToHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap) {
         for(TweetDto tweetDto: tweetDtoList) {
             List<String> stringHashtagList = tweetDto.getHashtagList();
@@ -126,7 +138,6 @@ public class HashtagServiceImpl implements HashtagService {
         hashtagList.forEach(currentTopic -> {
             hashtagCountHistory.add(currentTopic.getNum_of_occurrence());
         });
-
 
         return hashtagCountHistory;
     }
