@@ -18,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -103,16 +105,44 @@ public class TweetServiceImpl implements TweetService {
 
     @Override
     public List<String> getHashtagList(String content) {
-        // TODO: 17/11/22 String builder
-        //Get the content of the tweet
-        List<String> hashtagList = Arrays.asList(content.split(" "));
-        List<String> filteredHashtagList = new ArrayList<>();
-
-        hashtagList.forEach(s -> {
-            if(s.contains("#")) filteredHashtagList.add(s.toLowerCase());
-        });
-
-//        return filteredHashtagList;
+        Matcher matcher = Pattern.compile("\u0023\\w+").matcher(content);
+        List<String> hashtagList = new ArrayList<>();
+        // Get every hashtag in lowercase, regardless of what it is.
+        processEachHashtag:
+        while (matcher.find()) {
+            String hashtag = matcher.group().toLowerCase();
+            // Skip duplicate hashtag.
+            if (hashtagList.contains(hashtag)) continue;
+            // Filter the hashtag.
+            // TODO: Expand the blacklist, to exclude impertinent words.
+            String[] blacklistWords = {"anal", "anus", "arse", "ass",
+                    "balls", "ballsack", "bastard", "biatch",
+                    "bitch", "bloody", "blow job", "blowjob",
+                    "bollock", "bollok", "boner", "boob",
+                    "bugger", "bum", "butt",
+                    "clitoris", "cock", "coon", "crap",
+                    "cunt", "damn", "dick", "dildo",
+                    "dyke", "fag", "feck",
+                    "felching", "fellate", "fellatio", "flange",
+                    "fuck", "fudge packer", "fudgepacker",
+                    "Goddamn", "hell", "homo", "jerk",
+                    "jizz", "knob end", "knobend", "labia",
+                    "lmao", "lmfao", "muff", "nigga",
+                    "nigger", "omg", "penis", "piss",
+                    "poop", "prick", "pube", "pussy",
+                    "queer", "scrotum", "sex",
+                    "sh1t", "shit", "slut", "smegma",
+                    "spunk", "tit", "tosser", "turd",
+                    "twat", "vagina", "wank", "whore",
+                    "wtf", "forsale", "ebay", "selling", "dealoftheday"
+            };
+            for (String profanity : blacklistWords) {
+                // Do not include profanities in the list.
+                if (hashtag.contains(profanity)) continue processEachHashtag;
+            }
+            // Hashtag is not a profanity, include in the list.
+            hashtagList.add(hashtag);
+        }
         return hashtagList;
     }
 

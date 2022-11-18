@@ -8,9 +8,10 @@ import hackathon.d2hd.getGoingApp.service.HashtagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.logging.Logger;
 
 @Service
 public class HashtagServiceImpl implements HashtagService {
@@ -19,22 +20,9 @@ public class HashtagServiceImpl implements HashtagService {
     private HashtagRepository hashtagRepository;
 
     @Override
-    public String createHashtagId(TweetDto tweetDTO, String hashtag) {
-        String dateString = tweetDTO.getLocalDateTime().toString().substring(0, 10);
+    public String createHashtagId(TweetDto tweetDto, String hashtag) {
+        String dateString = tweetDto.getLocalDateTime().toString().substring(0, 10);
         return hashtag + dateString;
-    }
-
-    @Override
-    public Hashtag tweetDtoToHashtag(TweetDto tweetDto) {
-        return new Hashtag(
-                createHashtagId(tweetDto, tweetDto.getTopic()),
-                tweetDto.getTopic(),
-                1L,
-                tweetDto.getLocalDateTime().toLocalDate(),
-                tweetDto.getTweet_like_count(),
-                tweetDto.getTweet_retweet_count(),
-                tweetDto.getGeneral_sentiment()
-        );
     }
     @Override
     public List<Hashtag> tweetDtoListToHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap) {
@@ -85,7 +73,6 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagRepository.findAll();
     }
 
-
     @Override
     public void displayHashtags(List<Hashtag> hashtagList) {
         hashtagList.forEach(hashtag -> {
@@ -101,22 +88,27 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     @Override
-    public List<Hashtag> getTodaysTopHashtags(List<Hashtag> hashtagList) {
-        //Sort the list in ascending order according to timestamp
-        hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp));
+    public List<Hashtag> getTodaysTop5Hashtags() {
+        //Sort the list in descending order according to timestamp
+        List<Hashtag> hashtagList = hashtagRepository.findAll();
+        hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
 
-        //The last element of the list should be the latest, so we get its timestamp for comparison
-        LocalDate latestTimestamp = hashtagList.get(hashtagList.size() - 1).getTimestamp();
+        //The first element of the list should be the latest, so we get its timestamp for comparison
+        LocalDate latestTimestamp = hashtagList.get(0).getTimestamp();
 
         //Remove hashtags from the hashtag list that do not have the same timestamp
-        hashtagList.removeIf(currentTopic -> (!currentTopic.getTimestamp().equals(latestTimestamp)));
         hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
-        return hashtagList;
+        List<Hashtag> todaysTop5HashtagList = new ArrayList<>();
+        for(int i = 0; i < 5; i++) {
+            todaysTop5HashtagList.add(hashtagList.get(0));
+        }
+
+        return todaysTop5HashtagList;
     }
     @Override
-    public List<Long> getDailyHashtagCount(Hashtag hashtag) {
+    public Long[] getDailyHashtagCount(Hashtag hashtag) {
         LocalDate hashtagDate = hashtag.getTimestamp();
-        LocalDate startingDate = hashtagDate.minusDays(8);
+        LocalDate startingDate = hashtagDate.minusDays(6L);
 
         //Returns all hashtags after this starting date
         //Need to filter and get only the hashtags that match the hashtag_name of the parameter
@@ -126,11 +118,11 @@ public class HashtagServiceImpl implements HashtagService {
         );
 
         Long [] dailyHashtagCount = new Long[7];
-        Arrays.fill(dailyHashtagCount, 0);
+        Arrays.fill(dailyHashtagCount, Long.parseLong("0"));
 
         hashtagList.forEach(currentHashtag -> {
             LocalDate currentHashtagDate = currentHashtag.getTimestamp();
-            int differenceInDays = (int) Duration.between(startingDate, currentHashtagDate).toDays();
+            int differenceInDays = Math.toIntExact(ChronoUnit.DAYS.between(startingDate, currentHashtagDate));
             dailyHashtagCount[differenceInDays] = currentHashtag.getNum_of_occurrence();
         });
 
@@ -139,7 +131,7 @@ public class HashtagServiceImpl implements HashtagService {
             hashtagCountHistory.add(currentTopic.getNum_of_occurrence());
         });
 
-        return hashtagCountHistory;
+        return dailyHashtagCount;
     }
 
     @Override
@@ -169,7 +161,13 @@ public class HashtagServiceImpl implements HashtagService {
     }
     @Override
     public void saveHashtagList(List<Hashtag> hashtagList) {
-        hashtagRepository.saveAll(hashtagList);
+        Logger logger = Logger.getLogger(HashtagServiceImpl.class.getName());
+        int count = hashtagList.size();
+        for(Hashtag hashtag: hashtagList) {
+            hashtagRepository.save(hashtag);
+            count -= 1;
+            logger.info("Saved " + hashtag.getHashtag_id() + " left with " + count);
+        }
     }
 
     private List<Hashtag> getHashtags(LocalDate currentDateTime, Comparator<Hashtag> comparing) {
@@ -199,13 +197,6 @@ public class HashtagServiceImpl implements HashtagService {
         return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getLike_count));
     }
 
-    @Override
-    public List<Hashtag> currentTop5HashtagList(LocalDate currentDateTime) {
-        List<Hashtag> currentTop5HashtagList = hashtagRepository.findAllByTimestampIs(currentDateTime);
-        currentTop5HashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
-
-        return currentTop5HashtagList;
-    }
 
     private Long countOfWeek(List<Hashtag> weeklyHashtagList) {
         if(weeklyHashtagList.isEmpty()) return 0L;
@@ -245,4 +236,41 @@ public class HashtagServiceImpl implements HashtagService {
 
         return new Long[] {week1OccurrenceCount, week2OccurrenceCount, week3OccurrenceCount, week4OccurrenceCount};
     }
+
+    private Double generalSentimentOfTheWeek(List<Hashtag> weeklyHashtagList) {
+
+        return null;
+    }
+
+    //Weekly General Sentiments API
+    private Long[] weeklyGeneralSentiment(Hashtag hashtag) {
+        LocalDate week4EndDate = hashtag.getTimestamp();
+        LocalDate week4StartDate = week4EndDate.minusDays(7L);
+        List<Hashtag> week4HashtagList = hashtagRepository.findAllByTimestampBetween(week4StartDate, week4EndDate);
+        week4HashtagList.removeIf(week4Hashtag -> (!week4Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week4OccurrenceCount = countOfWeek(week4HashtagList);
+
+        LocalDate week3EndDate = week4StartDate.minusDays(1L);
+        LocalDate week3StartDate = week3EndDate.minusDays(7L);
+        List<Hashtag> week3HashtagList = hashtagRepository.findAllByTimestampBetween(week3StartDate, week3EndDate);
+        week3HashtagList.removeIf(week3Hashtag -> (!week3Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week3OccurrenceCount = countOfWeek(week3HashtagList);
+
+        LocalDate week2EndDate = week3StartDate.minusDays(1L);
+        LocalDate week2StartDate = week2EndDate.minusDays(7L);
+        List<Hashtag> week2HashtagList = hashtagRepository.findAllByTimestampBetween(week2StartDate, week2EndDate);
+        week2HashtagList.removeIf(week2Hashtag -> (!week2Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week2OccurrenceCount = countOfWeek(week2HashtagList);
+
+        LocalDate week1EndDate = week2StartDate.minusDays(1L);
+        LocalDate week1StartDate = week1EndDate.minusDays(7L);
+        List<Hashtag> week1HashtagList = hashtagRepository.findAllByTimestampBetween(week1StartDate, week1EndDate);
+        week1HashtagList.removeIf(week1Hashtag -> (!week1Hashtag.getHashtag_name().equals(hashtag.getHashtag_name())));
+        Long week1OccurrenceCount = countOfWeek(week1HashtagList);
+
+        return new Long[] {week1OccurrenceCount, week2OccurrenceCount, week3OccurrenceCount, week4OccurrenceCount};
+    }
+    //Sentiment of that day
+    //Past week sentiment
+    //7 day retweet
 }

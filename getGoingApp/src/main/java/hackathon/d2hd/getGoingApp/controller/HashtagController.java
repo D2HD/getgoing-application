@@ -25,7 +25,9 @@ public class HashtagController {
     public List<Hashtag> tweetDatabaseToHashtagDatabase() throws JsonProcessingException {
         List<TweetDto> tweetDtoList = tweetController.getAllTweetDtos();
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
-        return hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
+        List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
+        hashtagService.saveHashtagList(hashtagList);
+        return hashtagList;
     }
 
     @GetMapping("/getHashtagDatabaseSize")

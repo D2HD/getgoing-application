@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -39,8 +40,7 @@ public class HashtagServiceTests {
         List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetService.getAllTweets());
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
         List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
-//        hashtagService.saveHashtagList(hashtagList);
-        hashtagService.displayHashtags(hashtagList);
+        hashtagService.saveHashtagList(hashtagList);
     }
 
     @Test
@@ -73,14 +73,6 @@ public class HashtagServiceTests {
         hashtagService.displayHashtags(hashtagList1);
     }
 
-    @Test
-    public void testGetTopicOccurrenceHistory() {
-        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
-        hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
-
-        List<Long> topicOccurrence = hashtagService.getDailyHashtagCount(hashtagList.get(0));
-        System.out.println(topicOccurrence);
-    }
 
     private Long countOfWeek(List<Hashtag> hashtagList) {
         if(hashtagList.isEmpty()) return 0L;
@@ -126,11 +118,12 @@ public class HashtagServiceTests {
     @Test
     public void testGetHashtagOccurrenceHistory() {
         List<Hashtag> hashtagList1 = hashtagService.getAllHashtagsFromDatabase();
-        hashtagList1.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
+        hashtagList1.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
         Hashtag hashtag = hashtagList1.get(0);
+        System.out.println(hashtag.getNum_of_occurrence());
 
         LocalDate hashtagDate = hashtag.getTimestamp();
-        LocalDate startingDate = hashtagDate.minusDays(7L);
+        LocalDate startingDate = hashtagDate.minusDays(6L);
 
         //Returns all hashtags after this starting date
         //Need to filter and get only the hashtags that match the hashtag_name of the parameter
@@ -140,11 +133,11 @@ public class HashtagServiceTests {
         );
 
         Long [] dailyHashtagCount = new Long[7];
-        Arrays.fill(dailyHashtagCount, 0);
+        Arrays.fill(dailyHashtagCount, Long.parseLong("0"));
 
         hashtagList.forEach(currentHashtag -> {
             LocalDate currentHashtagDate = currentHashtag.getTimestamp();
-            int differenceInDays = (int) Duration.between(startingDate, currentHashtagDate).toDays();
+            int differenceInDays = Math.toIntExact(ChronoUnit.DAYS.between(startingDate, currentHashtagDate));
             dailyHashtagCount[differenceInDays] = currentHashtag.getNum_of_occurrence();
         });
 
@@ -152,14 +145,4 @@ public class HashtagServiceTests {
             System.out.println(l);
         }
     }
-
-    @Test
-    public void testSaveHashtag() {
-        List<Tweet> tweetList = tweetService.getAllTweets();
-        List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
-        TweetDto tweetDto = tweetDtoList.get(0);
-        Hashtag hashtag = hashtagService.tweetDtoToHashtag(tweetDto);
-        hashtagRepository.save(hashtag);
-    }
-
 }

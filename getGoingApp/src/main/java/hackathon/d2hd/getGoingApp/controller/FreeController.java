@@ -45,12 +45,9 @@ public class FreeController {
 
     @GetMapping("/currentTop5HashtagDtoList")
     public List<HashtagDto> currentTop5HashtagDtoList() {
-        List<Hashtag> hashtagList = hashtagService.getAllHashtagsFromDatabase();
-        hashtagList.sort(Comparator.comparing(Hashtag::getTimestamp).reversed());
-        LocalDate localDate = hashtagList.get(0).getTimestamp();
-        List<Hashtag> currentTop5HashtagList = hashtagService.currentTop5HashtagList(localDate);
+        List<Hashtag> todaysTop5HashtagList = hashtagService.getTodaysTop5Hashtags();
 
-        return hashtagService.hashtagListToHashtagDtoList(currentTop5HashtagList);
+        return hashtagService.hashtagListToHashtagDtoList(todaysTop5HashtagList);
     }
     @GetMapping("/sevenDayTop5HashtagListByCount")
     public List<HashtagDto> sevenDayTop5HashtagDtoListByCount() {
