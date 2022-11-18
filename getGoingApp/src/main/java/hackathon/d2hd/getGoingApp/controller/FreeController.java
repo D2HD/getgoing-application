@@ -3,6 +3,7 @@ package hackathon.d2hd.getGoingApp.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
+import hackathon.d2hd.getGoingApp.dataTransferObject.GeneralSentiment;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
@@ -15,10 +16,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -46,13 +44,51 @@ public class FreeController {
     @GetMapping("/currentTop5HashtagDtoList")
     public List<HashtagDto> currentTop5HashtagDtoList() {
         List<Hashtag> todaysTop5HashtagList = hashtagService.getTodaysTop5Hashtags();
+        List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(todaysTop5HashtagList);
+        Random rand = new Random();
 
-        return hashtagService.hashtagListToHashtagDtoList(todaysTop5HashtagList);
+        for(int i = 0; i < hashtagDtoList.size(); i++) {
+            HashtagDto currentDto = hashtagDtoList.get(i);
+            currentDto.setGeneral_sentiment_of_the_day(
+                    new GeneralSentiment(
+                            Double.valueOf(rand.nextDouble(0, 50)),
+                            Double.valueOf(rand.nextDouble(0, 50))
+                    ));
+
+            currentDto.setGeneral_sentiment_of_the_week(
+                    new GeneralSentiment(
+                            Double.valueOf(rand.nextDouble(0, 50)),
+                            Double.valueOf(rand.nextDouble(0, 50))
+                    ));
+
+            currentDto.setDaily_retweet_count(
+                    new Long[]{
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100)
+                    });
+        }
+
+        return hashtagDtoList;
     }
     @GetMapping("/sevenDayTop5HashtagListByCount")
     public List<HashtagDto> sevenDayTop5HashtagDtoListByCount() {
         LocalDate currentDateTime = LocalDate.now();
         List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
+        List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(hashtagList);
+        Random rand = new Random();
+
+        HashtagDto hashtagDto1 = hashtagDtoList.get(0);
+        hashtagDto1.setGeneral_sentiment_of_the_day(
+                new GeneralSentiment(
+                        Double.valueOf(rand.nextDouble(0, 1)),
+                        Double.valueOf(rand.nextDouble(0, 1))
+                ));
+
         return hashtagService.hashtagListToHashtagDtoList(hashtagList);
     }
 

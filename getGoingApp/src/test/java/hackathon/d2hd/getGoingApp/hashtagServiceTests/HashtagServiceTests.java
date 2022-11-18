@@ -3,6 +3,7 @@ package hackathon.d2hd.getGoingApp.hashtagServiceTests;
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.GeneralSentiment;
+import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.repository.HashtagRepository;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
@@ -17,10 +18,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 @SpringBootTest
@@ -262,6 +260,40 @@ public class HashtagServiceTests {
         for(GeneralSentiment g: generalSentiments) {
             System.out.println("Positive: " + g.getPositive_sentiment());
             System.out.println("Positive: " + g.getNegative_sentiment());
+        }
+    }
+
+    @Test
+    public void testSevenDayTop5HashtagDtoListByCount() {
+        LocalDate currentDateTime = LocalDate.now();
+        List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
+        List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(hashtagList);
+        Random rand = new Random();
+
+        for(int i = 0; i < hashtagDtoList.size(); i++) {
+            HashtagDto currentDto = hashtagDtoList.get(i);
+            currentDto.setGeneral_sentiment_of_the_day(
+                    new GeneralSentiment(
+                            Double.valueOf(rand.nextDouble(0, 50)),
+                            Double.valueOf(rand.nextDouble(0, 50))
+                    ));
+
+            currentDto.setGeneral_sentiment_of_the_week(
+                    new GeneralSentiment(
+                            Double.valueOf(rand.nextDouble(0, 50)),
+                            Double.valueOf(rand.nextDouble(0, 50))
+                    ));
+
+            currentDto.setDaily_retweet_count(
+                    new Long[]{
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100),
+                            rand.nextLong(0, 100)
+                    });
         }
     }
 
