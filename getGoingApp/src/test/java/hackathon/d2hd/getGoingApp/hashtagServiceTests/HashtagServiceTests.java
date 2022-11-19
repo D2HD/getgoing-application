@@ -165,28 +165,19 @@ public class HashtagServiceTests {
         );
 
         Long positiveCount = 0L;
-        Double positiveSentiment = Double.valueOf(0.0);
         Long negativeCount = 0L;
-        Double negativeSentiment = Double.valueOf(0.0);
 
-        Double positiveAverage = Double.valueOf(0.0);
-        Double negativeAverage = Double.valueOf(0.0);
-
-        for (Hashtag currentHashtag: hashtagList) {
-            if(currentHashtag.getGeneral_sentiment() < 0) {
+        for (Hashtag currentHashtag : hashtagList) {
+            if (currentHashtag.getGeneral_sentiment() < 0) {
                 negativeCount += 1;
-                negativeSentiment += currentHashtag.getGeneral_sentiment();
-                negativeAverage = negativeSentiment / negativeCount;
 
-            }else{
+            } else {
                 positiveCount += 1;
-                positiveSentiment += currentHashtag.getGeneral_sentiment();
-                positiveAverage = positiveSentiment / positiveCount;
             }
         }
         return new GeneralSentiment(
-                positiveAverage,
-                negativeAverage
+                positiveCount,
+                negativeCount
         );
     }
 
@@ -203,22 +194,25 @@ public class HashtagServiceTests {
     }
 
     private GeneralSentiment generalSentimentOfTheWeek(List<Hashtag> hashtagList) {
-        if(hashtagList.isEmpty()) return new GeneralSentiment(Double.valueOf(0.0), Double.valueOf(0.0));
+        if(hashtagList.isEmpty()) return new GeneralSentiment(
+                0L,
+                0L
+        );
 
-        Double positiveSentiment = Double.valueOf(0.0);
-        Double negativeSentiment = Double.valueOf(0.0);
+        Long positiveCount = 0L;
+        Long negativeCount = 0L;
 
         for(Hashtag hashtag: hashtagList) {
             GeneralSentiment currentSentiment = getGeneralSentimentOfTheDay(hashtag);
-            positiveSentiment += currentSentiment.getPositive_sentiment();
-            negativeSentiment += currentSentiment.getNegative_sentiment();
+            positiveCount += currentSentiment.getPositive_sentiment();
+            negativeCount += currentSentiment.getNegative_sentiment();
         }
 
-        int denominator = hashtagList.size();
+
 
         return new GeneralSentiment(
-                positiveSentiment / denominator,
-                negativeSentiment / denominator
+                positiveCount,
+                negativeCount
         );
     }
     private GeneralSentiment[] weeklyGeneralSentiment(Hashtag hashtag) {
@@ -274,14 +268,14 @@ public class HashtagServiceTests {
             HashtagDto currentDto = hashtagDtoList.get(i);
             currentDto.setGeneral_sentiment_of_the_day(
                     new GeneralSentiment(
-                            rand.nextDouble(0, 50),
-                            rand.nextDouble(0, 50)
+                            Math.round(Math.random() * 51),
+                            Math.round(Math.random() * 51)
                     ));
 
             currentDto.setGeneral_sentiment_of_the_week(
                     new GeneralSentiment(
-                            rand.nextDouble(0, 50),
-                            rand.nextDouble(0, 50)
+                            Math.round(Math.random() * 51),
+                            Math.round(Math.random() * 51)
                     ));
 
             currentDto.setDaily_retweet_count(

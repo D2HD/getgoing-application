@@ -51,14 +51,14 @@ public class FreeController {
             HashtagDto currentDto = hashtagDtoList.get(i);
             currentDto.setGeneral_sentiment_of_the_day(
                     new GeneralSentiment(
-                            Math.random() * 50,
-                            Math.random() * 50
+                            Math.round(Math.random() * 50),
+                            Math.round(Math.random() * 50)
                     ));
 
             currentDto.setGeneral_sentiment_of_the_week(
                     new GeneralSentiment(
-                            Math.random() * 50,
-                            Math.random() * 50
+                            Math.round(Math.random() * 50),
+                            Math.round(Math.random() * 50)
                     ));
 
             currentDto.setDaily_retweet_count(

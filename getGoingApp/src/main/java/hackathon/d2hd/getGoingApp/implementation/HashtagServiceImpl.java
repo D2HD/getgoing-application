@@ -219,22 +219,25 @@ public class HashtagServiceImpl implements HashtagService {
     }
 
     private GeneralSentiment generalSentimentOfTheWeek(List<Hashtag> hashtagList) {
-        if(hashtagList.isEmpty()) return new GeneralSentiment(Double.valueOf(0.0), Double.valueOf(0.0));
+        if(hashtagList.isEmpty()) return new GeneralSentiment(
+                0L,
+                0L
+        );
 
-        Double positiveSentiment = Double.valueOf(0.0);
-        Double negativeSentiment = Double.valueOf(0.0);
+        Long positiveCount = 0L;
+        Long negativeCount = 0L;
 
         for(Hashtag hashtag: hashtagList) {
             GeneralSentiment currentSentiment = getGeneralSentimentOfTheDay(hashtag);
-            positiveSentiment += currentSentiment.getPositive_sentiment();
-            negativeSentiment += currentSentiment.getNegative_sentiment();
+            positiveCount += currentSentiment.getPositive_sentiment();
+            negativeCount += currentSentiment.getNegative_sentiment();
         }
 
-        int denominator = hashtagList.size();
+
 
         return new GeneralSentiment(
-                positiveSentiment / denominator,
-                negativeSentiment / denominator
+                positiveCount,
+                negativeCount
         );
     }
 
@@ -275,28 +278,19 @@ public class HashtagServiceImpl implements HashtagService {
         );
 
         Long positiveCount = 0L;
-        Double positiveSentiment = Double.valueOf(0.0);
         Long negativeCount = 0L;
-        Double negativeSentiment = Double.valueOf(0.0);
-
-        Double positiveAverage = Double.valueOf(0.0);
-        Double negativeAverage = Double.valueOf(0.0);
 
         for (Hashtag currentHashtag : hashtagList) {
             if (currentHashtag.getGeneral_sentiment() < 0) {
                 negativeCount += 1;
-                negativeSentiment += currentHashtag.getGeneral_sentiment();
-                negativeAverage = negativeSentiment / negativeCount;
 
             } else {
                 positiveCount += 1;
-                positiveSentiment += currentHashtag.getGeneral_sentiment();
-                positiveAverage = positiveSentiment / positiveCount;
             }
         }
         return new GeneralSentiment(
-                positiveAverage,
-                negativeAverage
+                positiveCount,
+                negativeCount
         );
     }
 
@@ -348,8 +342,8 @@ public class HashtagServiceImpl implements HashtagService {
         GeneralSentiment[] dailyGeneralSentiment = new GeneralSentiment[7];
         Arrays.fill(dailyGeneralSentiment,
                 new GeneralSentiment(
-                        Double.valueOf(0.0),
-                        Double.valueOf(0.0)
+                        0L,
+                        0L
                 ));
 
         LocalDate hashtagDate = hashtag.getTimestamp();
@@ -365,8 +359,8 @@ public class HashtagServiceImpl implements HashtagService {
             dailyGeneralSentiment[differenceInDays] = getGeneralSentimentOfTheDay(currentHashtag);
         });
 
-        Double positiveSentiment = Double.valueOf(0.0);
-        Double negativeSentiment = Double.valueOf(0.0);
+        Long positiveSentiment = 0L;
+        Long negativeSentiment = 0L;
 
         for(GeneralSentiment generalSentiment : dailyGeneralSentiment) {
             positiveSentiment += generalSentiment.getPositive_sentiment();
@@ -375,8 +369,8 @@ public class HashtagServiceImpl implements HashtagService {
 
 
         return new GeneralSentiment(
-                positiveSentiment / 7,
-                negativeSentiment / 7
+                positiveSentiment,
+                negativeSentiment
         );
     }
 
