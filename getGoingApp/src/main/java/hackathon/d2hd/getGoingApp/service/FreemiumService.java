@@ -1,11 +1,13 @@
 package hackathon.d2hd.getGoingApp.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
+import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public interface FreemiumService {
-    List<HashtagDto> freemiumWorkflow(File file) throws IOException;
+    List<HashtagDto> getTop5HashtagDtos();
+    List<TweetDto> getTop10TweetList(String response) throws JsonProcessingException;
+    
 }
