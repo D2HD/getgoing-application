@@ -92,4 +92,17 @@ public class Hashtag {
     public void setGeneral_sentiment(Double general_sentiment) {
         this.general_sentiment = general_sentiment;
     }
+
+    @Override
+    public String toString() {
+        return "Hashtag{" +
+                "hashtag_id='" + hashtag_id + '\'' +
+                ", hashtag_name='" + hashtag_name + '\'' +
+                ", num_of_occurrence=" + num_of_occurrence +
+                ", timestamp=" + timestamp +
+                ", like_count=" + like_count +
+                ", retweet_count=" + retweet_count +
+                ", general_sentiment=" + general_sentiment +
+                '}';
+    }
 }

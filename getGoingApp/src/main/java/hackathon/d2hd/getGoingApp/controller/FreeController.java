@@ -52,6 +52,7 @@ public class FreeController {
         return freeService.keywordSearchToTweeDtoList(response);
     }
 
+
     @GetMapping("/currentTop5HashtagDtoList")
     public List<HashtagDto> currentTop5HashtagDtoList() {
         return freeService.getTop5HashtagDtos();

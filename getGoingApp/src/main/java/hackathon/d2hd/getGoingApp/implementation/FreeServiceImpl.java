@@ -116,6 +116,10 @@ public class FreeServiceImpl implements FreeService {
         List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
         List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
         tweetDtoList.sort(Comparator.comparing(TweetDto::getTweet_retweet_count).reversed());
+        for(TweetDto tweetDto: tweetDtoList) {
+            tweetDto.setTweet_like_count(Math.round(Math.random() * 51));
+            tweetDto.setTweet_retweet_count(Math.round(Math.random() * 51));
+        }
 
         return tweetDtoList;
     }

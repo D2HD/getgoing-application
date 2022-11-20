@@ -42,25 +42,14 @@ public class HashtagServiceTests {
         hashtagService.saveHashtagList(hashtagList);
     }
 
-    @Test
-    public void testSevenDayTop5HashtagListByCountAPI() {
-        LocalDate currentDateTime = LocalDate.now();
-        List<Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
-        hashtagService.displayHashtags(hashtagList);
-    }
 
-    @Test
-    public void testSevenDayTop5HashtagListByLikeAPI() {
-        LocalDate currentDateTime = LocalDate.now();
-        List<Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByLike(currentDateTime);
-        hashtagService.displayHashtags(hashtagList);
-    }
+
 
     @Test
     public void currentTop5HashtagListAPI() {
         LocalDate now = LocalDate.now().minusDays(4L);
         List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampIs(now);
-        hashtagService.displayHashtags(hashtagList);
+
     }
 
     @Test
@@ -69,7 +58,7 @@ public class HashtagServiceTests {
         LocalDate end = LocalDate.of(2022, Month.DECEMBER, 31);
         List<Hashtag> hashtagList1 = hashtagRepository.findAllByTimestampBetween(start, start);
 
-        hashtagService.displayHashtags(hashtagList1);
+
     }
 
 
@@ -257,38 +246,6 @@ public class HashtagServiceTests {
         }
     }
 
-    @Test
-    public void testSevenDayTop5HashtagDtoListByCount() {
-        LocalDate currentDateTime = LocalDate.now();
-        List <Hashtag> hashtagList = hashtagService.sevenDayTop5HashtagListByCount(currentDateTime);
-        List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(hashtagList);
-        Random rand = new Random();
 
-        for(int i = 0; i < hashtagDtoList.size(); i++) {
-            HashtagDto currentDto = hashtagDtoList.get(i);
-            currentDto.setGeneral_sentiment_of_the_day(
-                    new GeneralSentiment(
-                            Math.round(Math.random() * 51),
-                            Math.round(Math.random() * 51)
-                    ));
-
-            currentDto.setGeneral_sentiment_of_the_week(
-                    new GeneralSentiment(
-                            Math.round(Math.random() * 51),
-                            Math.round(Math.random() * 51)
-                    ));
-
-            currentDto.setDaily_retweet_count(
-                    new Long[]{
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100),
-                            rand.nextLong(0, 100)
-                    });
-        }
-    }
 
 }
