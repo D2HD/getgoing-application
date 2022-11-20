@@ -45,7 +45,7 @@ public class FreeController {
      * A list of 10 Tweets sorted by number of retweets in descending order
      * @throws JsonProcessingException
      */
-    @GetMapping("/keywordSearch/{userInput}")
+    @GetMapping("/keywordSearchToTweetDtoList/{userInput}")
     public List<TweetDto> keywordSearchToTweetDtoList(@PathVariable String userInput) throws JsonProcessingException {
         String response = freeService.hashscraperCall(userInput);
 
