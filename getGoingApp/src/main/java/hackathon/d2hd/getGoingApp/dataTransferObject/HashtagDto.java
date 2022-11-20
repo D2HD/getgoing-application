@@ -6,18 +6,38 @@ import java.util.Arrays;
 import java.util.List;
 
 public class HashtagDto {
+    /**A concatenation of the hashtag and the date.
+     * E.g: #basketball2022-11-20*/
     private String hashtag_id;
+    /**The name of the hashtag.*
+     * E.g: #basketbal*/
     private String hashtag_name;
+    /**The number of likes of the Tweet that the hashtag is from.*/
     private Long like_count;
+    /**A Long array with a length of 7. Each index represents the number of times the hashtag has been searched within the corresponding day over 7 days.
+     * The list is sorted chronologically, with index 0 being the 7th day and index 6 being the current day.*/
     private Long[] daily_hashtag_count;
+    /**A Long array with a length of 4. Each index represents the number of times the hashtag has been searched within the corresponding week over 4 weeks.
+     * The list is sorted chronologically, with index 0 being the 4th week and index 3 being the current week.*/
     private Long[] weekly_hashtag_count;
+    /**A General Sentiment array with a length of 4. Each index represents the GeneralSentiment of the hashtag within the corresponding week over 4 weeks.
+     * A GeneralSentiment stores the count of the number of positive and negative sentiments that a hashtag has.
+     * The list is sorted chronologically, with index 0 being the 4th week and index 3 being the current week.*/
     private GeneralSentiment[] weekly_general_sentiment;
+    /**Stores the count of the number of positive and negative sentiments that a hashtag has in the current day in relation to its timestamp*/
     private GeneralSentiment general_sentiment_of_the_day;
+    /**Stores the count of the number of positive and negative sentiments that a hashtag has in the current week in relation to its timestamp*/
     private GeneralSentiment general_sentiment_of_the_week;
+    /**A Long array with a length of 7. Each index represents the number of retweets of the hashtag  within the corresponding day over 7 days.
+     * The list is sorted chronologically, with index 0 being the 7th day and index 6 being the current day.*/
     private Long[] daily_retweet_count;
+    /**The number of retweets of the Tweet that the hashtag is from*/
     private Long retweet_count;
+    /**The general sentiment of the Tweet that the hashtag is from*/
     private Double general_sentiment;
+    /**The number of times the hashtag has been searched*/
     private Long num_of_occurrence;
+    /**The date of the tweet in YYYY-MM-DD format that the hashtag is from*/
     private LocalDate timestamp;
 
     public HashtagDto() {}
