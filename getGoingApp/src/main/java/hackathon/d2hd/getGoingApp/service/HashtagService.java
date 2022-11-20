@@ -3,9 +3,7 @@ package hackathon.d2hd.getGoingApp.service;
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
-import jdk.vm.ci.meta.Local;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
