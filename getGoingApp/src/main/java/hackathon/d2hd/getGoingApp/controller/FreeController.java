@@ -63,7 +63,7 @@ public class FreeController {
     public HashtagDto keywordSearchToHashtagDto(@PathVariable String userInput) throws JsonProcessingException {
         String response = freeService.hashscraperCall(userInput);
         List<TweetDto> tweetDtoList = freeService.keywordSearchToTweeDtoList(response);
-        List<Hashtag> hashtagList = freeService.tweetDtoListToPremiumHashtagList(tweetDtoList, new HashMap<>());
+        Hashtag hashtag = freeService.tweetDtoListToPremiumHashtagList(tweetDtoList);
 
         return null;
     }

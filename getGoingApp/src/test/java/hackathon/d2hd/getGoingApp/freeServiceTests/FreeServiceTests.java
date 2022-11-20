@@ -23,7 +23,6 @@ public class FreeServiceTests {
     @Test
     public void testTweetDtoListToPremiumHashtagList() throws IOException {
         String response = freeService.hashscraperCall("cats");
-        System.out.println(response);
         List<TweetDto> tweetDtoList = freeService.keywordSearchToTweeDtoList(response);
         System.out.println(tweetDtoList.size());
 

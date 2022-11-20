@@ -13,7 +13,7 @@ public interface FreeService {
     String hashscraperCall(String keyword);
     List<HashtagDto> getTop5HashtagDtos();
     List<TweetDto> keywordSearchToTweeDtoList(String response) throws JsonProcessingException;
-    public List<Hashtag> tweetDtoListToPremiumHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap);
+    Hashtag tweetDtoListToPremiumHashtagList(List<TweetDto> tweetDtoList);
     LocalDate stringToLocalDate(String stringToLocalDate);
     String hashscraperDateCall(String start, String end);
 }

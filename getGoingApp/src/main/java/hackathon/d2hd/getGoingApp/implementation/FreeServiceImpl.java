@@ -163,7 +163,9 @@ public class FreeServiceImpl implements FreeService {
     }
 
     @Override
-    public List<Hashtag> tweetDtoListToPremiumHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap) {
+    public Hashtag tweetDtoListToPremiumHashtagList(List<TweetDto> tweetDtoList) {
+        HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
+
         for (TweetDto tweetDto : tweetDtoList) {
             String hashtagId = hashtagService.createHashtagId(tweetDto, tweetDto.getTopic());
             if (!hashtagHashMap.containsKey(hashtagId)) {
@@ -186,14 +188,6 @@ public class FreeServiceImpl implements FreeService {
             }
         }
 
-        List<Hashtag> hashtagList = new ArrayList<>();
-        hashtagHashMap.forEach((s, hashtag) -> {
-            hashtag.setGeneral_sentiment(hashtag.getGeneral_sentiment() / hashtag.getNum_of_occurrence());
-            hashtagList.add(hashtag);
-        });
-
-        hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
-
-        return hashtagList;
+        return null;
     }
 }
