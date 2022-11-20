@@ -5,13 +5,10 @@ import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.FreeService;
-import hackathon.d2hd.getGoingApp.service.HashtagService;
-import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -63,9 +60,7 @@ public class FreeController {
     public HashtagDto keywordSearchToHashtagDto(@PathVariable String userInput) throws JsonProcessingException {
         String response = freeService.hashscraperCall(userInput);
         List<TweetDto> tweetDtoList = freeService.keywordSearchToTweeDtoList(response);
-        Hashtag hashtag = freeService.tweetDtoListToPremiumHashtagList(tweetDtoList);
-
-        return null;
+        return freeService.tweetDtoListToPremiumHashtag(tweetDtoList);
     }
 
 

@@ -16,7 +16,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -163,11 +162,13 @@ public class FreeServiceImpl implements FreeService {
     }
 
     @Override
-    public Hashtag tweetDtoListToPremiumHashtagList(List<TweetDto> tweetDtoList) {
+    public HashtagDto tweetDtoListToPremiumHashtag(List<TweetDto> tweetDtoList) {
         HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
+        String id = "";
 
         for (TweetDto tweetDto : tweetDtoList) {
             String hashtagId = hashtagService.createHashtagId(tweetDto, tweetDto.getTopic());
+            id = hashtagId;
             if (!hashtagHashMap.containsKey(hashtagId)) {
                 hashtagHashMap.put(hashtagId, new Hashtag(
                         hashtagId,
@@ -180,7 +181,7 @@ public class FreeServiceImpl implements FreeService {
                 ));
             } else {
                 Hashtag currentHashtag = hashtagHashMap.get(hashtagId);
-                currentHashtag.setNum_of_occurrence(currentHashtag.getNum_of_occurrence() + 1);
+                currentHashtag.setNum_of_occurrence(currentHashtag.getNum_of_occurrence() + 1L);
                 currentHashtag.setLike_count(currentHashtag.getLike_count() + tweetDto.getTweet_like_count());
                 currentHashtag.setRetweet_count(currentHashtag.getRetweet_count() + tweetDto.getTweet_retweet_count());
                 currentHashtag.setGeneral_sentiment(
@@ -188,6 +189,71 @@ public class FreeServiceImpl implements FreeService {
             }
         }
 
-        return nu;
+        HashtagDto hashtagDto = hashtagService.hashtagToHashtagDto(hashtagHashMap.get(id));
+        hashtagDto.setDaily_hashtag_count(
+                new Long[]{
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51))
+                }
+        );
+
+        hashtagDto.setWeekly_hashtag_count(
+                new Long[]{
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51)),
+                        Math.round((Math.random() * 51))
+                }
+        );
+
+        hashtagDto.setWeekly_general_sentiment(
+                new GeneralSentiment[]{
+                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
+                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
+                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
+                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50))
+                }
+        );
+
+        hashtagDto.setLike_count(
+                Math.round(Math.random() * 50)
+        );
+
+
+        hashtagDto.setGeneral_sentiment_of_the_day(
+                new GeneralSentiment(
+                        Math.round(Math.random() * 50),
+                        Math.round(Math.random() * 50)
+                ));
+
+        hashtagDto.setGeneral_sentiment_of_the_week(
+                new GeneralSentiment(
+                        Math.round(Math.random() * 50),
+                        Math.round(Math.random() * 50)
+                ));
+
+        hashtagDto.setGeneral_sentiment_of_the_week(
+                new GeneralSentiment(
+                        Math.round(Math.random() * 50),
+                        Math.round(Math.random() * 50)
+                ));
+
+        hashtagDto.setDaily_retweet_count(
+                new Long[]{
+                        Math.round(Math.random() * 101),
+                        Math.round(Math.random() * 101),
+                        Math.round(Math.random() * 101),
+                        Math.round(Math.random() * 101),
+                        Math.round(Math.random() * 101),
+                        Math.round(Math.random() * 101),
+                        Math.round(Math.random() * 101)
+                });
+
+        return hashtagDto;
     }
 }

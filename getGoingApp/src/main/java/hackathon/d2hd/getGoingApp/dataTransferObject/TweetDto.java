@@ -167,6 +167,25 @@ public class TweetDto {
             this.score = score;
         }
     }
+
+    @Override
+    public String toString() {
+        return "TweetDto{" +
+                "url='" + url + '\'' +
+                ", topic='" + topic + '\'' +
+                ", profile_name='" + profile_name + '\'' +
+                ", tweet_id=" + tweet_id +
+                ", username='" + username + '\'' +
+                ", tweet_content='" + tweet_content + '\'' +
+                ", hashtagList=" + hashtagList +
+                ", tweet_like_count=" + tweet_like_count +
+                ", tweet_retweet_count=" + tweet_retweet_count +
+                ", tweet_reply_count=" + tweet_reply_count +
+                ", tweet_quote_tweet_count=" + tweet_quote_tweet_count +
+                ", localDateTime=" + localDateTime +
+                ", general_sentiment=" + general_sentiment +
+                '}';
+    }
 }
 
 
