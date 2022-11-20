@@ -1,11 +1,14 @@
 package hackathon.d2hd.getGoingApp.implementation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
+import hackathon.d2hd.getGoingApp.repository.TweetRepository;
 import hackathon.d2hd.getGoingApp.service.TweetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -13,87 +16,64 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Service
 public class TweetServiceImpl implements TweetService {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    // TODO: 31/10/22 Sixth Change
-    /*
-    - this part might be a little confusing so you can refer to this for the documentation: https://www.baeldung.com/jackson-object-mapper-tutorial specifically section 3.4
-    - Hashscraper returns a JSON object in the following format:
-        {
-            "result": "Success",
-            "version": "v2",
-            "next_token": "(string of next token)"
-            "data": [array of the data of each tweet]
-        }
-    - everything in the branches represents the rootNode, so a root node has child nodes of "result", "version", "next_token" and "data
-    - ObjectMapper is a class that reads in JSON and creates a JSONNode object, think of the above line but in a tree format
-    - the tweet data we want is in the "data" key so we can access it by calling rootNode.get("data") this returns the values from the "data" child node in the form of a JsonNode
-    - finally, objectMapper.readValue is a function that reads the node and returns it in the form of the class specified
-    - you can change a single node into a single class, but since we have an array of objects to change, we used the following method to convert it, this part i copied from the documentation
-    - look for Seventh Change to see my Unit tests
-     */
+    @Autowired
+    private TweetRepository tweetRepository;
+
     @Override
-    public List<Tweet> JsonToTweetDeserializer(File jsonFile) throws IOException {
-        JsonNode rootNode = objectMapper.readTree(jsonFile);
+    public List<Tweet> hashscraperResponseBodyToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException {
+        JsonNode rootNode = objectMapper.readTree(hashscraperResponseBody);
         JsonNode dataNode = rootNode.get("data");
-        return  objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
+        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {})
+                .stream()
+                .distinct()
+                .collect(Collectors.toList());
+        return tweetList;
     }
 
-    // TODO: 30/10/22 Fourth Change
-    /*
-    - pretty self explanatory, I just parsed the attribute data from Tweet to match that of TweetDto
-    - look for the Fifth Change to see the implementation for converting a String to a LocalDateTime
-     */
     @Override
-    public TweetDto tweetToTweetDto(Tweet tweet) {
+    public List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException {
+        JsonNode rootNode = objectMapper.readTree(jsonFile);
+        JsonNode dataNode = rootNode.get("data");
+        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
+        tweetRepository.saveAll(tweetList);
+        return tweetListToTweetDtoList(tweetRepository.findAll());
+    }
+
+    @Override
+    public void clearTweetDatabase(){
+        tweetRepository.deleteAll();
+    }
+
+    @Override
+    public TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException {
         return new TweetDto(
                 tweet.getValue1(),
-                tweet.getValue2().replace(" ", ""),
+                tweet.getValue2().toLowerCase(),
                 tweet.getValue3(),
                 Long.parseLong(tweet.getValue4()),
                 tweet.getValue5(),
-                tweet.getValue6(),
                 tweet.getValue7(),
+                getHashtagList(tweet.getValue7()),
                 Long.parseLong(tweet.getValue8()),
                 Long.parseLong(tweet.getValue9()),
                 Long.parseLong(tweet.getValue10()),
                 Long.parseLong(tweet.getValue11()),
-                tweet.getValue12(),
-                tweet.getValue13(),
                 stringToLocalDateTime(tweet.getValue14()),
-                tweet.getValue15()
+                tweetJsonToGeneralSentiment(tweet.getValue15())
         );
     }
 
-    @Override
-    public List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList) {
-        List<TweetDto> tweetDtoList = new ArrayList<>();
-
-        tweetList.forEach(tweet -> {
-            tweetDtoList.add(tweetToTweetDto(tweet));
-        });
-
-        return tweetDtoList;
-    }
-
-
-    // TODO: 30/10/22  Fifth Change
-    /*
-    - so the first question you may ask is probably "why LocalDateTime?"
-    - the format of the String from date is as such "2022-10-30 16:37:42 +9000"
-    - i went online to search which time object matches this closely and LocalDateTime was the closest
-    - psql also recognises it so no issue
-    - so i started off by formatting the string
-    - i had to remove the +9000 at the end of the string so i used a substring method to do it
-    - next i used a DateTimeFormatter to format the date with the pattern below, I copied this part off StackOverflow
-    - finally i returned a LocalDatetime object that accepts the string that i formatted as well as the format as parameters under its inbuilt parse function
-    - look for the Sixth Change to see how i deserialized the JSON object from Hashscraper to a useable to a List of Tweets
-     */
     @Override
     public LocalDateTime stringToLocalDateTime(String localDateTimeString) {
         String formattedString = localDateTimeString.substring(0, localDateTimeString.length()-6);
@@ -106,5 +86,91 @@ public class TweetServiceImpl implements TweetService {
         - doesn't affect the workflow much but just something to keep in mind
          */
         return LocalDateTime.parse(formattedString, formatter);
+    }
+
+    @Override
+    public List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList) {
+        List<TweetDto> tweetDtoList = new ArrayList<>();
+
+        tweetList.forEach(tweet -> {
+            try {
+                tweetDtoList.add(tweetToTweetDto(tweet));
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        return tweetDtoList;
+    }
+
+    @Override
+    public List<String> getHashtagList(String content) {
+        Matcher matcher = Pattern.compile("\u0023\\w+").matcher(content);
+        List<String> hashtagList = new ArrayList<>();
+        // Get every hashtag in lowercase, regardless of what it is.
+        processEachHashtag:
+        while (matcher.find()) {
+            String hashtag = matcher.group().toLowerCase();
+            // Skip duplicate hashtag.
+            if (hashtagList.contains(hashtag)) continue;
+            // Filter the hashtag.
+            // TODO: Expand the blacklist, to exclude impertinent words.
+            String[] blacklistWords = {"anal", "anus", "arse", "ass",
+                    "balls", "ballsack", "bastard", "biatch",
+                    "bitch", "bloody", "blow job", "blowjob",
+                    "bollock", "bollok", "boner", "boob",
+                    "bugger", "bum", "butt",
+                    "clitoris", "cock", "coon", "crap",
+                    "cunt", "damn", "dick", "dildo",
+                    "dyke", "fag", "feck",
+                    "felching", "fellate", "fellatio", "flange",
+                    "fuck", "fudge packer", "fudgepacker",
+                    "Goddamn", "hell", "homo", "jerk",
+                    "jizz", "knob end", "knobend", "labia",
+                    "lmao", "lmfao", "muff", "nigga",
+                    "nigger", "omg", "penis", "piss",
+                    "poop", "prick", "pube", "pussy",
+                    "queer", "scrotum", "sex",
+                    "sh1t", "shit", "slut", "smegma",
+                    "spunk", "tit", "tosser", "turd",
+                    "twat", "vagina", "wank", "whore",
+                    "wtf", "forsale", "ebay", "selling", "dealoftheday"
+            };
+            for (String profanity : blacklistWords) {
+                // Do not include profanities in the list.
+                if (hashtag.contains(profanity)) continue processEachHashtag;
+            }
+            // Hashtag is not a profanity, include in the list.
+            hashtagList.add(hashtag);
+        }
+        return hashtagList;
+    }
+
+    @Override
+    public Double tweetJsonToGeneralSentiment(String tweet_json) throws JsonProcessingException {
+        if(tweet_json.length() < 10) return Double.valueOf(0.0);
+        JsonNode rootNode = objectMapper.readTree(tweet_json);
+        List<TweetDto.TweetJson> tweetJsonList = objectMapper.readValue(tweet_json, new TypeReference<List<TweetDto.TweetJson>>() {});
+        Double totalSentiment = Double.valueOf(0.0);
+
+        for(TweetDto.TweetJson tweetJson: tweetJsonList) {
+            totalSentiment += tweetJson.getScore();
+        }
+
+        return totalSentiment / tweetJsonList.size();
+    }
+
+    @Override
+    public int tweetDatabaseSize() {
+        return tweetRepository.findAll().size();
+    }
+    @Override
+    public List<Tweet> getAllTweets() {
+        return tweetRepository.findAll();
+    }
+
+    @Override
+    public void saveTweetList(List<Tweet> tweetList) {
+        tweetRepository.saveAll(tweetList);
     }
 }

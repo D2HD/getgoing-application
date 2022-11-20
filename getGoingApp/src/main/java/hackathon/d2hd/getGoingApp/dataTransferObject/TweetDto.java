@@ -1,15 +1,7 @@
 package hackathon.d2hd.getGoingApp.dataTransferObject;
 
 import java.time.LocalDateTime;
-
-// TODO: 30/10/22 Second Change
-/*
-- as mentioned earlier, a DTO class transfers information from one object and turns it into another
-- earlier the Tweet class contained all string, but here you'll see that the attribute types have changed
-- also I changed the attribute names to be something more identifiable rather than value1 - value15
-- the order of each attribute is exactly the same as the Tweet class, just that the type and name have changed
-- look for the Third Change to see how I converted Tweet to Tweet DTO
- */
+import java.util.List;
 
 public class TweetDto {
     private String url;
@@ -17,35 +9,31 @@ public class TweetDto {
     private String profile_name;
     private long tweet_id;
     private String username;
-    private String profile_picture_url;
     private String tweet_content;
+    private List<String> hashtagList;
     private long tweet_like_count;
     private long tweet_retweet_count;
     private long tweet_reply_count;
     private long tweet_quote_tweet_count;
-    private String photo_urls;
-    private String photo_url_number;
     private LocalDateTime localDateTime;
-    private String tweet_json;
+    private Double general_sentiment;
 
     public TweetDto() {}
 
-    public TweetDto(String url, String topic, String profile_name, long tweet_id, String username, String profile_picture_url, String tweet_content, long tweet_like_count, long tweet_retweet_count, long tweet_reply_count, long tweet_quote_tweet_count, String photo_urls, String photo_url_number, LocalDateTime localDateTime, String tweet_json) {
+    public TweetDto(String url, String topic, String profile_name, long tweet_id, String username, String tweet_content, List<String> hashtagList, long tweet_like_count, long tweet_retweet_count, long tweet_reply_count, long tweet_quote_tweet_count, LocalDateTime localDateTime, Double general_sentiment) {
         this.url = url;
         this.topic = topic;
         this.profile_name = profile_name;
         this.tweet_id = tweet_id;
         this.username = username;
-        this.profile_picture_url = profile_picture_url;
         this.tweet_content = tweet_content;
+        this.hashtagList = hashtagList;
         this.tweet_like_count = tweet_like_count;
         this.tweet_retweet_count = tweet_retweet_count;
         this.tweet_reply_count = tweet_reply_count;
         this.tweet_quote_tweet_count = tweet_quote_tweet_count;
-        this.photo_urls = photo_urls;
-        this.photo_url_number = photo_url_number;
         this.localDateTime = localDateTime;
-        this.tweet_json = tweet_json;
+        this.general_sentiment = general_sentiment;
     }
 
     public String getUrl() {
@@ -88,20 +76,20 @@ public class TweetDto {
         this.username = username;
     }
 
-    public String getProfile_picture_url() {
-        return profile_picture_url;
-    }
-
-    public void setProfile_picture_url(String profile_picture_url) {
-        this.profile_picture_url = profile_picture_url;
-    }
-
     public String getTweet_content() {
         return tweet_content;
     }
 
     public void setTweet_content(String tweet_content) {
         this.tweet_content = tweet_content;
+    }
+
+    public List<String> getHashtagList() {
+        return hashtagList;
+    }
+
+    public void setHashtagList(List<String> hashtagList) {
+        this.hashtagList = hashtagList;
     }
 
     public long getTweet_like_count() {
@@ -136,22 +124,6 @@ public class TweetDto {
         this.tweet_quote_tweet_count = tweet_quote_tweet_count;
     }
 
-    public String getPhoto_urls() {
-        return photo_urls;
-    }
-
-    public void setPhoto_urls(String photo_urls) {
-        this.photo_urls = photo_urls;
-    }
-
-    public String getPhoto_url_number() {
-        return photo_url_number;
-    }
-
-    public void setPhoto_url_number(String photo_url_number) {
-        this.photo_url_number = photo_url_number;
-    }
-
     public LocalDateTime getLocalDateTime() {
         return localDateTime;
     }
@@ -160,14 +132,60 @@ public class TweetDto {
         this.localDateTime = localDateTime;
     }
 
-    public String getTweet_json() {
-        return tweet_json;
+    public Double getGeneral_sentiment() {
+        return general_sentiment;
     }
 
-    public void setTweet_json(String tweet_json) {
-        this.tweet_json = tweet_json;
+    public void setGeneral_sentiment(Double general_sentiment) {
+        this.general_sentiment = general_sentiment;
+    }
+
+    public static class TweetJson {
+        private String content;
+        private Double score;
+
+        public TweetJson() {}
+
+        public TweetJson(String content, Double score) {
+            this.content = content;
+            this.score = score;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        public Double getScore() {
+            return score;
+        }
+
+        public void setScore(Double score) {
+            this.score = score;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "TweetDto{" +
+                "url='" + url + '\'' +
+                ", topic='" + topic + '\'' +
+                ", profile_name='" + profile_name + '\'' +
+                ", tweet_id=" + tweet_id +
+                ", username='" + username + '\'' +
+                ", tweet_content='" + tweet_content + '\'' +
+                ", hashtagList=" + hashtagList +
+                ", tweet_like_count=" + tweet_like_count +
+                ", tweet_retweet_count=" + tweet_retweet_count +
+                ", tweet_reply_count=" + tweet_reply_count +
+                ", tweet_quote_tweet_count=" + tweet_quote_tweet_count +
+                ", localDateTime=" + localDateTime +
+                ", general_sentiment=" + general_sentiment +
+                '}';
     }
 }
-
 
 

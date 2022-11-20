@@ -1,16 +1,5 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
-// TODO: 30/10/22 First Change
-/*
-- this is the class for the raw, unparsed data of the tweet
-- the values are all strings because Hashscraper returns Strings
-- you will notice that the attribute names are labelled value 1 to 15
-- the reason for this is that the keys for hashscraper are also named value 1 -15
-- so if we had different naming then it would be impossible for the Jackson Library (the library that turns JSON in to a Java Object) to read in the information
-- you will notice also that I did not include the @Entity tag, reason being is because I had a file containing samples of Hashscraper's return results so for now I just used that instead of a database
-- look for the Second Change to see the TweetDto
- */
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,31 +15,61 @@ public class Tweet {
     private String value1;
 
     //topic
+    @Column(name = "value2")
     private String value2;
 
     //profile_name
+    @Column(name = "value3")
     private String value3;
 
-    //tweet_endpoint
+    //tweet_id
+    @Column(name = "value4")
     private String value4;
 
     //username
+    @Column(name = "value5")
     private String value5;
 
-    //
+    //profile_picture_url
+    @Column(name = "value6")
     private String value6;
+
+    //tweet_content
+    @Column(name = "value7")
     private String value7;
+
+    //tweet_like_count
+    @Column(name = "value8")
     private String value8;
+
+
+    //tweet_retweet_count
+    @Column(name = "value9")
     private String value9;
+
+    //tweet_reply_count
+    @Column(name = "value10")
     private String value10;
+
+
+    //tweet_quote_tweet_count
+    @Column(name = "value11")
     private String value11;
+
+    //photo_urls
+    @Column(name = "value12")
     private String value12;
+
+    //photo_url_number
+    @Column(name = "value13")
     private String value13;
 
-    //timestamp
+    //localDateTime
+    @Column(name = "value14")
     private String value14;
 
     //tweet_json
+    @Column(name = "value15")
     private String value15;
 
     public Tweet() {}
