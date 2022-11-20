@@ -6,6 +6,7 @@ import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,5 +40,19 @@ public class HashtagController {
     @GetMapping("/getAllHashtags")
     public List<Hashtag> getAllHashtags() {
         return hashtagService.getAllHashtagsFromDatabase();
+    }
+
+    @GetMapping("/tweetDtosToHashtags")
+    public List<Hashtag> tweetDtosToHashtags(String string) {
+        List<TweetDto> tweetDtoList = null;
+        HashMap<String, Hashtag> hashtagHashMap = new HashMap<>();
+        List<Hashtag> hashtagList = hashtagService.tweetDtoListToHashtagList(tweetDtoList, hashtagHashMap);
+        hashtagService.saveHashtagList(hashtagList);
+        return hashtagList;
+    }
+
+    @DeleteMapping("/clearHashtagDatabase")
+    public void clearHashtagDatabase() {
+        hashtagService.clearHashtagDatabase();
     }
 }

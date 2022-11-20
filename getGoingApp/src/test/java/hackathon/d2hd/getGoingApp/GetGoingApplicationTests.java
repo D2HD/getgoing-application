@@ -1,7 +1,6 @@
 package hackathon.d2hd.getGoingApp;
 
-import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
-import hackathon.d2hd.getGoingApp.service.FreemiumService;
+import hackathon.d2hd.getGoingApp.service.FreeService;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 @SpringBootTest
 class GetGoingApplicationTests {
@@ -23,7 +21,7 @@ class GetGoingApplicationTests {
 	private TweetService tweetService;
 
 	@Autowired
-	private FreemiumService freemiumService;
+	private FreeService freeService;
 
 	GetGoingApplicationTests() throws IOException {
 	}

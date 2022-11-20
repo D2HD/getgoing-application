@@ -12,5 +12,4 @@ public interface HashtagRepository extends JpaRepository<Hashtag, String> {
     List<Hashtag> findAllByTimestampBetweenOrderByTimestampAsc (LocalDate startDate, LocalDate endDate);
     List<Hashtag> findAllByTimestampBetween (LocalDate startDate, LocalDate endDate);
     List<Hashtag> findAllByTimestampIs(LocalDate currentDateTime);
-
 }

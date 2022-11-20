@@ -6,17 +6,29 @@ import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.GeneralSentiment;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
-import hackathon.d2hd.getGoingApp.service.FreemiumService;
+import hackathon.d2hd.getGoingApp.service.FreeService;
 import hackathon.d2hd.getGoingApp.service.HashtagService;
 import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class FreemiumServiceImpl implements FreemiumService {
+public class FreeServiceImpl implements FreeService {
+    @Value("${api_key}")
+    private String api_key;
+
+    @Value("${keyword}")
+    private String keyword;
+
     @Autowired
     private TweetService tweetService;
 
@@ -100,16 +112,84 @@ public class FreemiumServiceImpl implements FreemiumService {
     }
 
     @Override
-    public List<TweetDto> getTop10TweetList(String response) throws JsonProcessingException {
+    public List<TweetDto> keywordSearchToTweeDtoList(String response) throws JsonProcessingException {
         List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
         List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
-        tweetDtoList.sort(Comparator.comparing(TweetDto::getTweet_like_count).reversed());
-
-        int size = tweetDtoList.size();
-        while (size > 10) {
-            tweetDtoList.remove(tweetDtoList.get(tweetDtoList.size() - 1));
-        }
+        tweetDtoList.sort(Comparator.comparing(TweetDto::getTweet_retweet_count).reversed());
 
         return tweetDtoList;
+    }
+
+    @Override
+    public LocalDate stringToLocalDate(String stringToLocalDate) {
+        return LocalDate.of(
+                Integer.parseInt(stringToLocalDate.substring(0, 4)),
+                Month.of(Integer.parseInt(stringToLocalDate.substring(5, 7))),
+                Integer.parseInt(stringToLocalDate.substring(8))
+        );
+    }
+
+    @Override
+    public String hashscraperCall(String keyword) {
+        WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
+        String response = client.post()
+                .uri("?apikey=" + api_key + "&keyword=" + keyword + "&max_count=10&")
+                .header("Content-Type", "application/json version=2")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        return response;
+    }
+
+    @Override
+    public String hashscraperDateCall(String start, String end) {
+        LocalDate start_date = stringToLocalDate(start);
+        LocalDate end_date = stringToLocalDate(end);
+
+        WebClient client = WebClient.create("https://www.hashscraper.com/api/twitter/");
+        String response = client.post()
+                .uri("?apikey=" + api_key + "&keyword=" + keyword + "&max_count=10" + "&start_date=" + start_date + "&end_date=" + end_date)
+                .header("Content-Type", "application/json version=2")
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
+
+        return response;
+    }
+
+    @Override
+    public List<Hashtag> tweetDtoListToPremiumHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap) {
+        for (TweetDto tweetDto : tweetDtoList) {
+            String hashtagId = hashtagService.createHashtagId(tweetDto, tweetDto.getTopic());
+            if (!hashtagHashMap.containsKey(hashtagId)) {
+                hashtagHashMap.put(hashtagId, new Hashtag(
+                        hashtagId,
+                        tweetDto.getTopic(),
+                        1L,
+                        tweetDto.getLocalDateTime().toLocalDate(),
+                        tweetDto.getTweet_like_count(),
+                        tweetDto.getTweet_retweet_count(),
+                        tweetDto.getGeneral_sentiment()
+                ));
+            } else {
+                Hashtag currentHashtag = hashtagHashMap.get(hashtagId);
+                currentHashtag.setNum_of_occurrence(currentHashtag.getNum_of_occurrence() + 1);
+                currentHashtag.setLike_count(currentHashtag.getLike_count() + tweetDto.getTweet_like_count());
+                currentHashtag.setRetweet_count(currentHashtag.getRetweet_count() + tweetDto.getTweet_retweet_count());
+                currentHashtag.setGeneral_sentiment(
+                        currentHashtag.getGeneral_sentiment() + tweetDto.getGeneral_sentiment());
+            }
+        }
+
+        List<Hashtag> hashtagList = new ArrayList<>();
+        hashtagHashMap.forEach((s, hashtag) -> {
+            hashtag.setGeneral_sentiment(hashtag.getGeneral_sentiment() / hashtag.getNum_of_occurrence());
+            hashtagList.add(hashtag);
+        });
+
+        hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
+
+        return hashtagList;
     }
 }

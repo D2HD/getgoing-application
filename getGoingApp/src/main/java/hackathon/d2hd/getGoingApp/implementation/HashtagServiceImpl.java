@@ -78,21 +78,6 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagRepository.findAll();
     }
 
-
-    @Override
-    public void displayHashtags(List<Hashtag> hashtagList) {
-        hashtagList.forEach(hashtag -> {
-            System.out.println(hashtag.getHashtag_id() + ": " + hashtag.getNum_of_occurrence() + " " + hashtag.getGeneral_sentiment());
-        });
-    }
-
-    @Override
-    public void displayHashtagDtos(List<HashtagDto> hashtagDtoList) {
-        hashtagDtoList.forEach(hashtagDto -> {
-            System.out.println(hashtagDto.getHashtag_id() + ": " + hashtagDto.getNum_of_occurrence() + " " + hashtagDto.getNum_of_occurrence() + hashtagDto.getDaily_hashtag_count());
-        });
-    }
-
     @Override
     public List<Hashtag> getTodaysTop5Hashtags() {
         //Sort the list in descending order according to timestamp
@@ -167,17 +152,6 @@ public class HashtagServiceImpl implements HashtagService {
 
         return top5HashtagList;
     }
-
-    @Override
-    public List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime) {
-        return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getNum_of_occurrence));
-    }
-
-    @Override
-    public List<Hashtag> sevenDayTop5HashtagListByLike(LocalDate currentDateTime) {
-        return getHashtags(currentDateTime, Comparator.comparing(Hashtag::getLike_count));
-    }
-
 
     private Long countOfWeek(List<Hashtag> weeklyHashtagList) {
         if (weeklyHashtagList.isEmpty()) return 0L;
@@ -367,12 +341,10 @@ public class HashtagServiceImpl implements HashtagService {
             negativeSentiment += generalSentiment.getNegative_sentiment();
         }
 
-
         return new GeneralSentiment(
                 positiveSentiment,
                 negativeSentiment
         );
     }
-
 }
 

@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
-public class FreemiumServiceTests {
+public class FreeServiceTests {
 
     File file = new File("/Users/seanmarinas/appetizer/getGoingApp/src/test/java/hackathon/d2hd/getGoingApp/testData/HashscraperForSale.json");
 

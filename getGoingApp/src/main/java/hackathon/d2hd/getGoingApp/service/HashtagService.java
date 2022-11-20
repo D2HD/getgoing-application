@@ -3,6 +3,7 @@ package hackathon.d2hd.getGoingApp.service;
 import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
+import jdk.vm.ci.meta.Local;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -20,15 +21,10 @@ public interface HashtagService {
     List<Hashtag> tweetDtoListToHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap);
     void saveHashtagList(List<Hashtag> hashtagList);
     void clearHashtagDatabase();
-
     List<Hashtag> getAllHashtagsFromDatabase();
-    void displayHashtags(List<Hashtag> hashtagList);
-    void displayHashtagDtos(List<HashtagDto> hashtagDtoList);
     List<Hashtag> getTodaysTop5Hashtags();
     Long[] getDailyHashtagCount(Hashtag hashtag);
     HashtagDto hashtagToHashtagDto(Hashtag hashtag);
     List<HashtagDto> hashtagListToHashtagDtoList(List<Hashtag> hashtagList);
-    List<Hashtag> sevenDayTop5HashtagListByCount(LocalDate currentDateTime);
-    List<Hashtag> sevenDayTop5HashtagListByLike(LocalDate currentDateTime);
 
 }
