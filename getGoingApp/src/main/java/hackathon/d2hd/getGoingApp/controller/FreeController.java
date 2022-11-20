@@ -36,12 +36,15 @@ public class FreeController {
         return freeService.hashscraperCall(keyword);
     }
 
-    @GetMapping("/currentTop5HashtagDtoList")
-    public List<HashtagDto> currentTop5HashtagDtoList() {
-        return freeService.getTop5HashtagDtos();
-    }
-
-    //New Change
+    /**
+     * Performs the Twitter scraping API from Hashscraper.
+     * Scrapes for Tweets that match the userInput and returns a list of Tweets
+     * @param userInput
+     * A String of the keyword that the user has searched. This String is taken from FE and passed through as a parameter in this API
+     * @return
+     * A list of 10 Tweets sorted by number of retweets in descending order
+     * @throws JsonProcessingException
+     */
     @GetMapping("/keywordSearch/{userInput}")
     public List<TweetDto> keywordSearchToTweetDtoList(@PathVariable String userInput) throws JsonProcessingException {
         String response = freeService.hashscraperCall(userInput);
@@ -49,7 +52,12 @@ public class FreeController {
         return freeService.keywordSearchToTweeDtoList(response);
     }
 
-    // TODO: 20/11/22 Finish Later
+    @GetMapping("/currentTop5HashtagDtoList")
+    public List<HashtagDto> currentTop5HashtagDtoList() {
+        return freeService.getTop5HashtagDtos();
+    }
+
+
     @GetMapping("/keywordSearchToHashtagDto/{userInput}")
     public HashtagDto keywordSearchToHashtagDto(@PathVariable String userInput) throws JsonProcessingException {
         String response = freeService.hashscraperCall(userInput);
