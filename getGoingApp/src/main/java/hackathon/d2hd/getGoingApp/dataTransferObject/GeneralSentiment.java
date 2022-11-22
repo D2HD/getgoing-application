@@ -24,4 +24,5 @@ public class GeneralSentiment {
     public void setNegative_sentiment(Long negative_sentiment) {
         this.negative_sentiment = negative_sentiment;
     }
+
 }

@@ -211,7 +211,7 @@ public class TweetServiceImpl implements TweetService {
     }
 
     /**
-     * Saves all the tweets passed through from the parameter
+     * Saves all the tweets passed through from the parameter into the Tweet database
      * @param tweetList
      */
     @Override
