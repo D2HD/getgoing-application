@@ -1,7 +1,6 @@
 package hackathon.d2hd.getGoingApp.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 import hackathon.d2hd.getGoingApp.service.FreeService;
@@ -14,7 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/free")
-public class FreeController {
+public class GetGoingController {
     @Value("${keyword}")
     private String keyword;
     @Autowired
@@ -34,12 +33,24 @@ public class FreeController {
     }
 
     /**
+     * API for the Free mode
+     * Performs the Twitter scraping API from Hashscraper
+     * Keyword is initialised to "#forsale" by default which scrapes the for sale portion of twitter
+     * @return
+     * A list of 5 HashtagDtos sorted by number of occurrence in descending order
+     */
+    @GetMapping("/currentTop5HashtagDtoList")
+    public List<HashtagDto> currentTop5HashtagDtoList() {
+        return freeService.getTop5HashtagDtos();
+    }
+
+    /**
      * Performs the Twitter scraping API from Hashscraper.
-     * Scrapes for Tweets that match the userInput and returns a list of Tweets
+     * Scrapes for Tweets that match the userInput and returns a list of TweetDtos
      * @param userInput
      * A String of the keyword that the user has searched. This String is taken from FE and passed through as a parameter in this API
      * @return
-     * A list of 10 Tweets sorted by number of retweets in descending order
+     * A list of 10 TweetDtos sorted by number of retweets in descending order
      * @throws JsonProcessingException
      */
     @GetMapping("/keywordSearchToTweetDtoList/{userInput}")
@@ -49,24 +60,20 @@ public class FreeController {
         return freeService.keywordSearchToTweeDtoList(response);
     }
 
-
-    @GetMapping("/currentTop5HashtagDtoList")
-    public List<HashtagDto> currentTop5HashtagDtoList() {
-        return freeService.getTop5HashtagDtos();
-    }
-
-
+    /**
+     * Performs the Twitter scraping API from Hashscraper.
+     * Scrapes for Tweets that match the keyword which has been initialised by userInput and a single HashtagDto object
+     * @param userInput
+     * A String of the keyword that the user has searched. This String is taken from FE and passed through as a parameter in this API
+     * @return
+     * A single HashtagDto object that contains information of the hashtag searched over a number of days
+     * @throws JsonProcessingException
+     */
     @GetMapping("/keywordSearchToHashtagDto/{userInput}")
     public HashtagDto keywordSearchToHashtagDto(@PathVariable String userInput) throws JsonProcessingException {
         String response = freeService.hashscraperCall(userInput);
         List<TweetDto> tweetDtoList = freeService.keywordSearchToTweeDtoList(response);
         return freeService.tweetDtoListToPremiumHashtag(tweetDtoList);
-    }
-
-
-    @GetMapping("/hashscraperDateSearch/{start}/{end}")
-    public String hashscraperDateSearch(@PathVariable String start, @PathVariable String end) {
-        return freeService.hashscraperDateCall(start, end);
     }
 }
 

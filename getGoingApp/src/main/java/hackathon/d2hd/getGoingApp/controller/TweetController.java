@@ -21,7 +21,7 @@ public class TweetController {
 
     @GetMapping("/getTweetDatabaseSize")
     public int getTweetDatabaseSize() {
-        return tweetService.getAllTweets().size();
+        return tweetService.tweetDatabaseSize();
     }
 
     @GetMapping("/getAllTweets")
@@ -36,6 +36,11 @@ public class TweetController {
         tweetDtoList.sort(Comparator.comparing(TweetDto::getLocalDateTime).reversed());
 
         return tweetDtoList;
+    }
+
+    @GetMapping("/saveAllTweets")
+    public void saveAllTweets() {
+
     }
 
     @DeleteMapping("/clearTweetDatabase")

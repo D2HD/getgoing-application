@@ -12,7 +12,6 @@ import java.util.List;
 
 public interface TweetService {
     List<Tweet> hashscraperResponseBodyToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException;
-    List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException;
     void clearTweetDatabase();
     TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException;
     LocalDateTime stringToLocalDateTime(String localDateTimeString);

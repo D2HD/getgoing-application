@@ -61,6 +61,7 @@ public class HashtagServiceImpl implements HashtagService {
             hashtagList.add(hashtag);
         });
 
+        hashtagRepository.saveAll(hashtagList);
         hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
 
         return hashtagList;
@@ -80,12 +81,7 @@ public class HashtagServiceImpl implements HashtagService {
 
     @Override
     public List<Hashtag> getTodaysTop5Hashtags() {
-        //Sort the list in descending order according to timestamp
         List<Hashtag> hashtagList = hashtagRepository.findAll();
-
-        //The first element of the list should be the latest, so we get its timestamp for comparison
-
-        //Remove hashtags from the hashtag list that do not have the same timestamp
         hashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
         List<Hashtag> todaysTop5HashtagList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
@@ -127,18 +123,12 @@ public class HashtagServiceImpl implements HashtagService {
 
     @Override
     public void saveHashtagList(List<Hashtag> hashtagList) {
-        Logger logger = Logger.getLogger(HashtagServiceImpl.class.getName());
-        int count = hashtagList.size();
         for (Hashtag hashtag : hashtagList) {
             hashtagRepository.save(hashtag);
-            count -= 1;
-            logger.info("Saved " + hashtag.getHashtag_id() + " left with " + count);
         }
     }
 
     private List<Hashtag> getHashtags(LocalDate currentDateTime, Comparator<Hashtag> comparing) {
-        //endDate initialised to the day before currentDate
-        //reason being is that the Hashtags for currentDate may still be populating
         LocalDate endDate = currentDateTime.minusDays(1L);
         LocalDate startDate = endDate.minusDays(7L);
 
@@ -273,8 +263,6 @@ public class HashtagServiceImpl implements HashtagService {
         LocalDate hashtagDate = hashtag.getTimestamp();
         LocalDate startingDate = hashtagDate.minusDays(6L);
 
-        //Returns all hashtags after this starting date
-        //Need to filter and get only the hashtags that match the hashtag_name of the parameter
         List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampBetweenOrderByTimestampAsc(startingDate, hashtagDate);
         hashtagList.removeIf(
                 currentHashtag -> (!currentHashtag.getHashtag_name().equals(hashtag.getHashtag_name()))

@@ -38,74 +38,7 @@ public class FreeServiceImpl implements FreeService {
     public List<HashtagDto> getTop5HashtagDtos(){
         List<Hashtag> todaysTop5HashtagList = hashtagService.getTodaysTop5Hashtags();
         List<HashtagDto> hashtagDtoList = hashtagService.hashtagListToHashtagDtoList(todaysTop5HashtagList);
-
-        for(int i = 0; i < hashtagDtoList.size(); i++) {
-            HashtagDto currentDto = hashtagDtoList.get(i);
-
-            currentDto.setDaily_hashtag_count(
-                    new Long[]{
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51))
-                    }
-            );
-
-            currentDto.setWeekly_hashtag_count(
-                    new Long[]{
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51)),
-                            Math.round((Math.random() * 51))
-                    }
-            );
-
-            currentDto.setWeekly_general_sentiment(
-                    new GeneralSentiment[]{
-                            new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
-                            new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
-                            new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
-                            new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50))
-                    }
-            );
-
-            currentDto.setLike_count(
-                    Math.round(Math.random() * 50)
-            );
-
-
-            currentDto.setGeneral_sentiment_of_the_day(
-                    new GeneralSentiment(
-                            Math.round(Math.random() * 50),
-                            Math.round(Math.random() * 50)
-                    ));
-
-            currentDto.setGeneral_sentiment_of_the_week(
-                    new GeneralSentiment(
-                            Math.round(Math.random() * 50),
-                            Math.round(Math.random() * 50)
-                    ));
-
-            currentDto.setGeneral_sentiment_of_the_week(
-                    new GeneralSentiment(
-                            Math.round(Math.random() * 50),
-                            Math.round(Math.random() * 50)
-                    ));
-
-            currentDto.setDaily_retweet_count(
-                    new Long[]{
-                            Math.round(Math.random() * 101),
-                            Math.round(Math.random() * 101),
-                            Math.round(Math.random() * 101),
-                            Math.round(Math.random() * 101),
-                            Math.round(Math.random() * 101),
-                            Math.round(Math.random() * 101),
-                            Math.round(Math.random() * 101)
-                    });
-        }
+        hashtagDtoList.sort(Comparator.comparing(HashtagDto::getNum_of_occurrence).reversed());
 
         return hashtagDtoList;
     }
@@ -114,11 +47,8 @@ public class FreeServiceImpl implements FreeService {
     public List<TweetDto> keywordSearchToTweeDtoList(String response) throws JsonProcessingException {
         List<Tweet> tweetList = tweetService.hashscraperResponseBodyToTweetDeserializer(response);
         List<TweetDto> tweetDtoList = tweetService.tweetListToTweetDtoList(tweetList);
+
         tweetDtoList.sort(Comparator.comparing(TweetDto::getTweet_retweet_count).reversed());
-        for(TweetDto tweetDto: tweetDtoList) {
-            tweetDto.setTweet_like_count(Math.round(Math.random() * 51));
-            tweetDto.setTweet_retweet_count(Math.round(Math.random() * 51));
-        }
 
         return tweetDtoList;
     }
@@ -130,6 +60,7 @@ public class FreeServiceImpl implements FreeService {
                 Month.of(Integer.parseInt(stringToLocalDate.substring(5, 7))),
                 Integer.parseInt(stringToLocalDate.substring(8))
         );
+
     }
 
     @Override
@@ -189,71 +120,6 @@ public class FreeServiceImpl implements FreeService {
             }
         }
 
-        HashtagDto hashtagDto = hashtagService.hashtagToHashtagDto(hashtagHashMap.get(id));
-        hashtagDto.setDaily_hashtag_count(
-                new Long[]{
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51))
-                }
-        );
-
-        hashtagDto.setWeekly_hashtag_count(
-                new Long[]{
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51)),
-                        Math.round((Math.random() * 51))
-                }
-        );
-
-        hashtagDto.setWeekly_general_sentiment(
-                new GeneralSentiment[]{
-                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
-                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
-                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50)),
-                        new GeneralSentiment(Math.round(Math.random() * 50), Math.round(Math.random() * 50))
-                }
-        );
-
-        hashtagDto.setLike_count(
-                Math.round(Math.random() * 50)
-        );
-
-
-        hashtagDto.setGeneral_sentiment_of_the_day(
-                new GeneralSentiment(
-                        Math.round(Math.random() * 50),
-                        Math.round(Math.random() * 50)
-                ));
-
-        hashtagDto.setGeneral_sentiment_of_the_week(
-                new GeneralSentiment(
-                        Math.round(Math.random() * 50),
-                        Math.round(Math.random() * 50)
-                ));
-
-        hashtagDto.setGeneral_sentiment_of_the_week(
-                new GeneralSentiment(
-                        Math.round(Math.random() * 50),
-                        Math.round(Math.random() * 50)
-                ));
-
-        hashtagDto.setDaily_retweet_count(
-                new Long[]{
-                        Math.round(Math.random() * 101),
-                        Math.round(Math.random() * 101),
-                        Math.round(Math.random() * 101),
-                        Math.round(Math.random() * 101),
-                        Math.round(Math.random() * 101),
-                        Math.round(Math.random() * 101),
-                        Math.round(Math.random() * 101)
-                });
-
-        return hashtagDto;
+        return hashtagService.hashtagToHashtagDto(hashtagHashMap.get(id));
     }
 }
