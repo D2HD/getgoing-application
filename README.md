@@ -6,6 +6,7 @@
 
 * API
   * https://www.api-appetizer.com/page/hashscraper2
+  * https://www.api-appetizer.com/page/langcode2
 * Git
   * https://git-scm.com/docs/git
   * https://docs.github.com/en
@@ -23,4 +24,10 @@
     * https://www.jetbrains.com/help/idea/postgresql.html
   * https://learning.postman.com/docs/getting-started/introduction/
   * https://confluence.atlassian.com/jira
+
+## License
+
+[//]: # (TODO: Add license.)
+```
+```
 
