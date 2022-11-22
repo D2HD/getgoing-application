@@ -96,6 +96,10 @@ public class TweetServiceImpl implements TweetService {
         return tweetDtoList;
     }
 
+    /**
+     * @param content The user's tweet, maximum 280 characters
+     * @return List of hashtag(s) fulfilling the specifications in lowercase
+     */
     @Override
     public List<String> getHashtagList(String content) {
         Matcher matcher = Pattern.compile("\u0023\\w+").matcher(content);
@@ -139,6 +143,12 @@ public class TweetServiceImpl implements TweetService {
         return hashtagList;
     }
 
+    /**
+     * @param tweet_json value15 of a Tweet object.
+     * @see Tweet#getValue15() Tweet.value15
+     * @return The general sentiment of a tweet, value ranges from -1.0 to 1.0
+     * @throws JsonProcessingException
+     */
     @Override
     public Double tweetJsonToGeneralSentiment(String tweet_json) throws JsonProcessingException {
         if(tweet_json.length() < 10) return Double.valueOf(0.0);
@@ -153,15 +163,30 @@ public class TweetServiceImpl implements TweetService {
         return totalSentiment / tweetJsonList.size();
     }
 
+    /**
+     * Gets the current size of the Tweet database
+     * @return
+     * An integer value based on the Tweet database size
+     */
     @Override
     public int tweetDatabaseSize() {
         return tweetRepository.findAll().size();
     }
+
+    /**
+     * Gets a list of all Tweet objects from the Tweet Database
+     * @return
+     * A List of Tweets from the Tweet database
+     */
     @Override
     public List<Tweet> getAllTweets() {
         return tweetRepository.findAll();
     }
 
+    /**
+     * Saves all the tweets passed through from the parameter
+     * @param tweetList
+     */
     @Override
     public void saveTweetList(List<Tweet> tweetList) {
         tweetRepository.saveAll(tweetList);

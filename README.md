@@ -29,24 +29,24 @@
   * https://learning.postman.com/docs/getting-started/introduction/
   * https://confluence.atlassian.com/jira
 
-# Code
-### Repository Package
-#### Hashtag Repository
+
+## Repository Package
+### Hashtag Repository
 
 * Interface extending JPARepository
 * The interface uses JPA methods to sort and filter through the database by using different metrics such as time, topics or both.
 
-#### Tweet Repository
+### Tweet Repository
 * An interface extending JPARepository
 * Has no JPA methods to sort or filter through the database as they are not needed
 
 
-### Data Model
+## Data Model Package
 * Specified as an Entity.
 * Specifies instance variables for the class.
 * The @Table annotation is used to define the table name
 * The @Id annotation is used to specify the primary key in the entity.
-#### Tweet
+### Tweet
 * Values:
   * value1: URL
     * ex: https://twitter.com/708060302445826049/status/1589404604017451008
@@ -79,7 +79,7 @@
   * value15: Tweet JSON with sentiment
     * ex: [{"content":"#forsale #barbaracrampton Check out Puppet Master: The Littlest Reich, Brand New Sealed Blu-ray Barbara Crampton https://t.co/Y3smlErrkz #eBay via @eBay","score":0.0}]
     * Sentiment is broken down per sentence and the score is shown at the very end
-#### Hashtag
+### Hashtag
 * Values:
   * hashtag_id: String type identifier
   * hashtag_name: String type value
@@ -88,8 +88,8 @@
   * like_count: Long type value
   * general_sentiment: Double type value
 
-### Data Transfer Object (Dto)
-## TweetDto class
+## Data Transfer Object Package
+### TweetDto class
 * Used to instantiate a TweetDto object with variables of different types so that specific operations (which are not performable with purely string attributes) can be performed
 * Constructor: Has 13 variables
   * url: Stored as a String variable
@@ -106,7 +106,7 @@
   * localDateTime: Stored as a localDateTime variable
   * general_sentiment: Stored as a Double (for extra precision)
 
-## HashtagDto
+### HashtagDto
 * Used to instantiate a HashTagDto object with variables of different types so that specific operations (which are not performable with purely string attributes) can be performed.
 * The instance variables of these objects continually change every time a scrape is called.
 * Constructor: Has 8 variables
@@ -124,3 +124,34 @@
   * general_sentiment: Stores the average sentiment of all tweets having the same hashtag. Stored as a Double variable (for better precision)
   * retweet_count: Stores total number of retweets all the tweets with this hashtag have as a long data type.
 
+## Implementation
+
+### TweetServiceImpl
+### hashscraperResponseBodyToTweetDeserializer
+Converts the String of the response body from the Hashscraper API call and converts it into a list of Tweet objects that 
+will be saved into the TweetRepository
+
+### getHashtagList
+Extract every unique and valid hashtag from a user's tweet. Hashtags that contain/are words from the blacklist are
+skipped. The regular expression used matches a single pound/hash sign, followed by one or more alphanumeric/underscore
+character.
+
+### tweetJsonToGeneralSentiment(String tweet_json)
+
+Extract the general sentiment of a tweet. Computes the average for tweets with multiple general sentiments.
+
+```java
+/**
+@param tweet_json value15 of a Tweet object.
+@see Tweet#getValue15() Tweet.value15
+@return The general sentiment of a tweet, value ranges from -1.0 to 1.0
+@throws JsonProcessingException
+```
+
+## HashtagServiceImpl
+
+[//]: # (TODO)
+
+## FreemiumServiceImpl
+
+[//]: # (TODO)
