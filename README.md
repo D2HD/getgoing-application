@@ -30,9 +30,9 @@
   * https://confluence.atlassian.com/jira
 
 
-## Repository Package
-### Hashtag Repository
+## [Repository Package][Link_repository]
 
+### Hashtag Repository
 * Interface extending JPARepository
 * The interface uses JPA methods to sort and filter through the database by using different metrics such as time, topics or both.
 
@@ -40,12 +40,12 @@
 * An interface extending JPARepository
 * Has no JPA methods to sort or filter through the database as they are not needed
 
-
-## Data Model Package
+## [Data Model Package][Link_dataTransferObject]
 * Specified as an Entity.
 * Specifies instance variables for the class.
 * The @Table annotation is used to define the table name
 * The @Id annotation is used to specify the primary key in the entity.
+
 ### Tweet
 * Values:
   * value1: URL
@@ -77,8 +77,9 @@
   * value14: Time of Scrape
     * ex: 2022-11-07 08:49:21 +0900
   * value15: Tweet JSON with sentiment
-    * ex: [{"content":"#forsale #barbaracrampton Check out Puppet Master: The Littlest Reich, Brand New Sealed Blu-ray Barbara Crampton https://t.co/Y3smlErrkz #eBay via @eBay","score":0.0}]
+    * ex: `[{"content":"#forsale #barbaracrampton Check out Puppet Master: The Littlest Reich, Brand New Sealed Blu-ray Barbara Crampton https://t.co/Y3smlErrkz #eBay via @eBay","score":0.0}]`
     * Sentiment is broken down per sentence and the score is shown at the very end
+
 ### Hashtag
 * Values:
   * hashtag_id: String type identifier
@@ -88,7 +89,8 @@
   * like_count: Long type value
   * general_sentiment: Double type value
 
-## Data Transfer Object Package
+## [Data Transfer Object Package][Link_dataTransferObject]
+
 ### TweetDto class
 * Used to instantiate a TweetDto object with variables of different types so that specific operations (which are not performable with purely string attributes) can be performed
 * Constructor: Has 13 variables
@@ -124,95 +126,118 @@
   * general_sentiment: Stores the average sentiment of all tweets having the same hashtag. Stored as a Double variable (for better precision)
   * retweet_count: Stores total number of retweets all the tweets with this hashtag have as a long data type.
 
-## Implementation
+## [Implementation][Link_implementation]
 
 ### TweetServiceImpl
-### hashscraperResponseBodyToTweetDeserializer
+
+#### hashscraperResponseBodyToTweetDeserializer
 Converts the String of the response body from the Hashscraper API call and converts it into a list of Tweet objects that 
 will be saved into the TweetRepository
 
-### clearTweetDatabase
+#### clearTweetDatabase
 Deletes all the Tweet objects from the Tweet database
 
-### tweetToTweetDto
+#### tweetToTweetDto
 Converts the Tweet object that has been passed through as a parameter into a TweetDto object
 
-### stringToLocalDateTime
+#### stringToLocalDateTime
 Converts the string passed from the parameter into a LocalDateTime object
 
-### tweetListToTweetDtoList
+#### tweetListToTweetDtoList
 Converts a list of Tweet objects into a list of TweetDto objects
 
-### getHashtagList
+#### getHashtagList
 Extract every unique and valid hashtag from a user's tweet. Hashtags that contain/are words from the blacklist are
 skipped. The regular expression used matches a single pound/hash sign, followed by one or more alphanumeric/underscore
 character.
 
-### tweetJsonToGeneralSentiment(String tweet_json)
+#### tweetJsonToGeneralSentiment(String tweet_json)
 Extract the general sentiment of a tweet. Computes the average for tweets with multiple general sentiments.
 
-## HashtagServiceImpl
-### createHashtagId
+### HashtagServiceImpl
+
+#### createHashtagId
 Creates a Hashtag object from a TweetDto object by concatenating the String of the desIred hashtag with the date of the TweetDto
 
-### tweetDtoListToHashtagList
+#### tweetDtoListToHashtagList
 Converts a list of TweetDto objects into a list of Hashtag objects and saves them into the Hashtag repository
 
-### clearHashtagDatabase
+#### clearHashtagDatabase
 Deletes all the Hashtag objects from the Hashtag database
 
-### getAllHashtagsFromDatabase
+#### getAllHashtagsFromDatabase
 Gets a list of all Hashtag objects from the Hashtag Database
 
-### getTodaysTop5Hashtags
+#### getTodaysTop5Hashtags
 Gets a list of the most popular hashtags based on number of occurrence
 
-### hashtagToHashtagDto
+#### hashtagToHashtagDto
 Converts a Hashtag object into a HashtagDto object
 
-### hashtagListToHashtagDtoList
+#### hashtagListToHashtagDtoList
 Converts a list of Hashtag objects into a list of HashtagDtos
 
-### saveHashtagList
+#### saveHashtagList
 Saves individual Hashtag objects into the Hashtag repository
 
-### countOfWeek
+#### countOfWeek
 Get the number of times a specific hashtag has been searched in a week
 
-### weeklyHashtagCount
+#### weeklyHashtagCount
 Get an Array of size 4 that contains the number of occurrence of a Hashtag over 4 weeks
 Each index in the Array represents the week in relation to the date of the Hashtag object
 Index 0 will be the oldest week while index 4 will be the current week
 
-### generalSentimentOfTheWeek
+#### generalSentimentOfTheWeek
 Returns the GeneralSentiment object of a Hashtag over a specific week
 Will contain the count of the number of positive and negative sentiments
 
-### weeklyGeneralSentiment
+#### weeklyGeneralSentiment
 Get an Array of size 4 that contains the GeneralSentiment of a Hashtag over 4 weeks
 Each index in the Array represents the week in relation to the date of the Hashtag object
 Index 0 will be the oldest week while index 4 will be the current week
 
-### getGeneralSentimentOfTheDay
+#### getGeneralSentimentOfTheDay
 Returns the GeneralSentiment object of a Hashtag over a day
 Will contain the count of the number of positive and negative sentiments
 
-### getDailyHashtagCount
+#### getDailyHashtagCount
 Get an Array of size 7 that contains the number of occurrence of a Hashtag over 7 days
 Each index in the Array represents the day in relation to the date of the Hashtag object
 Index 0 will be the oldest day while index 4 will be the current day
 
-### getDailyRetweetCount
+#### getDailyRetweetCount
 Get an Array of size 7 that contains the number of retweets of a Hashtag over 7 days
 Each index in the Array represents the day in relation to the date of the Hashtag object
 Index 0 will be the oldest day while index 4 will be the current day
 
-### getGeneralSentimentOfTheWeek
+#### getGeneralSentimentOfTheWeek
 Returns the GeneralSentiment object of a Hashtag over a week
 Will contain the count of the number of positive and negative sentiments
 
- 
+### FreeServiceImpl
 
-## FreemiumServiceImpl
+#### getTop5HashtagDtos
+Returns the top five hashtags based on the number of occurrence.
 
-[//]: # (TODO)
+#### keywordSearchToTweeDtoList
+Performs a keyword search using hashscraperResponseBodyToTweetDeserializer
+to obtain a list of TweetDto objects.
+
+#### stringToLocalDate
+Converts a String representation of a date to the LocalDate object.
+
+#### hashscraperCall
+Performs a POST request to Hashscraper's API to obtain the tweets as specified by the keyword. \
+This method is limited to 10 tweets to prevent a timeout.
+
+#### hashscraperDateCall
+Performs hashscraperCall with the date parameters.
+
+#### tweetDtoListToPremiumHashtag
+Updates the number of occurrence of a hashtag, its like and retweet count, and overall general sentiment.
+
+[Link_repository]:         https://github.com/D2HD/appetizer/tree/main/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/repository
+[Link_dataModel]:          https://github.com/D2HD/appetizer/tree/main/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataModel
+[Link_dataTransferObject]: https://github.com/D2HD/appetizer/tree/main/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/dataTransferObject
+[Link_implementation]:     https://github.com/D2HD/appetizer/tree/main/getGoingApp/src/main/java/hackathon/d2hd/getGoingApp/implementation
