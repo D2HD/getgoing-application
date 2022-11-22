@@ -11,12 +11,9 @@ import hackathon.d2hd.getGoingApp.service.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,6 +27,14 @@ public class TweetServiceImpl implements TweetService {
     @Autowired
     private TweetRepository tweetRepository;
 
+    /**
+     * Converts the String of the response body from the Hashscraper API call and converts it into a list of Tweet objects that
+     * will be saved into the TweetRepository
+     * @param hashscraperResponseBody
+     * @return
+     * A list of Tweet objects based on the data passed through from the response body that has been passed through as a parameter
+     * @throws JsonProcessingException
+     */
     @Override
     public List<Tweet> hashscraperResponseBodyToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException {
         JsonNode rootNode = objectMapper.readTree(hashscraperResponseBody);
@@ -43,11 +48,21 @@ public class TweetServiceImpl implements TweetService {
         return tweetList;
     }
 
+    /**
+     * Deletes all the Tweet objects from the Tweet database
+     */
     @Override
     public void clearTweetDatabase(){
         tweetRepository.deleteAll();
     }
 
+    /**
+     * Converts the Tweet object that has been passed through as a parameter into a TweetDto object
+     * @param tweet
+     * @return
+     * A TweetDto object
+     * @throws JsonProcessingException
+     */
     @Override
     public TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException {
         return new TweetDto(
@@ -67,6 +82,12 @@ public class TweetServiceImpl implements TweetService {
         );
     }
 
+    /**
+     * Converts the string passed from the parameter into a LocalDateTime object
+     * @param localDateTimeString
+     * @return
+     * LocalDateTime object based on the String localDateTime parameter
+     */
     @Override
     public LocalDateTime stringToLocalDateTime(String localDateTimeString) {
         String formattedString = localDateTimeString.substring(0, localDateTimeString.length()-6);
@@ -81,6 +102,12 @@ public class TweetServiceImpl implements TweetService {
         return LocalDateTime.parse(formattedString, formatter);
     }
 
+    /**
+     * Converts a list of Tweet objects into a list of TweetDto objects
+     * @param tweetList
+     * @return
+     * A list of TweetDtos
+     */
     @Override
     public List<TweetDto> tweetListToTweetDtoList(List<Tweet> tweetList) {
         List<TweetDto> tweetDtoList = new ArrayList<>();

@@ -19,12 +19,26 @@ public class HashtagServiceImpl implements HashtagService {
     @Autowired
     private HashtagRepository hashtagRepository;
 
+    /**
+     * Creates a Hashtag object from a TweetDto object by concatenating the String of the desIred hashtag with the date of the TweetDto
+     * @param tweetDto
+     * @param hashtag
+     * @return
+     * A String object that is the HashtagId
+     */
     @Override
     public String createHashtagId(TweetDto tweetDto, String hashtag) {
         String dateString = tweetDto.getLocalDateTime().toString().substring(0, 10);
         return hashtag + dateString;
     }
 
+    /**
+     * Converts a list of TweetDto objects into a list of Hashtag objects and saves them into the Hashtag repository
+     * @param tweetDtoList
+     * @param hashtagHashMap
+     * @return
+     * A list of Hashtag objects
+     */
     @Override
     public List<Hashtag> tweetDtoListToHashtagList(List<TweetDto> tweetDtoList, HashMap<String, Hashtag> hashtagHashMap) {
         for (TweetDto tweetDto : tweetDtoList) {
@@ -66,11 +80,19 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagList;
     }
 
+    /**
+     * Deletes all the Hashtag objects from the Hashtag database
+     */
     @Override
     public void clearHashtagDatabase() {
         hashtagRepository.deleteAll();
     }
 
+    /**
+     * Gets a list of all Hashtag objects from the Hashtag Database
+     * @return
+     * A List of Hashtag from the Hashtag database
+     */
     @Override
     public List<Hashtag> getAllHashtagsFromDatabase() {
         List<Hashtag> hashtagList = hashtagRepository.findAll();
@@ -78,6 +100,11 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagRepository.findAll();
     }
 
+    /**
+     * Gets a list of the most popular hashtags based on number of occurrence
+     * @return
+     * A list of the most popular hashtags based on number of occurrence
+     */
     @Override
     public List<Hashtag> getTodaysTop5Hashtags() {
         List<Hashtag> hashtagList = hashtagRepository.findAll();
@@ -87,9 +114,16 @@ public class HashtagServiceImpl implements HashtagService {
             todaysTop5HashtagList.add(hashtagList.get(i));
         }
 
+        todaysTop5HashtagList.sort(Comparator.comparing(Hashtag::getNum_of_occurrence).reversed());
         return todaysTop5HashtagList;
     }
 
+    /**
+     * Converts a Hashtag object into a HashtagDto object
+     * @param hashtag
+     * @return
+     * A HashtagDto object
+     */
     @Override
     public HashtagDto hashtagToHashtagDto(Hashtag hashtag) {
         return new HashtagDto(
@@ -109,6 +143,13 @@ public class HashtagServiceImpl implements HashtagService {
         );
     }
 
+    /**
+     * Converts a list of Hashtag objects into a list of HashtagDtos
+     * @param hashtagList
+     * @return
+     * A list of HashtagDtos
+     */
+
     @Override
     public List<HashtagDto> hashtagListToHashtagDtoList(List<Hashtag> hashtagList) {
         List<HashtagDto> hashtagDtoList = new ArrayList<>();
@@ -120,6 +161,10 @@ public class HashtagServiceImpl implements HashtagService {
         return hashtagDtoList;
     }
 
+    /**
+     * Saves individual Hashtag objects into the Hashtag repository
+     * @param hashtagList
+     */
     @Override
     public void saveHashtagList(List<Hashtag> hashtagList) {
         for (Hashtag hashtag : hashtagList) {
@@ -127,21 +172,12 @@ public class HashtagServiceImpl implements HashtagService {
         }
     }
 
-    private List<Hashtag> getHashtags(LocalDate currentDateTime, Comparator<Hashtag> comparing) {
-        LocalDate endDate = currentDateTime.minusDays(1L);
-        LocalDate startDate = endDate.minusDays(7L);
-
-
-        List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampBetween(startDate, endDate);
-        hashtagList.sort(comparing.reversed());
-        List<Hashtag> top5HashtagList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            top5HashtagList.add(hashtagList.get(i));
-        }
-
-        return top5HashtagList;
-    }
-
+    /**
+     * Get the number of times a specific hashtag has been searched in a week
+     * @param weeklyHashtagList List of a single type of Hashtag over the last seven days based
+     * @return
+     * A Long object that is the count of number of occurrence of a Hashtag object in a week
+     */
     private Long countOfWeek(List<Hashtag> weeklyHashtagList) {
         if (weeklyHashtagList.isEmpty()) return 0L;
 
@@ -152,6 +188,15 @@ public class HashtagServiceImpl implements HashtagService {
 
         return occurrenceCount;
     }
+
+    /**
+     * Get an Array of size 4 that contains the number of occurrence of a Hashtag over 4 weeks
+     * Each index in the Array represents the week in relation to the date of the Hashtag object
+     * Index 0 will be the oldest week while index 4 will be the current week
+     * @param hashtag
+     * @return
+     * A Long Array of size 4 with each index containing the weekly number of occurrence of a Hashtag object
+     */
 
     private Long[] weeklyHashtagCount(Hashtag hashtag) {
         LocalDate week4EndDate = hashtag.getTimestamp();
@@ -181,6 +226,13 @@ public class HashtagServiceImpl implements HashtagService {
         return new Long[]{week1OccurrenceCount, week2OccurrenceCount, week3OccurrenceCount, week4OccurrenceCount};
     }
 
+    /**
+     * Returns the GeneralSentiment object of a Hashtag over a specific week
+     * Will contain the count of the number of positive and negative sentiments
+     * @param hashtagList List of a single type of Hashtag over the last seven days based
+     * @return
+     * A GeneralSentiment object of a Hashtag over a specific week
+     */
     private GeneralSentiment generalSentimentOfTheWeek(List<Hashtag> hashtagList) {
         if(hashtagList.isEmpty()) return new GeneralSentiment(
                 0L,
@@ -204,6 +256,14 @@ public class HashtagServiceImpl implements HashtagService {
         );
     }
 
+    /**
+     * Get an Array of size 4 that contains the GeneralSentiment of a Hashtag over 4 weeks
+     * Each index in the Array represents the week in relation to the date of the Hashtag object
+     * Index 0 will be the oldest week while index 4 will be the current week
+     * @param hashtag
+     * @return
+     * A GeneralSentiment Array of size 4 with each index containing the GeneralSentiment of a Hashtag object
+     */
     private GeneralSentiment[] weeklyGeneralSentiment(Hashtag hashtag) {
         LocalDate week4EndDate = hashtag.getTimestamp();
         LocalDate week4StartDate = week4EndDate.minusDays(7L);
@@ -232,7 +292,13 @@ public class HashtagServiceImpl implements HashtagService {
         return new GeneralSentiment[]{week1GeneralSentiment, week2GeneralSentiment, week3GeneralSentiment, week4GeneralSentiment};
     }
 
-
+    /**
+     * Returns the GeneralSentiment object of a Hashtag over a day
+     * Will contain the count of the number of positive and negative sentiments
+     * @param hashtag
+     * @return
+     * A GeneralSentiment object of a Hashtag over a day
+     */
     private GeneralSentiment getGeneralSentimentOfTheDay(Hashtag hashtag) {
         LocalDate currentDate = hashtag.getTimestamp();
         List<Hashtag> hashtagList = hashtagRepository.findAllByTimestampIs(currentDate);
@@ -257,6 +323,14 @@ public class HashtagServiceImpl implements HashtagService {
         );
     }
 
+    /**
+     * Get an Array of size 7 that contains the number of occurrence of a Hashtag over 7 days
+     * Each index in the Array represents the day in relation to the date of the Hashtag object
+     * Index 0 will be the oldest day while index 4 will be the current day
+     * @param hashtag
+     * @return
+     * A Long Array of size 7 that contains the number of occurrence of a Hashtag over 7 days
+     */
     @Override
     public Long[] getDailyHashtagCount(Hashtag hashtag) {
         LocalDate hashtagDate = hashtag.getTimestamp();
@@ -279,6 +353,14 @@ public class HashtagServiceImpl implements HashtagService {
         return dailyHashtagCount;
     }
 
+    /**
+     * Get an Array of size 7 that contains the number of retweets of a Hashtag over 7 days
+     * Each index in the Array represents the day in relation to the date of the Hashtag object
+     * Index 0 will be the oldest day while index 4 will be the current day
+     * @param hashtag
+     * @return
+     * A Long Array of size 7 that contains the number of retweets of a Hashtag over 7 days
+     */
     private Long[] getDailyRetweetCount(Hashtag hashtag) {
         Long[] dailyRetweetCount = new Long[7];
         Arrays.fill(dailyRetweetCount, 0L);
@@ -299,6 +381,13 @@ public class HashtagServiceImpl implements HashtagService {
         return dailyRetweetCount;
     }
 
+    /**
+     * Returns the GeneralSentiment object of a Hashtag over a week
+     * Will contain the count of the number of positive and negative sentiments
+     * @param hashtag
+     * @return
+     * A GeneralSentiment object of a Hashtag over a wekk
+     */
     private GeneralSentiment getGeneralSentimentOfTheWeek(Hashtag hashtag) {
         GeneralSentiment[] dailyGeneralSentiment = new GeneralSentiment[7];
         Arrays.fill(dailyGeneralSentiment,

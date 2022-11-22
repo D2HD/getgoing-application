@@ -131,26 +131,87 @@
 Converts the String of the response body from the Hashscraper API call and converts it into a list of Tweet objects that 
 will be saved into the TweetRepository
 
+### clearTweetDatabase
+Deletes all the Tweet objects from the Tweet database
+
+### tweetToTweetDto
+Converts the Tweet object that has been passed through as a parameter into a TweetDto object
+
+### stringToLocalDateTime
+Converts the string passed from the parameter into a LocalDateTime object
+
+### tweetListToTweetDtoList
+Converts a list of Tweet objects into a list of TweetDto objects
+
 ### getHashtagList
 Extract every unique and valid hashtag from a user's tweet. Hashtags that contain/are words from the blacklist are
 skipped. The regular expression used matches a single pound/hash sign, followed by one or more alphanumeric/underscore
 character.
 
 ### tweetJsonToGeneralSentiment(String tweet_json)
-
 Extract the general sentiment of a tweet. Computes the average for tweets with multiple general sentiments.
 
-```java
-/**
-@param tweet_json value15 of a Tweet object.
-@see Tweet#getValue15() Tweet.value15
-@return The general sentiment of a tweet, value ranges from -1.0 to 1.0
-@throws JsonProcessingException
-```
-
 ## HashtagServiceImpl
+### createHashtagId
+Creates a Hashtag object from a TweetDto object by concatenating the String of the desIred hashtag with the date of the TweetDto
 
-[//]: # (TODO)
+### tweetDtoListToHashtagList
+Converts a list of TweetDto objects into a list of Hashtag objects and saves them into the Hashtag repository
+
+### clearHashtagDatabase
+Deletes all the Hashtag objects from the Hashtag database
+
+### getAllHashtagsFromDatabase
+Gets a list of all Hashtag objects from the Hashtag Database
+
+### getTodaysTop5Hashtags
+Gets a list of the most popular hashtags based on number of occurrence
+
+### hashtagToHashtagDto
+Converts a Hashtag object into a HashtagDto object
+
+### hashtagListToHashtagDtoList
+Converts a list of Hashtag objects into a list of HashtagDtos
+
+### saveHashtagList
+Saves individual Hashtag objects into the Hashtag repository
+
+### countOfWeek
+Get the number of times a specific hashtag has been searched in a week
+
+### weeklyHashtagCount
+Get an Array of size 4 that contains the number of occurrence of a Hashtag over 4 weeks
+Each index in the Array represents the week in relation to the date of the Hashtag object
+Index 0 will be the oldest week while index 4 will be the current week
+
+### generalSentimentOfTheWeek
+Returns the GeneralSentiment object of a Hashtag over a specific week
+Will contain the count of the number of positive and negative sentiments
+
+### weeklyGeneralSentiment
+Get an Array of size 4 that contains the GeneralSentiment of a Hashtag over 4 weeks
+Each index in the Array represents the week in relation to the date of the Hashtag object
+Index 0 will be the oldest week while index 4 will be the current week
+
+### getGeneralSentimentOfTheDay
+Returns the GeneralSentiment object of a Hashtag over a day
+Will contain the count of the number of positive and negative sentiments
+
+### getDailyHashtagCount
+Get an Array of size 7 that contains the number of occurrence of a Hashtag over 7 days
+Each index in the Array represents the day in relation to the date of the Hashtag object
+Index 0 will be the oldest day while index 4 will be the current day
+
+### getDailyRetweetCount
+Get an Array of size 7 that contains the number of retweets of a Hashtag over 7 days
+Each index in the Array represents the day in relation to the date of the Hashtag object
+Index 0 will be the oldest day while index 4 will be the current day
+
+### getGeneralSentimentOfTheWeek
+Returns the GeneralSentiment object of a Hashtag over a week
+Will contain the count of the number of positive and negative sentiments
+
+ 
 
 ## FreemiumServiceImpl
 
