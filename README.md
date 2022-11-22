@@ -123,3 +123,4 @@
   * timestamp: Stores the timestamp of the last scraped tweet with the same hashtag name. Stored as a localDate variable.
   * general_sentiment: Stores the average sentiment of all tweets having the same hashtag. Stored as a Double variable (for better precision)
   * retweet_count: Stores total number of retweets all the tweets with this hashtag have as a long data type.
+
