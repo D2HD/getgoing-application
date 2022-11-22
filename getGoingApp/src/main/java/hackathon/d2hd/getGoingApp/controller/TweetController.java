@@ -23,7 +23,7 @@ public class TweetController {
 
     @GetMapping("/getTweetDatabaseSize")
     public int getTweetDatabaseSize() {
-        return tweetService.getAllTweets().size();
+        return tweetService.tweetDatabaseSize();
     }
 
     @GetMapping("/getAllTweets")

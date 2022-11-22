@@ -1,7 +1,6 @@
 package hackathon.d2hd.getGoingApp.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataTransferObject.HashtagDto;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 

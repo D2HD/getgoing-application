@@ -1,11 +1,10 @@
 package hackathon.d2hd.getGoingApp.dataModel;
 
-import com.sun.xml.bind.v2.TODO;
-
-import javax.persistence.*;
-import java.math.BigDecimal;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "hashtag")

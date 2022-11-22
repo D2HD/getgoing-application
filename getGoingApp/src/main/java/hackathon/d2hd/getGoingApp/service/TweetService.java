@@ -1,18 +1,14 @@
 package hackathon.d2hd.getGoingApp.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import hackathon.d2hd.getGoingApp.dataModel.Hashtag;
 import hackathon.d2hd.getGoingApp.dataModel.Tweet;
 import hackathon.d2hd.getGoingApp.dataTransferObject.TweetDto;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TweetService {
     List<Tweet> hashscraperResponseBodyToTweetDeserializer(String hashscraperResponseBody) throws JsonProcessingException;
-    List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException;
     void clearTweetDatabase();
     TweetDto tweetToTweetDto(Tweet tweet) throws JsonProcessingException;
     LocalDateTime stringToLocalDateTime(String localDateTimeString);

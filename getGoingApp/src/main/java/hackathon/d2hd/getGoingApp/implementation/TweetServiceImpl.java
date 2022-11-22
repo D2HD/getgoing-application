@@ -38,16 +38,9 @@ public class TweetServiceImpl implements TweetService {
                 .stream()
                 .distinct()
                 .collect(Collectors.toList());
-        return tweetList;
-    }
 
-    @Override
-    public List<TweetDto> JsonToTweetDeserializer(File jsonFile) throws IOException {
-        JsonNode rootNode = objectMapper.readTree(jsonFile);
-        JsonNode dataNode = rootNode.get("data");
-        List<Tweet> tweetList = objectMapper.readValue(dataNode.toString(), new TypeReference<List<Tweet>>() {});
         tweetRepository.saveAll(tweetList);
-        return tweetListToTweetDtoList(tweetRepository.findAll());
+        return tweetList;
     }
 
     @Override
